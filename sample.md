@@ -30,10 +30,3 @@ Yes, you can use Javascript AJAX calls to pull in external content into your ind
 
 ### I heard I need to be using XYZ framework (Bootstrap, React, etc).
 Web technology changes rapidly, and it easy to get lost in the hype. Learning the basics of HTML, CSS, and JS is a good place to start. From there, you can explore different frameworks and libraries to see what interests you.
-
-### I don't want to write code or deal with website hosting. Are there any website builders you recommend?
-- Google Sites (free)
-- Squarespace
-- Wix
-- Strikingly (free tier includes single product store)
-- Big Cartel, Shopify, Etsy (e-commerce)
