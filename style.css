@@ -137,5 +137,8 @@ ul.main-menu li a.active {
   display:block;
 }
 
-
+/* Define a class to apply a different font size */
+.title-size {
+  font-size: 2.2rem; /* Change the font size to your desired value */
+}
 
