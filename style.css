@@ -114,6 +114,7 @@ ul.main-menu {
   flex-wrap: wrap;
   justify-content: left;
   list-style: none;
+  width: 100%;
 }
 ul.main-menu li a {
   margin-right:20px;
