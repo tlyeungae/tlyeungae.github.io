@@ -146,3 +146,15 @@ ul.main-menu li a.active {
   color: rgb(255, 155, 0); /* Change the color to your desired value */
   font-size: 2.2rem;
 }
+
+.hide {
+  display: none;
+}
+
+.expand-icon {
+  cursor: pointer;
+}
+
+.abstract-content {
+  margin-left: 20px; /* Adjust margin as needed */
+}
