@@ -28,14 +28,11 @@
   
 })(jQuery);
 
-// Get all expand icons
-const expandIcons = document.querySelectorAll('.expand-icon');
-
-// Add click event listener to each expand icon
-expandIcons.forEach(icon => {
-  icon.addEventListener('click', function() {
-    const abstractContent = this.parentElement.nextElementSibling;
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('expand-icon')) {
+    const icon = event.target;
+    const abstractContent = icon.closest('.abstract-toggle').nextElementSibling;
     abstractContent.classList.toggle('hide');
-    this.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
-  });
+    icon.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
+  }
 });
