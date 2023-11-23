@@ -97,7 +97,7 @@ html {
   background-size:cover;
 }
 body {
-  max-width:800px;
+  /* max-width: 800px; */
   margin:25px auto;
 }
 header, #content, footer { 
@@ -114,7 +114,6 @@ ul.main-menu {
   flex-wrap: wrap;
   justify-content: left;
   list-style: none;
-  width: 100%;
 }
 ul.main-menu li a {
   margin-right:20px;
