@@ -27,3 +27,13 @@
   });
   
 })(jQuery);
+
+const descriptions = document.querySelectorAll('.description');
+const displayedImg = document.getElementById('displayed-img');
+
+descriptions.forEach(description => {
+  description.addEventListener('click', () => {
+    const imagePath = description.getAttribute('data-img');
+    displayedImg.src = imagePath;
+  });
+});
