@@ -161,3 +161,13 @@ ul.main-menu li a.active {
 .image-content {
   flex-shrink: 0; /* Prevent the image from shrinking */
 }
+
+.interests-list {
+  list-style: none;
+  padding: 0;
+}
+
+.interests-list li::before {
+  content: "\2022"; /* Unicode for bullet (dot) character */
+  margin-right: 5px; /* Adjust the space between dot and text */
+}
