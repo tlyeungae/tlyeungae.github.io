@@ -146,11 +146,3 @@ ul.main-menu li a.active {
   color: #EF6D3D; /* Change the color to your desired value */
   font-size: 2.2rem;
 }
-
-.hide {
-  display: none;
-}
-
-.expand-icon {
-  cursor: pointer;
-}

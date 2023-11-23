@@ -27,12 +27,3 @@
   });
   
 })(jQuery);
-
-document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('expand-icon')) {
-    const icon = event.target;
-    const abstractContent = icon.closest('.abstract-toggle').nextElementSibling;
-    abstractContent.classList.toggle('hide');
-    icon.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
-  }
-});
