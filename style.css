@@ -146,3 +146,18 @@ ul.main-menu li a.active {
   color: #EF6D3D; /* Change the color to your desired value */
   font-size: 2.2rem;
 }
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-content {
+  flex: 1;
+  margin-right: 20px; /* Adjust the spacing between text and image */
+}
+
+.image-content {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+}
