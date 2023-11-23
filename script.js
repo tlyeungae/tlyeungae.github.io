@@ -28,15 +28,8 @@
   
 })(jQuery);
 
-// Get all abstract toggles
-const abstractToggles = document.querySelectorAll('.abstract-toggle');
-
-// Toggle abstract content when clicking on the expand icon
-abstractToggles.forEach((toggle) => {
-  toggle.addEventListener('click', () => {
-    const abstractContent = toggle.nextElementSibling;
-    abstractContent.classList.toggle('hide');
-    const expandIcon = toggle.querySelector('.expand-icon');
-    expandIcon.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
-  });
-});
+function toggleAbstract(element) {
+  const abstractContent = element.parentElement.nextElementSibling;
+  abstractContent.classList.toggle('hide');
+  element.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
+}
