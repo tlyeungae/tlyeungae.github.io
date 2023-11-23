@@ -28,8 +28,14 @@
   
 })(jQuery);
 
-function toggleAbstract(element) {
-  const abstractContent = element.parentElement.nextElementSibling;
-  abstractContent.classList.toggle('hide');
-  element.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
-}
+// Get all expand icons
+const expandIcons = document.querySelectorAll('.expand-icon');
+
+// Add click event listener to each expand icon
+expandIcons.forEach(icon => {
+  icon.addEventListener('click', function() {
+    const abstractContent = this.parentElement.nextElementSibling;
+    abstractContent.classList.toggle('hide');
+    this.textContent = abstractContent.classList.contains('hide') ? '▼' : '▲';
+  });
+});
