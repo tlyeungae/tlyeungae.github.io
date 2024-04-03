@@ -24,20 +24,6 @@
     // var region = location.hash.toString() || '#first';
     // $('#content').load(region.slice(1) + '.html')
     
-
-
-    // Functionality to toggle the Abstract's visibility
-    $(document).ready(function() {
-      $('#toggleAbstract').click(function() {
-        var abstractContent = $('#abstractContent');
-        if (abstractContent.is(':hidden')) {
-          abstractContent.show();
-          $(this).text('Hide Abstract'); // Change button text to 'Hide Abstract'
-        } else {
-          abstractContent.hide();
-          $(this).text('Show Abstract'); // Change button text back to 'Show Abstract'
-        }
-      });
   });
   
 })(jQuery);
