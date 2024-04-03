@@ -7,8 +7,6 @@ html {
   font-size: 62.5%;
 }
 body {
-  max-width: 1200px; /* Adjust this value to set the maximum width of the content */
-  margin: 25px auto;
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
@@ -99,7 +97,7 @@ html {
   background-size:cover;
 }
 body {
-  max-width: 800px;
+  max-width: 2400px;
   margin: 25px auto;
 }
 header, #content, footer { 
