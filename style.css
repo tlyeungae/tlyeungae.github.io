@@ -91,25 +91,25 @@ blockquote p:last-child {
  */
 
 /* Full size background image */
-html, #container, .inner { background-color:transparent;}
+html, #container, .inner { background-color:transparent; }
 html {
   background:url(background.jpeg) center center no-repeat fixed;
   background-size:cover;
 }
+
+/* Set max-width for container and body to ensure consistent and wider layout */
 body, #container {
-  max-width: 1600px; /* Use 100% for max width to make it responsive */
+  max-width: 1600px; /* Adjusted max-width for wider view */
   margin: 25px auto;
-  padding: 0 15px; /* Add padding to prevent content from touching the screen edges */
+  padding: 0 15px; /* Padding to prevent content from touching the screen edges */
 }
-body {
-  max-width: 800px;
-  margin: 25px auto;
-}
+
 header, #content, footer { 
   background: rgba(0,0,0,.8); 
-  padding:25px;
-  color:#FFFFFF; 
+  padding: 25px;
+  color: #FFFFFF; 
 }
+
 
 /* Menu Links */
 ul.main-menu {
