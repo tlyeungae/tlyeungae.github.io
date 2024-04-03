@@ -98,11 +98,11 @@ html {
 }
 body {
   max-width: 800px;
-  margin: 25px auto;
+  margin: 100px auto;
 }
 header, #content, footer { 
   background: rgba(0,0,0,.8); 
-  padding:60px;
+  padding:25px;
   color:#FFFFFF; 
 }
 
