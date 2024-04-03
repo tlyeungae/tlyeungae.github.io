@@ -110,6 +110,12 @@ header, #content, footer {
   color: #FFFFFF; 
 }
 
+#photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Menu Links */
 ul.main-menu {
