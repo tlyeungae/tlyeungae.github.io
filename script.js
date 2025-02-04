@@ -13,16 +13,18 @@
   $(document).ready(function() {
     $('.toggle-abstract').on('click', function(e) {
       e.preventDefault();
-
-      const $abstractText = $(this).next('.abstract-text');
-      $abstractText.slideToggle();
-
-      // Toggle link text after the slideToggle
-      if ($abstractText.is(':visible')) {
-        $(this).text('Hide Abstract');
-      } else {
-        $(this).text('Show Abstract');
-      }
+    
+      const $this = $(this);
+      const $abstractText = $this.next('.abstract-text');
+    
+      // Use a callback so it checks after slideToggle finishes
+      $abstractText.slideToggle(function() {
+        if ($abstractText.is(':visible')) {
+          $this.text('Hide Abstract');
+        } else {
+          $this.text('Show Abstract');
+        }
+      });
     });
   });
 })(jQuery);
