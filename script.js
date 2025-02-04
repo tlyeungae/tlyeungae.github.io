@@ -27,40 +27,4 @@
       });
     });
   });
-
-  $(document).ready(function() {
-    // Get elements
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.querySelector(".lightbox-content");
-    const captionText = document.getElementById("lightbox-caption");
-    const closeBtn = document.querySelector(".lightbox-close");
-  
-    // When a thumbnail is clicked:
-    $(".photo-item a").on("click", function(e) {
-      e.preventDefault(); // Prevent default link behavior
-  
-      // Get the href (full-size image) and data-caption
-      const fullSizeImageSrc = $(this).attr("href");
-      const caption = $(this).data("caption");
-  
-      // Populate and show the lightbox
-      lightboxImg.src = fullSizeImageSrc;
-      captionText.textContent = caption || "";
-      lightbox.style.display = "flex"; // use flex to center horizontally
-    });
-  
-    // Close the lightbox
-    closeBtn.onclick = function() {
-      lightbox.style.display = "none";
-      lightboxImg.src = "";
-    };
-  
-    // Also close on click outside the image
-    lightbox.addEventListener("click", function(e) {
-      if (e.target === lightbox) {
-        lightbox.style.display = "none";
-        lightboxImg.src = "";
-      }
-    });
-  });
 })(jQuery);
