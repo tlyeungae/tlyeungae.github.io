@@ -282,29 +282,3 @@ a.social-button.borderless.icon-github:hover {
 a.social-button.borderless.icon-dribbble:hover {
     color:#ea4c89;
 }
-
-#photo {
-    /* Turn on Grid layout */
-    display: grid;
-  
-    /* Set columns: 2 columns on larger screens, fallback to 1 on smaller screens */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px; /* Space between grid items */
-  
-    /* Center images automatically if columns are narrower than container */
-    justify-items: center;
-    align-items: start;
-  }
-  
-  #photo img {
-    max-width: 100%;
-    height: auto;
-    display: block; /* So it centers properly if you use justify-items: center */
-  }
-  
-  /* Optional: style the text below each image a bit. */
-  #photo .caption {
-    text-align: center;
-    font-style: italic;
-    margin-top: 0.5em;
-  }
