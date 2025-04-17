@@ -30,24 +30,24 @@
 })(jQuery);
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) grab only the photo container
+  // 1) Grab only the photo section
   const photoSection = document.getElementById('photo');
-  if (!photoSection) return; 
+  if (!photoSection) return;
 
-  // 2) build the button
+  // 2) Create the button
   const btn = document.createElement('button');
-  btn.textContent = photoSection.classList.contains('hide') 
-    ? 'Show Photos' 
+  btn.textContent = photoSection.classList.contains('hide')
+    ? 'Show Photos'
     : 'Hide Photos';
   btn.style.display = 'block';
   btn.style.margin = '1rem 0';
 
-  // 3) wire up the toggle
+  // 3) Wire up the click to toggle
   btn.addEventListener('click', () => {
-    const isHidden = photoSection.classList.toggle('hide');
-    btn.textContent = isHidden ? 'Show Photos' : 'Hide Photos';
+    const nowHidden = photoSection.classList.toggle('hide');
+    btn.textContent = nowHidden ? 'Show Photos' : 'Hide Photos';
   });
 
-  // 4) insert it just before the photo section
+  // 4) Insert it just once, before the gallery
   photoSection.parentNode.insertBefore(btn, photoSection);
 });
