@@ -182,3 +182,38 @@ ul.main-menu li a.active {
   content: "\2022"; /* Unicode for bullet (dot) character */
   margin-right: 5px; /* Adjust the space between dot and text */
 }
+
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.photo-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+.photo-gallery figure:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+.photo-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.photo-gallery figcaption {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+  background: #fafafa;
+}
+/* Optional: Toggle visibility */
+#photo.hide .photo-gallery {
+  display: none;
+}

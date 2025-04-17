@@ -28,3 +28,12 @@
     });
   });
 })(jQuery);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gallery = document.getElementById('photo');
+  const toggle = document.createElement('button');
+  toggle.textContent = 'Toggle Gallery';
+  toggle.style.margin = '1rem';
+  toggle.onclick = () => gallery.classList.toggle('hide');
+  gallery.parentNode.insertBefore(toggle, gallery);
+});
