@@ -30,17 +30,24 @@
 })(jQuery);
 
 document.addEventListener('DOMContentLoaded', () => {
-  // grab _only_ the photo section
+  // 1) grab only the photo container
   const photoSection = document.getElementById('photo');
-  if (!photoSection) return;
+  if (!photoSection) return; 
 
+  // 2) build the button
   const btn = document.createElement('button');
-  btn.textContent = 'Toggle Photos';
+  btn.textContent = photoSection.classList.contains('hide') 
+    ? 'Show Photos' 
+    : 'Hide Photos';
+  btn.style.display = 'block';
   btn.style.margin = '1rem 0';
+
+  // 3) wire up the toggle
   btn.addEventListener('click', () => {
-    photoSection.classList.toggle('hide');
+    const isHidden = photoSection.classList.toggle('hide');
+    btn.textContent = isHidden ? 'Show Photos' : 'Hide Photos';
   });
 
-  // insert _just once_ before the photo section
+  // 4) insert it just before the photo section
   photoSection.parentNode.insertBefore(btn, photoSection);
 });
