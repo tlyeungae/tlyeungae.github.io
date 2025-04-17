@@ -30,10 +30,17 @@
 })(jQuery);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const gallery = document.getElementById('photo');
-  const toggle = document.createElement('button');
-  toggle.textContent = 'Toggle Gallery';
-  toggle.style.margin = '1rem';
-  toggle.onclick = () => gallery.classList.toggle('hide');
-  gallery.parentNode.insertBefore(toggle, gallery);
+  // grab _only_ the photo section
+  const photoSection = document.getElementById('photo');
+  if (!photoSection) return;
+
+  const btn = document.createElement('button');
+  btn.textContent = 'Toggle Photos';
+  btn.style.margin = '1rem 0';
+  btn.addEventListener('click', () => {
+    photoSection.classList.toggle('hide');
+  });
+
+  // insert _just once_ before the photo section
+  photoSection.parentNode.insertBefore(btn, photoSection);
 });
