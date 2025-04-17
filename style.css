@@ -57,7 +57,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #fff;
+  color: var(--color-text);
 }
 a:focus {
   outline: 2px dashed var(--color-accent);
@@ -79,7 +79,7 @@ h2 { font-size: calc(var(--scale-ratio) * 1rem); }
 h3 { font-size: 1rem; }
 h4 { font-size: calc(1rem / var(--scale-ratio)); }
 h5 { font-size: calc(1rem / (var(--scale-ratio) * var(--scale-ratio))); }
-h6 { font-size: calc(1rem / (var(--scale-ratio) ** 3)); }
+h6 { font-size: calc(1rem / (var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio))); }
 
 /*───────────────────────────────────────────────────────────────────────────
    Text Elements
@@ -89,16 +89,16 @@ p {
 }
 small {
   font-size: 0.85em;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* Quotes */
 blockquote {
-  border-left: .3rem solid var(--color-quote-border);
+  border-left: 0.3rem solid var(--color-quote-border);
   margin: var(--space) 0;
-  padding: var(--space) var(--space) var(--space) var(--space);
+  padding: var(--space);
   font-size: 1.1rem;
-  background: rgba(255,255,255, .03);
+  background: rgba(255, 255, 255, 0.03);
 }
 blockquote p:last-child {
   margin-bottom: 0;
@@ -152,6 +152,41 @@ ul.main-menu li a.active {
 }
 ul.main-menu li a.active {
   border-bottom-color: var(--color-accent);
+}
+
+/*───────────────────────────────────────────────────────────────────────────
+   Code Module & Upload Placeholders
+────────────────────────────────────────────────────────────────────────────*/
+.code-module {
+  margin-top: var(--space);
+}
+
+.upload-placeholder {
+  border: 2px dashed var(--color-muted);
+  border-radius: 0.5rem;
+  padding: var(--space);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Hide the native file input, rely on the label for triggering upload */
+.upload-input {
+  display: none;
+}
+
+.upload-label {
+  display: inline-block;
+  cursor: pointer;
+  background: var(--color-accent);
+  color: var(--color-text);
+  padding: var(--gutter) var(--space);
+  border-radius: 0.25rem;
+  transition: background 0.2s;
+  font-weight: 500;
+  text-decoration: none;
+}
+.upload-label:hover {
+  background: #d55c35;
 }
 
 /*───────────────────────────────────────────────────────────────────────────
