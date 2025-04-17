@@ -1,45 +1,50 @@
-// script.js
 (function($) {
+  // 1) Hash‑based navigation + photo‑button visibility
   $(window).on('load hashchange', function(){
-    // Existing hash-based navigation code
+    // hide all regions, clear active menu
     $('.content-region').hide();
     $('.main-menu a').removeClass('active');
-    var region = location.hash.toString() || $('.main-menu a:first').attr('href');
+
+    // figure out which region to show
+    const region = location.hash || $('.main-menu a:first').attr('href');
     $(region).show();
     $('.main-menu a[href="'+ region +'"]').addClass('active');
+
+    // show/hide the photo‑toggle button
+    const $btn = $('#photo-toggle-btn');
+    if (region === '#photo') {
+      $btn.show();
+    } else {
+      $btn.hide();
+    }
   });
 
-  // Use just ONE document.ready block for the toggle logic
-  $(document).ready(function() {
+  // 2) DOM‑ready: abstract toggles + build photo button
+  $(function() {
+    // abstract toggles
     $('.toggle-abstract').on('click', function(e) {
       e.preventDefault();
-    
       const $this = $(this);
-      const $abstractText = $this.next('.abstract-text');
-    
-      // Use a callback so it checks after slideToggle finishes
-      $abstractText.slideToggle(function() {
-        if ($abstractText.is(':visible')) {
-          $this.text('Hide Abstract');
-        } else {
-          $this.text('Show Abstract');
-        }
+      const $abstract = $this.next('.abstract-text');
+      $abstract.slideToggle(() => {
+        $this.text( $abstract.is(':visible') ? 'Hide Abstract' : 'Show Abstract' );
       });
     });
+
+    // build the photo toggle button (once)
+    const $photo = $('#photo');
+    if ($photo.length && !$('#photo-toggle-btn').length) {
+      const $btn = $('<button>')
+        .attr('id','photo-toggle-btn')
+        .text( $photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos' )
+        .css({ display: 'block', margin: '1rem 0' })
+        .on('click', () => {
+          $photo.toggleClass('hide');
+          $btn.text( $photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos' );
+        });
+
+      // insert it just before the photo section
+      $photo.before($btn);
+    }
   });
 })(jQuery);
-
-$(function() {
-  const $photo = $('#photo');
-  if (!$photo.length) return;
-
-  const $btn = $('<button>')
-    .text($photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos')
-    .css({ display: 'block', margin: '1rem 0' })
-    .on('click', () => {
-      $photo.toggleClass('hide');
-      $btn.text($photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos');
-    });
-
-  $photo.before($btn);
-});
