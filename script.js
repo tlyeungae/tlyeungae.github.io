@@ -30,21 +30,5 @@
         $this.text( $abstract.is(':visible') ? 'Hide Abstract' : 'Show Abstract' );
       });
     });
-
-    // build the photo toggle button (once)
-    const $photo = $('#photo');
-    if ($photo.length && !$('#photo-toggle-btn').length) {
-      const $btn = $('<button>')
-        .attr('id','photo-toggle-btn')
-        .text( $photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos' )
-        .css({ display: 'block', margin: '1rem 0' })
-        .on('click', () => {
-          $photo.toggleClass('hide');
-          $btn.text( $photo.hasClass('hide') ? 'Show Photos' : 'Hide Photos' );
-        });
-
-      // insert it just before the photo section
-      $photo.before($btn);
-    }
   });
 })(jQuery);
