@@ -219,14 +219,15 @@ ul.main-menu li a.active {
 }
 
 
-  .reference-section {
+.reference-section {
     margin: 2rem 0;
   }
   .reference-section h2 {
     font-size: 1.5rem;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #444;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+    color: #fff;
   }
   .references-grid {
     display: grid;
@@ -236,10 +237,10 @@ ul.main-menu li a.active {
   .reference-card {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: #1a1a1a;
     padding: 1rem;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
   .reference-photo {
     width: 60px;
@@ -247,17 +248,20 @@ ul.main-menu li a.active {
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
+    border: 2px solid #444;
   }
   .reference-info h3 {
     margin: 0;
     font-size: 1.125rem;
+    color: #fff;
   }
   .reference-info p {
     margin: 0.25rem 0;
     font-size: 0.875rem;
+    color: #ccc;
   }
   .reference-info a {
-    color: #0070f3;
+    color: #66aaff;
     text-decoration: none;
   }
   .reference-info a:hover {
