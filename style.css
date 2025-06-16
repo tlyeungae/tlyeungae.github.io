@@ -217,3 +217,49 @@ ul.main-menu li a.active {
 #photo.hide .photo-gallery {
   display: none;
 }
+
+
+  .reference-section {
+    margin: 2rem 0;
+  }
+  .reference-section h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .references-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  .reference-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .reference-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  .reference-info h3 {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+  .reference-info p {
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+  }
+  .reference-info a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  .reference-info a:hover {
+    text-decoration: underline;
+  }
