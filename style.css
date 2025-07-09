@@ -160,18 +160,20 @@ ul.main-menu li a.active {
 
 .content-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;       /* stack by default */
 }
+
+.image-content {
+  order: -1;                    /* force image to top */
+  margin-bottom: 1rem;          /* space below image */
+}
+
 
 .text-content {
   flex: 1;
   margin-right: 20px; /* Adjust the spacing between text and image */
 }
 
-.image-content {
-  flex-shrink: 0; /* Prevent the image from shrinking */
-}
 
 .interests-list {
   list-style: none;
