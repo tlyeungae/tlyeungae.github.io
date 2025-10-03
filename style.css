@@ -269,3 +269,7 @@ ul.main-menu li a.active {
   .reference-info a:hover {
     text-decoration: underline;
   }
+
+  @media (min-width: 640px) {
+  .paper-figs-grid { grid-template-columns: repeat(2, 1fr); }
+}
