@@ -480,3 +480,44 @@ ul.main-menu li a.active {
   color: #333;
   font-size: .98rem;
 }
+
+/* =========================
+   Research typography + link color tweaks
+   Paste AFTER existing CSS
+========================= */
+
+/* 1) Section headers: Working Papers / Household Finance / Chinese Economy
+   Bigger + bold + WHITE */
+#research .block-title,
+#research .sub-title{
+  font-size: 1.75rem;     /* block title; will be overridden for sub-title below if desired */
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Slightly smaller than block title, still big */
+#research .sub-title{
+  font-size: 1.35rem;
+}
+
+/* 2) Paper titles: bigger + bold */
+#research .paper-title{
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: #111;            /* keep readable on white card background */
+}
+
+/* 3) SSRN / Slides links: match other clickable text color */
+#research .paper-links a{
+  color: inherit;         /* inherit from surrounding text */
+  font-weight: 600;
+  text-decoration: none;
+}
+#research .paper-links a:hover{
+  text-decoration: underline;
+}
+
+/* Ensure the link container uses your general link color */
+#research .paper-links{
+  color: inherit;
+}
