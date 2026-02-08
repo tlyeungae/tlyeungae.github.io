@@ -490,14 +490,16 @@ ul.main-menu li a.active {
    Bigger + bold + WHITE */
 #research .block-title,
 #research .sub-title{
-  font-size: 1.75rem;     /* block title; will be overridden for sub-title below if desired */
+  font-size: 2.05rem;     /* block title; will be overridden for sub-title below if desired */
   font-weight: 800;
   color: #fff;
 }
 
 /* Slightly smaller than block title, still big */
 #research .sub-title{
-  font-size: 1.35rem;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #fff;
 }
 
 /* 2) Paper titles: bigger + bold */
