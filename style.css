@@ -507,9 +507,9 @@ ul.main-menu li a.active {
   color: #111;            /* keep readable on white card background */
 }
 
-/* 3) SSRN / Slides links: match other clickable text color */
+/* 3) SSRN / Slides links color */
 #research .paper-links a{
-  color: inherit;         /* inherit from surrounding text */
+  color: #EF6D3D;
   font-weight: 600;
   text-decoration: none;
 }
