@@ -414,3 +414,69 @@ ul.main-menu li a.active {
   @media (max-width: 820px) {
     .paper-figs-grid { grid-template-columns: 1fr; }
   }
+
+
+
+
+  /* =========================
+   Research typography fixes
+   (ONLY font size + color)
+   Paste AFTER existing CSS
+========================= */
+
+/* Big section titles: "Working Papers", "Work in Progress" */
+#research .block-title{
+  font-size: 1.6rem;   /* was ~1.15rem */
+  color: #111;         /* ensure visible on light bg */
+}
+
+/* Subsection titles: "Household Finance", "Chinese Economy" */
+#research .sub-title{
+  font-size: 1.25rem;  /* was ~1.02rem */
+  color: #111;         /* avoid white-on-white or black-on-black issues */
+}
+
+/* Paper titles */
+#research .paper-title{
+  font-size: 1.12rem;  /* slightly larger */
+  color: #111;         /* force readable on white cards */
+}
+
+/* Badges + links + meta: keep consistent but readable */
+#research .badge{
+  color: #444;
+  font-size: .9rem;
+}
+
+#research .paper-links{
+  color: #222;
+  font-size: 1rem;
+}
+
+#research .paper-links a{
+  color: #1a1a1a;       /* readable; uses default-ish dark link */
+}
+
+#research .paper-authors{
+  color: #222;
+  font-size: 1rem;
+}
+
+#research .paper-meta,
+#research .meta-label,
+#research .meta-text{
+  color: #333;
+  font-size: .98rem;
+}
+
+/* Abstract block text */
+#research .abstract-text{
+  color: #222;
+  font-size: .98rem;
+}
+
+/* Work-in-progress items (titles already use .paper-title) */
+#research .wip-item .paper-meta{
+  color: #333;
+  font-size: .98rem;
+}
