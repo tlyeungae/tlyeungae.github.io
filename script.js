@@ -28,7 +28,7 @@
     var $btn = $('#theme-toggle');
     function updateLabel() {
       var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      $btn.text(isLight ? 'Dark Mode' : 'Light Mode');
+      $btn.html(isLight ? '\u263E Dark Mode' : '\u2600 Light Mode');
     }
     updateLabel();
     $btn.on('click', function() {

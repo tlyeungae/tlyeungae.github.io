@@ -145,19 +145,22 @@ ul.main-menu li a.active {
   position: absolute;
   top: 18px;
   right: 20px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2);
-  color: #cfd2da;
-  font-size: .85rem;
+  background: rgba(255,255,255,.15);
+  border: 1.5px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 999px;
   cursor: pointer;
-  transition: background .2s, color .2s;
+  transition: background .2s, color .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 #theme-toggle:hover {
-  background: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.28);
   color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
 #header { position: relative; }
 
@@ -706,13 +709,15 @@ ul.main-menu li a.active {
 
 /* Theme toggle in light mode */
 [data-theme="light"] #theme-toggle {
-  background: rgba(0,0,0,.06);
-  border-color: rgba(0,0,0,.12);
-  color: #555;
+  background: rgba(0,0,0,.07);
+  border-color: rgba(0,0,0,.15);
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 [data-theme="light"] #theme-toggle:hover {
-  background: rgba(0,0,0,.12);
+  background: rgba(0,0,0,.14);
   color: #111;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
 }
 
 /* Home cards */
