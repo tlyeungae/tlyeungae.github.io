@@ -299,6 +299,8 @@ ul.main-menu li a.active {
     border-left: 3px solid #EF6D3D;
     color: #111;
   }
+  #ce-title { border-left-color: #C23B3B; }
+  [aria-labelledby="ce-title"] .paper-card { border-left-color: #C23B3B; }
 
   /* Paper cards */
   .paper-card {
