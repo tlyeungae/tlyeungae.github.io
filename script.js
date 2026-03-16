@@ -19,7 +19,32 @@
     }
   });
 
-  // 2) DOM-ready: abstract toggles + figure-label sync
+  // 2) Theme toggle (light / dark)
+  (function initTheme() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  })();
+  $(function() {
+    var $btn = $('#theme-toggle');
+    function updateLabel() {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      $btn.text(isLight ? 'Dark Mode' : 'Light Mode');
+    }
+    updateLabel();
+    $btn.on('click', function() {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+      updateLabel();
+    });
+  });
+
+  // 3) DOM-ready: abstract toggles + figure-label sync
   $(function() {
 
     // ---- Abstract toggles (robust to redesigned markup) ----

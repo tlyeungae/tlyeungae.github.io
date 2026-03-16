@@ -140,6 +140,27 @@ ul.main-menu li a.active {
   border-bottom-color:#EF6D3D;
 }
 
+/* Theme toggle button */
+#theme-toggle {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #cfd2da;
+  font-size: .85rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+#theme-toggle:hover {
+  background: rgba(255,255,255,.22);
+  color: #fff;
+}
+#header { position: relative; }
+
 /* Utility classes */
 .hide {
   display:none;
@@ -659,3 +680,85 @@ ul.main-menu li a.active {
 #research .paper-links{
   color: inherit;
 }
+
+/* =========================
+   LIGHT MODE
+========================= */
+[data-theme="light"] {
+  background-color: #f5f5f0;
+  background-image: none;
+}
+[data-theme="light"] body { color: #222; }
+[data-theme="light"] header,
+[data-theme="light"] #content,
+[data-theme="light"] footer {
+  background: rgba(255,255,255,.92);
+  color: #222;
+}
+[data-theme="light"] header { border-bottom: 1px solid #e0e0e0; }
+[data-theme="light"] footer { border-top: 1px solid #e0e0e0; }
+
+/* Nav */
+[data-theme="light"] ul.main-menu li a { color: #555; }
+[data-theme="light"] ul.main-menu li a:hover { color: #111; }
+[data-theme="light"] ul.main-menu li a.active { color: #111; border-bottom-color: #EF6D3D; }
+[data-theme="light"] h1 { color: #111; }
+
+/* Theme toggle in light mode */
+[data-theme="light"] #theme-toggle {
+  background: rgba(0,0,0,.06);
+  border-color: rgba(0,0,0,.12);
+  color: #555;
+}
+[data-theme="light"] #theme-toggle:hover {
+  background: rgba(0,0,0,.12);
+  color: #111;
+}
+
+/* Home cards */
+[data-theme="light"] .home-card {
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.08);
+  backdrop-filter: none;
+}
+[data-theme="light"] .home-bio { color: #333; }
+
+/* Reference cards */
+[data-theme="light"] .reference-card {
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.08);
+  border-left-color: #EF6D3D;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+[data-theme="light"] .reference-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.1);
+}
+[data-theme="light"] .reference-info h3 { color: #111; }
+[data-theme="light"] .reference-info p { color: #555; }
+
+/* Image */
+[data-theme="light"] .image-content img {
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+}
+
+/* Motto */
+[data-theme="light"] .home-motto { color: rgba(0,0,0,.35); }
+
+/* Footer */
+[data-theme="light"] footer { color: #555; }
+
+/* Research section headers */
+[data-theme="light"] .block-title,
+[data-theme="light"] .sub-title { color: #222; }
+[data-theme="light"] .block-rule { background: linear-gradient(90deg, #EF6D3D 0%, rgba(239,109,61,.1) 100%); }
+
+/* Discussion / Teaching / Code / Investment text */
+[data-theme="light"] #discussion,
+[data-theme="light"] #code,
+[data-theme="light"] #teaching,
+[data-theme="light"] #investment { color: #222; }
+[data-theme="light"] #teaching .field-size { color: #EF6D3D; }
+
+/* Research section headers (override #fff from typography tweaks) */
+[data-theme="light"] #research .block-title,
+[data-theme="light"] #research .sub-title { color: #222; }
