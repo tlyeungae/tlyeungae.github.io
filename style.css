@@ -113,8 +113,12 @@ header, #content, footer {
 #photo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+}
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 /* Menu Links */
@@ -356,9 +360,19 @@ ul.main-menu li a.active::after {
 .level-label {
   font-size: 1.35rem;
   font-weight: 800;
-  color: #EF6D3D;
   margin: 0 0 14px;
   padding-bottom: 8px;
+}
+.level-undergrad {
+  color: #3B82C2;
+  border-bottom: 1.5px solid rgba(59,130,194,.25);
+}
+.level-undergrad + .course-card,
+.level-undergrad ~ .course-card {
+  border-left-color: #3B82C2;
+}
+.level-postgrad {
+  color: #EF6D3D;
   border-bottom: 1.5px solid rgba(239,109,61,.25);
 }
 .course-card {
@@ -454,11 +468,9 @@ ul.main-menu li a.active::after {
   max-width: 700px;
   margin: 0 0 0 auto;
 }
-#photo .photo-wall {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: 0;
-}
+/* Page headers inside right-aligned sections need full width */
+#photo .page-header,
+#stats .stats-container { width: 100%; }
 .stats-container h2 {
   font-size: 1.6rem;
   font-weight: 700;
@@ -529,22 +541,25 @@ ul.main-menu li a.active::after {
    Photo Wall – masonry grid
 ========================= */
 .photo-wall {
-  column-count: 3;
-  column-gap: 12px;
+  column-count: 2;
+  column-gap: 16px;
   padding: 8px 0;
 }
 .pw-item {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   position: relative;
   overflow: hidden;
   border-radius: 14px;
   cursor: pointer;
   break-inside: avoid;
-  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
+  border: 2px solid rgba(255,255,255,.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .3s;
 }
 .pw-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 36px rgba(0,0,0,.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+  border-color: rgba(239,109,61,.4);
   z-index: 2;
 }
 
@@ -552,10 +567,10 @@ ul.main-menu li a.active::after {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform .5s cubic-bezier(.22,1,.36,1), filter .3s;
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
 }
 .pw-item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .pw-item figcaption {
@@ -563,13 +578,13 @@ ul.main-menu li a.active::after {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 16px 12px;
-  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  padding: 32px 16px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(8px);
   transition: opacity .3s, transform .3s;
 }
 .pw-item:hover figcaption {
@@ -588,20 +603,20 @@ ul.main-menu li a.active::after {
   color: rgba(255,255,255,.7);
 }
 
-@media (max-width: 640px) {
-  .photo-wall { column-count: 2; }
-}
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .photo-wall { column-count: 1; }
 }
 
 /* Photo wall light mode */
 [data-theme="light"] .pw-item {
-  box-shadow: 0 2px 12px rgba(0,0,0,.1);
+  border-color: rgba(0,0,0,.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
 }
 [data-theme="light"] .pw-item:hover {
-  box-shadow: 0 12px 36px rgba(0,0,0,.18);
+  box-shadow: 0 16px 40px rgba(0,0,0,.15);
+  border-color: rgba(239,109,61,.3);
 }
+
 
 
 .reference-section {
