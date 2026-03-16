@@ -53,9 +53,11 @@
       });
     }
 
-    // Initial sync + on toggle
+    // Initial sync + on toggle (use native listeners; jQuery delegation misses the toggle event)
     syncFigureLabels();
-    $('#research').on('toggle', 'details.paper-figs', syncFigureLabels);
+    document.querySelectorAll('#research details.paper-figs').forEach(function(el) {
+      el.addEventListener('toggle', syncFigureLabels);
+    });
 
   });
 })(jQuery);
