@@ -111,7 +111,6 @@ header, #content, footer {
 }
 
 #photo, #stats {
-  max-width: 900px;
   margin-left: auto;
   margin-right: 5%;
 }
