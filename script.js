@@ -24,6 +24,19 @@
 
     // scroll to top on page switch
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // lazy-load ClustrMaps globe on first Stats tab visit
+    if (region === '#stats') {
+      var $globe = $('#clustrmaps-container');
+      if ($globe.length && !$globe.data('loaded')) {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.id = 'clstr_globe';
+        s.src = $globe.data('src');
+        $globe[0].appendChild(s);
+        $globe.data('loaded', true);
+      }
+    }
   });
 
   // 2) Theme toggle (light / dark)
