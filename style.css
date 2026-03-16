@@ -264,7 +264,7 @@ ul.main-menu li a.active::after {
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
-.visitor-globe {
+.visitor-map {
   display: flex;
   justify-content: center;
   border-radius: 12px;

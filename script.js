@@ -31,7 +31,7 @@
       if ($globe.length && !$globe.data('loaded')) {
         var s = document.createElement('script');
         s.type = 'text/javascript';
-        s.id = 'clstr_globe';
+        s.id = 'clustrmaps';
         s.src = $globe.data('src');
         $globe[0].appendChild(s);
         $globe.data('loaded', true);
