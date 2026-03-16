@@ -254,6 +254,193 @@ ul.main-menu li a.active::after {
 }
 .home-bio p:last-child { margin-bottom: 0; }
 
+/* =========================
+   Shared page header
+========================= */
+.page-header { margin-bottom: 24px; }
+.page-title {
+  font-size: 2.05rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+.page-rule {
+  height: 2.5px;
+  background: linear-gradient(90deg, #EF6D3D 0%, rgba(239,109,61,.15) 100%);
+  border-radius: 2px;
+  position: relative;
+  overflow: visible;
+}
+.page-rule::after {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background: linear-gradient(90deg, #EF6D3D 0%, rgba(239,109,61,.15) 100%);
+  filter: blur(6px);
+  opacity: .5;
+  animation: rulePulse 3s ease-in-out infinite;
+}
+
+/* =========================
+   Code / Resources page
+========================= */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.lang-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-top: 3.5px solid #EF6D3D;
+  border-radius: 14px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+}
+.lang-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+.lang-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.lang-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #111;
+  margin: 0 0 10px;
+}
+.lang-card p {
+  color: #444;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+.resource-list li {
+  padding: 6px 0;
+  font-size: .95rem;
+  color: #333;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.resource-list li:last-child { border-bottom: none; }
+.resource-list li::before {
+  content: "\25B8";
+  color: #EF6D3D;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.resource-author {
+  color: #888;
+  font-size: .88rem;
+}
+
+/* =========================
+   Teaching page
+========================= */
+.teaching-level {
+  margin-bottom: 28px;
+}
+.level-label {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #EF6D3D;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid rgba(239,109,61,.25);
+}
+.course-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-left: 3.5px solid #EF6D3D;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+}
+.course-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+.course-name {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px;
+}
+.course-card .resource-list li {
+  line-height: 1.5;
+}
+
+/* =========================
+   Discussion page
+========================= */
+.discussion-list {
+  display: grid;
+  gap: 14px;
+}
+.discussion-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-left: 3.5px solid #EF6D3D;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+}
+.discussion-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+.discussion-info {
+  color: #222;
+  font-size: .98rem;
+  line-height: 1.5;
+}
+.discussion-info strong { color: #111; }
+.discussion-info em { color: #444; }
+.discussion-venue {
+  margin-top: 8px;
+  font-size: .88rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: #888;
+}
+
+/* =========================
+   Investment page
+========================= */
+.investment-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-left: 3.5px solid #EF6D3D;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-top: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: box-shadow .25s, transform .25s;
+}
+.investment-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+.investment-date {
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #111;
+  margin: 0 0 10px;
+}
+.investment-card p {
+  color: #444;
+  font-size: .95rem;
+}
+
 /* Stats page */
 .stats-container {
   text-align: center;
@@ -940,6 +1127,60 @@ footer {
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: .04em;
 }
+
+/* =========================
+   Dark mode overrides for content cards
+   (default styles are light/white; dark mode needs glass)
+========================= */
+.lang-card,
+.course-card,
+.discussion-card,
+.investment-card {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.12);
+  color: #ddd;
+}
+.lang-card { border-top-color: #EF6D3D; }
+.course-card,
+.discussion-card,
+.investment-card { border-left-color: #EF6D3D; }
+.lang-name { color: #fff; }
+.lang-card p,
+.investment-card p { color: #ccc; }
+.resource-list li { color: #ccc; border-bottom-color: rgba(255,255,255,.08); }
+.course-name { color: #fff; }
+.discussion-info { color: #ddd; }
+.discussion-info strong { color: #fff; }
+.discussion-info em { color: #bbb; }
+.discussion-venue { color: #999; }
+.investment-date { color: #fff; }
+.page-title { color: #fff; }
+#investment > p { color: #ccc; }
+
+/* Light mode: restore white card backgrounds */
+[data-theme="light"] .lang-card,
+[data-theme="light"] .course-card,
+[data-theme="light"] .discussion-card,
+[data-theme="light"] .investment-card {
+  background: #fff;
+  border-color: #e8e8e8;
+}
+[data-theme="light"] .lang-card { border-top-color: #EF6D3D; }
+[data-theme="light"] .course-card,
+[data-theme="light"] .discussion-card,
+[data-theme="light"] .investment-card { border-left-color: #EF6D3D; }
+[data-theme="light"] .lang-name,
+[data-theme="light"] .course-name,
+[data-theme="light"] .investment-date,
+[data-theme="light"] .discussion-info strong { color: #111; }
+[data-theme="light"] .lang-card p,
+[data-theme="light"] .investment-card p,
+[data-theme="light"] .resource-list li,
+[data-theme="light"] .discussion-info { color: #333; }
+[data-theme="light"] .discussion-info em { color: #444; }
+[data-theme="light"] .resource-list li { border-bottom-color: rgba(0,0,0,.05); }
+[data-theme="light"] .page-title { color: #111; }
+[data-theme="light"] #investment > p { color: #444; }
 
 /* =========================
    Profile photo polish
