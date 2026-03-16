@@ -815,6 +815,126 @@ html::after {
 }
 
 /* =========================
+   TECHY / INNOVATIVE FEEL
+========================= */
+
+/* Particle canvas */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Gradient text on header name */
+#header h1 {
+  background: linear-gradient(135deg, #fff 0%, #EF6D3D 50%, #ff9a6c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Monospace accents for badges + meta labels */
+.badge,
+.meta-label,
+.paper-links a {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glowing section dividers */
+.block-rule {
+  position: relative;
+  overflow: visible;
+}
+.block-rule::after {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background: linear-gradient(90deg, #EF6D3D 0%, rgba(239,109,61,.15) 100%);
+  filter: blur(6px);
+  opacity: .5;
+  animation: rulePulse 3s ease-in-out infinite;
+}
+@keyframes rulePulse {
+  0%, 100% { opacity: .3; }
+  50%      { opacity: .7; }
+}
+
+/* Typing cursor on motto */
+.home-motto em::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  font-weight: 300;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Animated gradient border on paper cards (hover) */
+.paper-card {
+  position: relative;
+  background-clip: padding-box;
+}
+.paper-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, transparent, transparent);
+  z-index: -1;
+  transition: background .4s;
+}
+.paper-card:hover::before {
+  background: linear-gradient(135deg, #EF6D3D, #ff9a6c, #EF6D3D);
+  animation: gradientShift 2s linear infinite;
+  background-size: 200% 200%;
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced glassmorphism on home cards */
+.home-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Reference cards glassmorphism */
+.reference-card {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Subtle glow on active nav link */
+ul.main-menu li a.active {
+  text-shadow: 0 0 12px rgba(239,109,61,.4);
+}
+
+/* Nav links monospace numbering effect */
+ul.main-menu li a {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Footer tech vibe */
+footer {
+  font-family: 'JetBrains Mono', 'Inter', monospace;
+  font-size: .85rem;
+  letter-spacing: .02em;
+}
+
+/* Stats container tech style */
+.stats-container h2 {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+}
+
+/* =========================
    Profile photo polish
 ========================= */
 .image-content img {
@@ -933,6 +1053,22 @@ html::after {
 }
 [data-theme="light"] footer .social-button { opacity: .6; }
 [data-theme="light"] footer .social-button:hover { opacity: 1; }
+
+/* Gradient text light mode */
+[data-theme="light"] #header h1 {
+  background: linear-gradient(135deg, #111 0%, #EF6D3D 60%, #d95a2e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Home cards light mode glassmorphism off */
+[data-theme="light"] .home-card {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+/* Typing cursor in light mode */
+[data-theme="light"] .home-motto em::after { color: rgba(0,0,0,.3); }
+/* Particle canvas dimmed in light mode (handled via JS) */
 
 /* Profile photo light mode */
 [data-theme="light"] .image-content img {
