@@ -113,8 +113,10 @@ header, #content, footer {
 #photo, #stats {
   max-width: 900px;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 5%;
 }
+#photo .page-header { text-align: center; }
+#photo .photo-wall { margin: 0 auto; }
 
 /* Menu Links */
 ul.main-menu {
