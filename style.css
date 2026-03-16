@@ -370,14 +370,47 @@ ul.main-menu li a.active {
   }
   .abstract-text p { margin: 0; }
 
-  /* Figures */
-  details.paper-figs { margin-top: 12px; }
+  /* Figures toggle button */
+  details.paper-figs { margin-top: 14px; }
   details.paper-figs summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     list-style: none;
     cursor: pointer;
     user-select: none;
-    color: #444;
     font-size: .92rem;
+    font-weight: 600;
+    color: #EF6D3D;
+    background: rgba(239, 109, 61, .08);
+    border: 1.5px solid rgba(239, 109, 61, .35);
+    border-radius: 999px;
+    padding: 7px 16px 7px 12px;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  details.paper-figs summary:hover {
+    background: rgba(239, 109, 61, .16);
+    border-color: rgba(239, 109, 61, .6);
+  }
+  details.paper-figs[open] summary {
+    color: #fff;
+    background: #EF6D3D;
+    border-color: #EF6D3D;
+  }
+  details.paper-figs[open] summary:hover {
+    background: #d95a2e;
+    border-color: #d95a2e;
+  }
+  /* arrow indicator */
+  details.paper-figs summary .label::before {
+    content: "\25B6";          /* right-pointing triangle */
+    display: inline-block;
+    font-size: .7em;
+    transition: transform .2s;
+    margin-right: 2px;
+  }
+  details.paper-figs[open] summary .label::before {
+    transform: rotate(90deg);  /* points down when open */
   }
   details.paper-figs summary::-webkit-details-marker { display: none; }
 
