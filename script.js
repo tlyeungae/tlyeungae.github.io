@@ -1,13 +1,17 @@
 (function($) {
-  // 1) Hash-based navigation + photo-button visibility
+  // 1) Hash-based navigation + photo-button visibility + fade-in
   $(window).on('load hashchange', function(){
     // hide all regions, clear active menu
-    $('.content-region').hide();
+    $('.content-region').hide().css('animation', 'none');
     $('.main-menu a').removeClass('active');
 
     // figure out which region to show
     const region = location.hash || $('.main-menu a:first').attr('href');
-    $(region).show();
+    const $region = $(region);
+    $region.show();
+    // re-trigger fade animation
+    $region[0].offsetHeight; // force reflow
+    $region.css('animation', '');
     $('.main-menu a[href="'+ region +'"]').addClass('active');
 
     // show/hide the photo-toggle button
@@ -17,6 +21,9 @@
     } else {
       $btn.hide();
     }
+
+    // scroll to top on page switch
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // 2) Theme toggle (light / dark)
@@ -44,7 +51,29 @@
     });
   });
 
-  // 3) DOM-ready: abstract toggles + figure-label sync
+  // 3) Sticky header shrink + scroll-to-top button
+  $(function() {
+    var $header = $('#header');
+    var $scrollBtn = $('#scroll-top');
+    $(window).on('scroll', function() {
+      var y = window.scrollY || window.pageYOffset;
+      if (y > 80) {
+        $header.addClass('scrolled');
+      } else {
+        $header.removeClass('scrolled');
+      }
+      if (y > 400) {
+        $scrollBtn.addClass('visible');
+      } else {
+        $scrollBtn.removeClass('visible');
+      }
+    });
+    $scrollBtn.on('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // 4) DOM-ready: abstract toggles + figure-label sync
   $(function() {
 
     // ---- Abstract toggles (robust to redesigned markup) ----

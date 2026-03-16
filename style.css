@@ -10,7 +10,7 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Inter", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFFFFF;
 }
 
@@ -131,13 +131,31 @@ ul.main-menu li a {
   font-size:2.0rem;
   border-bottom: solid transparent 3px;
   color:#cfd2da;
+  position: relative;
+  transition: color .25s;
+}
+ul.main-menu li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 3px;
+  background: #EF6D3D;
+  border-radius: 2px;
+  transition: width .3s ease;
 }
 ul.main-menu li a:hover {
   color:#FFFFFF;
 }
+ul.main-menu li a:hover::after {
+  width: 100%;
+}
 ul.main-menu li a.active {
   color:#FFFFFF;
-  border-bottom-color:#EF6D3D;
+}
+ul.main-menu li a.active::after {
+  width: 100%;
 }
 
 /* Theme toggle button */
@@ -162,7 +180,22 @@ ul.main-menu li a.active {
   transform: scale(1.05);
   box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
-#header { position: relative; }
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: padding .3s, box-shadow .3s;
+}
+#header.scrolled {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+  background: rgba(0,0,0,1);
+}
+#header h1 { transition: font-size .3s, margin .3s; }
+#header img { transition: width .3s, height .3s; }
+#header.scrolled h1 { font-size: 2.4rem; margin-bottom: 0.8rem; }
+#header.scrolled img { width: 60px; height: 60px; }
 
 /* Utility classes */
 .hide {
@@ -685,6 +718,98 @@ ul.main-menu li a.active {
 }
 
 /* =========================
+   Page transition animation
+========================= */
+.content-region {
+  animation: fadeSlideIn .35s ease both;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   Scroll-to-top button
+========================= */
+#scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #EF6D3D;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(239,109,61,.35);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity .3s, transform .3s, background .2s;
+}
+#scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#scroll-top:hover {
+  background: #d95a2e;
+  box-shadow: 0 6px 22px rgba(239,109,61,.5);
+}
+
+/* =========================
+   Footer polish
+========================= */
+footer {
+  text-align: center;
+  padding: 28px 25px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  font-size: .92rem;
+  letter-spacing: .01em;
+}
+footer .social-button {
+  transition: transform .2s, opacity .2s;
+  opacity: .7;
+  margin: 0 6px;
+}
+footer .social-button:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* =========================
+   Background texture
+========================= */
+html::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(239,109,61,.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(100,140,200,.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* =========================
+   Profile photo polish
+========================= */
+.image-content img {
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  border: 2px solid rgba(255,255,255,.1);
+  transition: transform .4s, box-shadow .4s;
+}
+.image-content img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+
+/* =========================
    LIGHT MODE
 ========================= */
 [data-theme="light"] {
@@ -767,3 +892,30 @@ ul.main-menu li a.active {
 /* Research section headers (override #fff from typography tweaks) */
 [data-theme="light"] #research .block-title,
 [data-theme="light"] #research .sub-title { color: #222; }
+
+/* Sticky header light mode */
+[data-theme="light"] #header.scrolled {
+  background: rgba(255,255,255,1);
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
+}
+
+/* Scroll-to-top light mode */
+[data-theme="light"] #scroll-top {
+  box-shadow: 0 4px 16px rgba(239,109,61,.2);
+}
+
+/* Footer light mode */
+[data-theme="light"] footer {
+  border-top-color: rgba(0,0,0,.08);
+}
+[data-theme="light"] footer .social-button { opacity: .6; }
+[data-theme="light"] footer .social-button:hover { opacity: 1; }
+
+/* Profile photo light mode */
+[data-theme="light"] .image-content img {
+  border-color: rgba(0,0,0,.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+}
+[data-theme="light"] .image-content img:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.15);
+}
