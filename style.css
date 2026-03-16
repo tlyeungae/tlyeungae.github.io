@@ -110,15 +110,10 @@ header, #content, footer {
   color: #FFFFFF; 
 }
 
-#photo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-#stats {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+#photo, #stats {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /* Menu Links */
@@ -466,11 +461,8 @@ ul.main-menu li a.active::after {
 .stats-container {
   text-align: center;
   max-width: 700px;
-  margin: 0 0 0 auto;
+  margin: 0 auto;
 }
-/* Page headers inside right-aligned sections need full width */
-#photo .page-header,
-#stats .stats-container { width: 100%; }
 .stats-container h2 {
   font-size: 1.6rem;
   font-weight: 700;
