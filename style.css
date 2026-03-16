@@ -111,7 +111,7 @@ header, #content, footer {
 }
 
 #photo .page-header { text-align: center; }
-#photo .photo-wall { max-width: 700px; margin: 0 auto; }
+#photo .photo-wall { margin: 0 auto; }
 
 /* Menu Links */
 ul.main-menu {
@@ -530,17 +530,17 @@ ul.main-menu li a.active::after {
    Photo Wall – masonry grid
 ========================= */
 .photo-wall {
-  column-count: 2;
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   padding: 8px 0;
 }
 .pw-item {
-  margin: 0 0 16px;
+  margin: 0;
   position: relative;
   overflow: hidden;
   border-radius: 14px;
   cursor: pointer;
-  break-inside: avoid;
   border: 2px solid rgba(255,255,255,.1);
   box-shadow: 0 4px 16px rgba(0,0,0,.2);
   transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .3s;
@@ -593,7 +593,7 @@ ul.main-menu li a.active::after {
 }
 
 @media (max-width: 480px) {
-  .photo-wall { column-count: 1; }
+  .photo-wall { grid-template-columns: 1fr; }
 }
 
 /* Photo wall light mode */
