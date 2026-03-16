@@ -872,24 +872,30 @@ html::after {
   50%      { opacity: 0; }
 }
 
-/* Animated gradient border on paper cards (hover) */
+/* Animated gradient glow on paper cards (hover) — border-only, no overlay */
 .paper-card {
   position: relative;
-  background-clip: padding-box;
 }
-.paper-card::before {
+.paper-card::after {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: 15px;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
   background: linear-gradient(135deg, transparent, transparent);
-  z-index: -1;
-  transition: background .4s;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
 }
-.paper-card:hover::before {
-  background: linear-gradient(135deg, #EF6D3D, #ff9a6c, #EF6D3D);
-  animation: gradientShift 2s linear infinite;
+.paper-card:hover::after {
+  background: linear-gradient(135deg, rgba(239,109,61,.5), rgba(255,180,130,.4), rgba(239,109,61,.5));
   background-size: 200% 200%;
+  animation: gradientShift 2s linear infinite;
+  opacity: 1;
 }
 @keyframes gradientShift {
   0%   { background-position: 0% 50%; }
