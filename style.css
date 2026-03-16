@@ -223,6 +223,7 @@ ul.main-menu li a.active::after {
 .image-content {
   order: -1;                    /* force image to top */
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .image-content img {
   border-radius: 12px;
