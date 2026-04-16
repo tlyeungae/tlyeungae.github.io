@@ -138,7 +138,29 @@
     draw();
   })();
 
-  // 5) DOM-ready: abstract toggles + figure-label sync
+  // 5) Equation ticker in footer
+  (function initTicker() {
+    var el = document.getElementById('eq-ticker');
+    if (!el) return;
+    var eqs = [
+      'E[U(c)] = \u222B u(c) dF(c)',
+      '\u03C0\u0302 = \u03B2X + \u03B5',
+      'V(a) = max{u(c) + \u03B2E[V(a\u2032)]}',
+      '\u2202L/\u2202\u03B8 = 0',
+      'r = \u03B1 + \u03B2\u2081MKT + \u03B2\u2082SMB + \u03B5',
+      'c* = arg max U(c) s.t. p\u00B7c \u2264 w',
+      '\u0394log(c) = \u03C6\u0394log(y) + \u03B5',
+      'W = E[\u2211\u03B4\u1D57u(c\u1D57)]',
+      'Var(r) = \u03B2\u00B2Var(f) + Var(\u03B5)',
+      'H\u2080: \u03B8 = \u03B8\u2080  vs  H\u2081: \u03B8 \u2260 \u03B8\u2080',
+      '\u03BB = -u\u2033(c)/u\u2032(c)',
+      'NPV = \u2211 CF\u1D57/(1+r)\u1D57'
+    ];
+    var text = eqs.join('     \u00B7     ');
+    el.textContent = text + '     \u00B7     ' + text;
+  })();
+
+  // 6) DOM-ready: abstract toggles + figure-label sync
   $(function() {
 
     // ---- Abstract toggles (robust to redesigned markup) ----

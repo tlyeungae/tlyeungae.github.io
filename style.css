@@ -1386,3 +1386,121 @@ footer {
 [data-theme="light"] .image-content img:hover {
   box-shadow: 0 12px 40px rgba(0,0,0,.15);
 }
+
+/* =========================
+   GEEKY ECONOMICS VIBES
+========================= */
+
+/* Custom text selection */
+::selection {
+  background: rgba(239,109,61,.35);
+  color: #fff;
+}
+[data-theme="light"] ::selection {
+  background: rgba(239,109,61,.25);
+  color: #111;
+}
+
+/* Subtle CRT scanlines (dark mode only) */
+#content::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,.015) 2px,
+    rgba(0,0,0,.015) 4px
+  );
+}
+[data-theme="light"] #content::before { display: none; }
+
+/* Glitch effect on header name (hover) */
+#header h1 {
+  position: relative;
+}
+#header h1:hover {
+  animation: glitch .3s linear;
+}
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+/* Terminal prompt before bio */
+.terminal-greeting {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85rem;
+  color: #EF6D3D;
+  margin-bottom: 14px;
+  letter-spacing: .03em;
+}
+.terminal-greeting .prompt {
+  color: rgba(255,255,255,.4);
+}
+.terminal-greeting .cmd {
+  color: #EF6D3D;
+}
+[data-theme="light"] .terminal-greeting .prompt { color: rgba(0,0,0,.3); }
+[data-theme="light"] .terminal-greeting .cmd { color: #EF6D3D; }
+
+/* Section number prefix (bracket style) */
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75em;
+  color: #EF6D3D;
+  opacity: .6;
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+/* Equation ticker */
+.equation-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 8px 0;
+  margin-top: 12px;
+}
+.equation-ticker-inner {
+  display: inline-block;
+  animation: ticker 45s linear infinite;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  color: rgba(255,255,255,.18);
+  letter-spacing: .04em;
+}
+[data-theme="light"] .equation-ticker { border-top-color: rgba(0,0,0,.06); }
+[data-theme="light"] .equation-ticker-inner { color: rgba(0,0,0,.12); }
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Coordinates in footer */
+.footer-coords {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .06em;
+  margin-top: 6px;
+}
+[data-theme="light"] .footer-coords { color: rgba(0,0,0,.2); }
+
+/* Paper numbering */
+.paper-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: rgba(255,255,255,.3);
+  float: right;
+  margin-top: 2px;
+}
+.paper-card .paper-num { color: #bbb; }
+[data-theme="light"] .paper-card .paper-num { color: #ccc; }
