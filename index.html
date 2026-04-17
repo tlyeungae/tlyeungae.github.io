@@ -13,7 +13,9 @@
     <!-- Stylesheets -->
     <!-- Reset default styles and add support for google fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" type="text/css" />
    
     <!-- Custom styles -->
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -31,20 +33,26 @@
   <body>
 
     <header id="header">
-      <img src="logo.jpeg" width="100" height="100">
-      <h1>Tai Lo Yeung 楊 大魯</h1>
-      
-      <!-- Menu link fragment #id should match a div id. Example: <a href="#home"> links to <div id="home"></div>  -->
-      <ul class="main-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#discussion">Discussion</a></li>
-        <li><a href="#code">Code</a></li>
-        <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#investment">Investment</a></li>
-        <li><a href="#photo">Photo</a></li>
-      </ul>
-      <button id="theme-toggle" type="button" aria-label="Toggle light/dark mode"></button>                 
+      <button id="theme-toggle" type="button" aria-label="Toggle light/dark mode"></button>
+      <div class="masthead">
+        <div class="masthead-eyebrow">Working Paper Series &middot; March 2026</div>
+        <h1 class="masthead-title">Tai Lo Yeung</h1>
+        <div class="masthead-cjk">楊&nbsp;&nbsp;大魯</div>
+        <div class="masthead-affiliation">
+          Department of Economics &middot; Universit&agrave; della Svizzera italiana
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul class="main-menu">
+          <li><a href="#home"><span class="nav-num">i.</span> Home</a></li>
+          <li><a href="#research"><span class="nav-num">ii.</span> Research</a></li>
+          <li><a href="#discussion"><span class="nav-num">iii.</span> Discussion</a></li>
+          <li><a href="#code"><span class="nav-num">iv.</span> Code</a></li>
+          <li><a href="#teaching"><span class="nav-num">v.</span> Teaching</a></li>
+          <li><a href="#investment"><span class="nav-num">vi.</span> Investment</a></li>
+          <li><a href="#photo"><span class="nav-num">vii.</span> Photo</a></li>
+        </ul>
+      </nav>
     </header>
    
     <div id="container">
@@ -55,94 +63,104 @@
             <div class="content-wrapper">
 
               <div class="image-content">
-                <img src="folio_dark.JPG" alt="Me" class="hero-dark">
-                <img src="folio.jpeg" alt="Me" class="hero-light">
+                <img src="folio.jpeg" alt="Tai Lo Yeung" class="hero-photo">
+                <!-- To restore separate dark/light portraits: revert to two <img>
+                     tags with classes .hero-light and .hero-dark, and re-enable
+                     the swap rules in style.css. -->
               </div>
 
               <div class="text-content">
 
-                <div class="terminal-greeting"><span class="prompt">&gt;</span> <span class="cmd">cat about.md</span></div>
-                <div class="home-card home-bio">
-                  <p>
-                    I am a PhD candidate in the Department of Economics at <a href="https://search.usi.ch/people/5c9c4e02c848b2b62af9223052fdbd00/yeung-tai-lo">USI</a>. I received my bachelor's degrees in financial engineering from <a href="https://ems.whu.edu.cn/English.htm">武漢大學 (WHU)</a> in 2014, a master's degree in economics from <a href="https://mscecon.hkust.edu.hk/"> 香港科大商學院 (HKUST Business School)</a> in 2019, and another master's degree in economics and finance from <a href="https://bse.eu/study/masters-programs/financial-economics">Barcelona School of Economics (UPF)</a> in 2020 with a full tuition waiver. I was a visiting scholar in the Finance Department at the <a href="https://fnce.wharton.upenn.edu/">Wharton School (UPenn)</a>, from January to June 2025, hosted by Prof. <a href="https://sylvaincatherine.net">Sylvain Catherine</a>.
+                <aside class="paper-stamp">On the job market &mdash; AY 2026&ndash;2027</aside>
+
+                <div class="home-bio">
+                  <p class="lede">
+                    <span class="dropcap">I</span><span class="lede-opener">am a PhD candidate</span> in the Department of Economics at <a href="https://search.usi.ch/people/5c9c4e02c848b2b62af9223052fdbd00/yeung-tai-lo">USI</a>. I received my bachelor&rsquo;s degree in financial engineering from <a href="https://ems.whu.edu.cn/English.htm">武漢大學 (WHU)</a> in 2014, a master&rsquo;s degree in economics from <a href="https://mscecon.hkust.edu.hk/">香港科大商學院 (HKUST Business School)</a> in 2019, and another master&rsquo;s degree in economics and finance from <a href="https://bse.eu/study/masters-programs/financial-economics">Barcelona School of Economics (UPF)</a> in 2020 with a full tuition waiver. I was a visiting scholar in the Finance Department at the <a href="https://fnce.wharton.upenn.edu/">Wharton School (UPenn)</a>, from January to June 2025, hosted by Prof. <a href="https://sylvaincatherine.net">Sylvain Catherine</a>.
                   </p>
                   <p>
                     My research focuses on household finance, with an emphasis on how risk and uncertainty shape decision-making. My work studies how households adjust consumption, saving, labor supply, and portfolio choice in response to shocks and changing economic conditions. These topics intersect with multiple fields, including asset pricing, behavioral finance, corporate finance, and applied macroeconomics. I am also interested in questions related to the Chinese economy and how its institutional context influences household behavior.
                   </p>
-                  <p>
-                    Here is my <a href="CV.pdf">CV</a> (2026-Mar).
+                  <p class="cv-line">
+                    <a href="CV.pdf" class="cv-link">Curriculum Vit&aelig;</a> <span class="cv-meta">[updated March 2026]</span>
                   </p>
                 </div>
 
-                <div class="home-banner">
-                  I will be on the job market in 2026-2027.
-                </div>
-
-                <section class="reference-section">
-                  <h2>References</h2>
-                  <div class="references-grid">
-                    <div class="reference-card">
-                      <div class="reference-info">
-                        <h3>Prof. Lorenz Kueng</h3>
-                        <p>Institute of Economics (IdEP), Università della Svizzera italiana</p>
-                        <p>Swiss Finance Institute</p>
-                        <p><a href="mailto:lorenz.kueng@usi.ch">lorenz.kueng@usi.ch</a></p>
-                      </div>
+                <section class="paper-section" id="fields">
+                  <h2 class="section-rubric">Fields of Interest</h2>
+                  <div class="fields-columns">
+                    <div class="fields-col">
+                      <h3 class="fields-col-title">Primary</h3>
+                      <ul class="paper-list">
+                        <li>Household Finance</li>
+                        <li>Risk and Uncertainty</li>
+                        <li>Behavioral Economics and Finance</li>
+                      </ul>
                     </div>
-                    <div class="reference-card">
-                      <div class="reference-info">
-                        <h3>Prof. Jessica Wachter</h3>
-                        <p>Department of Finance, The Wharton School</p>
-                        <p>University of Pennsylvania</p>
-                        <p><a href="mailto:jwachter@wharton.upenn.edu">jwachter@wharton.upenn.edu</a></p>
-                      </div>
-                    </div>
-                    <div class="reference-card">
-                      <div class="reference-info">
-                        <h3>Prof. Alberto Plazzi</h3>
-                        <p>Institute of Finance (IFin), Università della Svizzera italiana</p>
-                        <p>Swiss Finance Institute</p>
-                        <p><a href="mailto:alberto.plazzi@usi.ch">alberto.plazzi@usi.ch</a></p>
-                      </div>
+                    <div class="fields-col">
+                      <h3 class="fields-col-title">Secondary</h3>
+                      <ul class="paper-list">
+                        <li>Chinese Economy</li>
+                        <li>Asset Pricing</li>
+                        <li>Applied Macroeconomics</li>
+                      </ul>
                     </div>
                   </div>
                 </section>
 
-                <div class="home-grid">
-                  <div class="home-card">
-                    <h3 class="home-card-title">Primary fields of interests</h3>
-                    <ul class="interests-list">
-                      <li>Household Finance</li>
-                      <li>Risk and Uncertainty</li>
-                      <li>Chinese Economy</li>
-                      <li>Behavioral Economics and Finance</li>
-                    </ul>
-                  </div>
-                  <div class="home-card">
-                    <h3 class="home-card-title">Public goods</h3>
-                    <ul class="interests-list">
-                      <li>List of Suitable <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQtU-MNCQNVEE7rOGddhjyWFb4vBsxOOAF9mlMkXSJ-0f82-KxWcm-KJoJUbeM5bCWk07hOllmzpYpO/pub?output=pdf">Conferences</a> for PhD Student Submissions</li>
-                    </ul>
-                  </div>
-                </div>
+                <section class="paper-section" id="references-block">
+                  <h2 class="section-rubric">References</h2>
+                  <ol class="reference-list">
+                    <li>
+                      <span class="ref-name">Lorenz Kueng</span>
+                      <span class="ref-affil">Institute of Economics (IdEP), USI &middot; Swiss Finance Institute</span>
+                      <span class="ref-email"><a href="mailto:lorenz.kueng@usi.ch">lorenz.kueng@usi.ch</a></span>
+                    </li>
+                    <li>
+                      <span class="ref-name">Jessica Wachter</span>
+                      <span class="ref-affil">Department of Finance, The Wharton School &middot; University of Pennsylvania</span>
+                      <span class="ref-email"><a href="mailto:jwachter@wharton.upenn.edu">jwachter@wharton.upenn.edu</a></span>
+                    </li>
+                    <li>
+                      <span class="ref-name">Alberto Plazzi</span>
+                      <span class="ref-affil">Institute of Finance (IFin), USI &middot; Swiss Finance Institute</span>
+                      <span class="ref-email"><a href="mailto:alberto.plazzi@usi.ch">alberto.plazzi@usi.ch</a></span>
+                    </li>
+                  </ol>
+                </section>
 
-                <div class="home-card">
-                  <h3 class="home-card-title">News</h3>
-                  <ul class="interests-list">
-                    <li>I will present at the UEA Summer School at LSE, held May 11–13, 2026.</li>
-                    <li>I will present at the <a href="https://www.conftool.com/sfs-cavalcade-2026/sessions.php">2026 SFS Cavalcade North America Conference in Virginia</a>, held May 18–21, 2026.</li>
-                    <li>I will present at the GLO-Guangzhou-2026, held July 9–10, 2026.</li>
+                <section class="paper-section" id="news">
+                  <h2 class="section-rubric">News &amp; Forthcoming</h2>
+                  <ul class="news-list">
+                    <li>
+                      <span class="news-date">May 11&ndash;13, 2026</span>
+                      <span class="news-text">UEA Summer School at LSE.</span>
+                    </li>
+                    <li>
+                      <span class="news-date">May 18&ndash;21, 2026</span>
+                      <span class="news-text"><a href="https://www.conftool.com/sfs-cavalcade-2026/sessions.php">SFS Cavalcade North America</a>, University of Virginia.</span>
+                    </li>
+                    <li>
+                      <span class="news-date">Jul 9&ndash;10, 2026</span>
+                      <span class="news-text">GLO Guangzhou 2026, IESR.</span>
+                    </li>
                   </ul>
-                </div>
+                </section>
 
-                <div class="home-card home-visitors">
-                  <h3 class="home-card-title">Webpage Visitors</h3>
+                <section class="paper-section" id="public-goods">
+                  <h2 class="section-rubric">Public Goods</h2>
+                  <ul class="paper-list">
+                    <li><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQtU-MNCQNVEE7rOGddhjyWFb4vBsxOOAF9mlMkXSJ-0f82-KxWcm-KJoJUbeM5bCWk07hOllmzpYpO/pub?output=pdf">List of Suitable Conferences for PhD Student Submissions</a></li>
+                  </ul>
+                </section>
+
+                <section class="paper-section" id="visitors-block">
+                  <h2 class="section-rubric">Readership</h2>
                   <div class="visitor-map" id="clustrmaps-container">
                     <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Fgn4hZbph2NOsHDyDJvWxHUopkD5Ki2wWR6oB-7k8Oc&cl=ffffff&w=a"></script>
                   </div>
-                </div>
+                </section>
 
-                <p class="home-motto"><em>Video et Taceo</em></p>
+                <div class="colophon"><span class="colophon-rule">&sect;</span> <em>Video et Taceo</em> <span class="colophon-rule">&sect;</span></div>
 
               </div>
             </div>
@@ -155,7 +173,7 @@
   ========================== -->
   <section class="research-block" aria-labelledby="wp-title">
     <div class="block-header">
-      <h2 id="wp-title" class="block-title"><span class="section-num">[01]</span>Working Papers</h2>
+      <h2 id="wp-title" class="block-title"><span class="section-num">&sect;&nbsp;I</span>Working Papers</h2>
       <div class="block-rule"></div>
     </div>
 
@@ -166,6 +184,8 @@
       <!-- Paper 1 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[01]</div>
+          <div class="paper-jel">JEL &nbsp;G11 &middot; J24 &middot; D14</div>
           <h4 class="paper-title">
             Asymmetric Labor Income Risk: Implications for Risk-Taking in Financial Markets
           </h4>
@@ -223,6 +243,8 @@
       <!-- Paper 2 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[02]</div>
+          <div class="paper-jel">JEL &nbsp;G11 &middot; G41 &middot; D81</div>
           <h4 class="paper-title">
             Navigating Through Fear and Greed: The Experience-Driven Disposition Effect
           </h4>
@@ -256,6 +278,8 @@
       <!-- Paper 3 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[03]</div>
+          <div class="paper-jel">JEL &nbsp;R31 &middot; G12 &middot; D81</div>
           <h4 class="paper-title">The Price of Housing Uncertainty: Evidence from a Policy Regime Shift</h4>
 
           <div class="paper-links">
@@ -296,6 +320,8 @@
       <!-- Paper 4 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[04]</div>
+          <div class="paper-jel">JEL &nbsp;D12 &middot; D14 &middot; E21</div>
           <h4 class="paper-title">Where Insurance Works Hardest: The Age Profile of Consumption Inequality in Japan</h4>
 
           <button class="toggle-abstract" type="button" aria-expanded="false">
@@ -316,6 +342,8 @@
       <!-- Paper 5 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[05]</div>
+          <div class="paper-jel">JEL &nbsp;G51 &middot; I22 &middot; J24</div>
           <h4 class="paper-title">Student Debt, Forbearance, and Household Portfolios</h4>
 
           <button class="toggle-abstract" type="button" aria-expanded="false">
@@ -331,6 +359,8 @@
       <!-- Paper 6 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[06]</div>
+          <div class="paper-jel">JEL &nbsp;R23 &middot; J61 &middot; R31</div>
           <h4 class="paper-title">Housing Lock-In and Labor Market Adjustment: Evidence from Two Decades of Job Loss</h4>
 
           <button class="toggle-abstract" type="button" aria-expanded="false">
@@ -351,6 +381,8 @@
       <!-- Paper 5 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[07]</div>
+          <div class="paper-jel">JEL &nbsp;J12 &middot; N35 &middot; O14</div>
           <h4 class="paper-title">Industrial Reallocation and Marriage-Market Dynamics: Evidence from China’s Third Front</h4>
           <div class="paper-authors">with Yi Yao (USI)</div>
 
@@ -372,6 +404,8 @@
       <!-- Paper 6 -->
       <article class="paper-card">
         <div class="paper-top">
+          <div class="paper-marker">[08]</div>
+          <div class="paper-jel">JEL &nbsp;I13 &middot; H51 &middot; I18</div>
           <h4 class="paper-title">Plan Generosity and Health Spending Risk under Insurance Integration</h4>
           <div class="paper-authors">with Yi Yao (USI)</div>
 
@@ -397,7 +431,7 @@
   ========================== -->
   <section class="research-block" aria-labelledby="wip-title">
     <div class="block-header">
-      <h2 id="wip-title" class="block-title"><span class="section-num">[02]</span>Work in Progress</h2>
+      <h2 id="wip-title" class="block-title"><span class="section-num">&sect;&nbsp;II</span>Work in Progress</h2>
       <div class="block-rule"></div>
     </div>
 
@@ -423,7 +457,7 @@
 
             <div class="lang-grid">
               <div class="lang-card">
-                <div class="lang-icon">&#x1F40D;</div>
+                <div class="lang-tag">i.</div>
                 <h3 class="lang-name">Python</h3>
                 <p>Here is a highly recommended course to learn Python coding for economics:</p>
                 <ul class="resource-list">
@@ -432,19 +466,19 @@
               </div>
 
               <div class="lang-card">
-                <div class="lang-icon">&#x1F4CA;</div>
-                <h3 class="lang-name">Matlab</h3>
+                <div class="lang-tag">ii.</div>
+                <h3 class="lang-name">MATLAB</h3>
                 <ul class="resource-list">
-                  <li>Structural Estimation: Placeholder</li>
+                  <li>Structural Estimation <span class="resource-author">[in preparation]</span></li>
                 </ul>
                 <p>A very good introductory lecture on structural estimation is available on <a href="https://www.youtube.com/watch?v=0hazaPBAYWE&amp;list=PL6KS60UEc8zLvH31w6nqkthRde1Cm2IRn" target="_blank" rel="noopener">YouTube</a>, offered by Prof. Michael Keane.</p>
               </div>
 
               <div class="lang-card">
-                <div class="lang-icon">&#x1F4C8;</div>
+                <div class="lang-tag">iii.</div>
                 <h3 class="lang-name">R</h3>
                 <ul class="resource-list">
-                  <li>Structural Estimation: Placeholder</li>
+                  <li>Structural Estimation <span class="resource-author">[in preparation]</span></li>
                 </ul>
               </div>
             </div>
@@ -570,22 +604,30 @@
       </div>
     </div>
 
-    <footer>
-      <a class="icon-github social-button borderless static" href="http://github.com/tlyeungae"></a>
-      <a class="icon-linkedin social-button borderless static" href="https://www.linkedin.com/in/tlyeungae/"></a>
-      <a class="icon-twitter social-button borderless static" href="https://twitter.com/tlyeungae"></a>
-      <a class="icon-instagram social-button borderless static" href="https://www.instagram.com/tlyeungae/"></a> <br>
-      Tai Lo Yeung @ USI Lugano tai.lo.yeung@usi.ch
-      <div class="footer-coords">46.0037&deg;N &middot; 8.9511&deg;E &middot; Lugano, CH</div>
-      <div class="equation-ticker">
-        <div class="equation-ticker-inner" id="eq-ticker"></div>
+    <footer id="colophon">
+      <div class="colophon-rule-line"></div>
+      <div class="colophon-grid">
+        <div class="colophon-col">
+          <div class="colophon-label">Correspondence</div>
+          <a href="mailto:tai.lo.yeung@usi.ch">tai.lo.yeung@usi.ch</a><br>
+          USI Lugano &middot; Switzerland
+        </div>
+        <div class="colophon-col colophon-col-center">
+          <a class="icon-github social-button borderless static" href="http://github.com/tlyeungae"></a>
+          <a class="icon-linkedin social-button borderless static" href="https://www.linkedin.com/in/tlyeungae/"></a>
+          <a class="icon-twitter social-button borderless static" href="https://twitter.com/tlyeungae"></a>
+          <a class="icon-instagram social-button borderless static" href="https://www.instagram.com/tlyeungae/"></a>
+        </div>
+        <div class="colophon-col colophon-col-right">
+          <div class="colophon-label">Composed in</div>
+          Fraunces &amp; Source Serif 4<br>
+          Lugano &middot; 46.00&deg;N, 8.95&deg;E
+        </div>
       </div>
+      <div class="colophon-bottom">&copy; Tai Lo Yeung &middot; <em>Video et Taceo</em></div>
     </footer>
-    
-    <button id="scroll-top" type="button" aria-label="Scroll to top">&#8593;</button>
 
-    <!-- Particle background canvas -->
-    <canvas id="particles"></canvas>
+    <button id="scroll-top" type="button" aria-label="Return to top">&uarr;</button>
 
     <!-- Load additional JS scripts here -->
     <script type="text/javascript" src="script.js"></script>
