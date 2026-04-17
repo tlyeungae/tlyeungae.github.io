@@ -644,6 +644,15 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 #visitors-block .visitor-map img{ max-width: 100%; height: auto; }
 #visitors-block #clustrmaps-widget-v2{ width: auto !important; display: block; }
+#visitors-block .map-fallback{
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  color: var(--fg-dim);
+  line-height: 1.7;
+  padding: .8rem 0;
+}
+#visitors-block .map-fallback .dim{ color: var(--fg-dim); }
+#visitors-block .map-fallback a{ color: var(--amber); border-bottom: 1px dotted var(--amber); }
 #visitors-block .clustrmaps-visitors,
 #visitors-block .clustrmaps-date{
   font-family: var(--mono) !important;
@@ -1423,22 +1432,47 @@ footer#colophon .social-button:hover{
 /* Pull-tab when terminal is closed */
 .term-tab{
   position: fixed;
-  bottom: 1.4rem;
-  right: 1.4rem;
+  bottom: 1.6rem;
+  right: 1.6rem;
   z-index: 250;
   background: var(--bg);
-  border: 1px solid var(--rule-strong);
+  border: 1.5px solid var(--amber);
   color: var(--amber);
   font-family: var(--mono);
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  padding: .4em .9em;
+  padding: .55em 1.1em;
   cursor: pointer;
-  transition: color .15s, border-color .15s, background .15s;
+  transition: color .2s, border-color .2s, background .2s, box-shadow .2s, transform .2s;
+  box-shadow: 0 0 0 0 rgba(255,176,0,.4), 0 4px 14px rgba(0,0,0,.5);
+  animation: termPulse 2.4s ease-in-out infinite;
 }
-.term-tab:hover{ color: var(--green); border-color: var(--green); background: var(--amber-faint); }
-#mini-term.open + .term-tab{ display: none; }
+.term-tab .key{
+  display: inline-block;
+  background: var(--amber);
+  color: #000;
+  padding: 0 .35em;
+  margin-right: .55em;
+  font-weight: 700;
+  border-radius: 2px;
+  letter-spacing: 0;
+}
+.term-tab:hover{
+  color: #000;
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px rgba(255,176,0,.18), 0 6px 18px rgba(0,0,0,.6);
+  animation: none;
+}
+.term-tab:hover .key{ background: #000; color: var(--amber); }
+@keyframes termPulse{
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,176,0,.35), 0 4px 14px rgba(0,0,0,.5); }
+  50%     { box-shadow: 0 0 0 6px rgba(255,176,0,.0),  0 4px 14px rgba(0,0,0,.5); }
+}
+#mini-term.open ~ .term-tab,
+.term-tab.hidden { display: none; }
 
 /* ============================================================
    ENGINEERING MODE — konami easter egg
