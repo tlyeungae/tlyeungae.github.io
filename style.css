@@ -581,16 +581,17 @@ ul.main-menu li a.active::after{ color: var(--green); }
   max-width: 56rem;
 }
 .news-list li{
-  display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: 1.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
   padding: 1rem 1.4rem;
   border-bottom: 1px dashed var(--rule);
-  align-items: center;
 }
 .news-list li:last-child{ border-bottom: none; }
-.news-list li::before{ content: ""; }
+.news-list li::before{ content: none; }
+
 .news-tminus{
+  flex: 0 0 10rem;       /* fixed left column, never shrinks */
   font-family: var(--mono);
   font-size: 1.45rem;
   color: var(--amber);
@@ -599,16 +600,21 @@ ul.main-menu li a.active::after{ color: var(--green); }
   text-shadow: 0 0 8px rgba(255,176,0,.30);
   text-align: left;
   white-space: nowrap;
+  padding-top: .15rem;   /* visually align baseline with first text line */
 }
-.news-tminus.past{
-  color: var(--fg-dim);
-  text-shadow: none;
-}
+.news-tminus.past{ color: var(--fg-dim); text-shadow: none; }
 .news-tminus.imminent{
   color: var(--red);
   text-shadow: 0 0 8px rgba(255,77,58,.35);
 }
-.news-body{ display: flex; flex-direction: column; gap: .15rem; }
+
+.news-body{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  min-width: 0;          /* prevent flex-overflow */
+}
 .news-text{ color: var(--fg); font-size: 1.3rem; line-height: 1.4; }
 .news-text a{ color: var(--amber); }
 .news-when{
@@ -618,6 +624,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
   letter-spacing: .04em;
 }
 [data-theme="light"] .news-tminus{ text-shadow: none; }
+
+/* Force column stack on narrow widths only — keep flex row above */
+@media (max-width: 520px){
+  .news-list li{ flex-direction: column; gap: .3rem; }
+  .news-tminus{ flex: 0 0 auto; }
+}
 
 /* Visitor map block — give container an explicit width so ClustrMaps
    widget (which reads parent offsetWidth on init) doesn't collapse to 0 */
@@ -1316,7 +1328,6 @@ footer#colophon .social-button:hover{
   .status-bar #status-mem + .sep{ display: none; }
   .boot-text{ font-size: 1.15rem; }
   pre.ascii-logo{ font-size: .8rem; }
-  .news-list li{ grid-template-columns: 1fr; gap: .25rem; }
   #theme-toggle{ top: 1.4rem; right: 0; font-size: .9rem; padding: .35em .8em; }
   .profile-row{ grid-template-columns: 1fr; gap: .1rem; }
   .reference-list > li{
