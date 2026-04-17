@@ -231,51 +231,9 @@ a:focus-visible{ outline: 1px solid var(--amber); outline-offset: 2px; }
   border-bottom: none;
 }
 
-/* Logo row: mission patch + ASCII */
-.logo-row{
-  display: flex;
-  align-items: center;
-  gap: 2.4rem;
-  margin: 0 0 .8rem;
-  flex-wrap: wrap;
-}
-/* ASCII glasses emblem (TLY-001) */
-pre.ascii-glasses{
-  margin: 0;
-  flex-shrink: 0;
-  font-family: var(--mono);
-  font-size: 1rem;
-  line-height: 1.2;
-  white-space: pre;
-  color: var(--amber);
-  text-shadow: 0 0 6px rgba(255,176,0,.18);
-  transition: transform .3s ease, text-shadow .3s ease;
-  cursor: default;
-}
-pre.ascii-glasses .lens{
-  color: var(--green);
-  text-shadow: 0 0 6px rgba(51,255,102,.5);
-}
-pre.ascii-glasses .emblem-cap{
-  color: var(--fg-dim);
-  font-size: .85em;
-  letter-spacing: .15em;
-  text-shadow: none;
-}
-pre.ascii-glasses:hover{
-  transform: translateY(-2px);
-  text-shadow: 0 0 10px rgba(255,176,0,.35);
-}
-pre.ascii-glasses:hover .lens{
-  color: var(--amber);
-  text-shadow: 0 0 10px rgba(255,176,0,.7);
-}
-[data-theme="light"] pre.ascii-glasses{ text-shadow: none; }
-[data-theme="light"] pre.ascii-glasses .lens{ text-shadow: none; }
-
 /* ASCII logo */
 pre.ascii-logo{
-  margin: 0;
+  margin: 0 0 .8rem;
   color: var(--amber);
   font-family: var(--mono);
   font-size: 1rem;
@@ -1364,8 +1322,6 @@ footer#colophon .social-button:hover{
   .status-bar #status-mem + .sep{ display: none; }
   .boot-text{ font-size: 1.15rem; }
   pre.ascii-logo{ font-size: .8rem; }
-  .logo-row{ gap: 1.4rem; }
-  .mission-patch{ width: 78px; height: 78px; }
   .news-list li{ grid-template-columns: 1fr; gap: .25rem; }
   #theme-toggle{ top: 1.4rem; right: 0; font-size: .9rem; padding: .35em .8em; }
   .profile-row{ grid-template-columns: 1fr; gap: .1rem; }
