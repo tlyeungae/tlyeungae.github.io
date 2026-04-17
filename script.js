@@ -224,6 +224,24 @@
     });
   });
 
+  // 3c) ClustrMaps fallback — show a placeholder if the widget is
+  //     blocked (e.g. by Chrome ORB on localhost dev).
+  $(window).on('load', function(){
+    setTimeout(function(){
+      var widget = document.getElementById('clustrmaps-widget-v2');
+      var container = document.getElementById('clustrmaps-container');
+      if (!widget && container) {
+        var fb = document.createElement('div');
+        fb.className = 'map-fallback';
+        fb.innerHTML =
+          '<span class="dim">// readership widget blocked in this environment</span><br>' +
+          '<span class="dim">// view live at </span>' +
+          '<a href="https://tlyeungae.github.io" target="_blank">tlyeungae.github.io</a>';
+        container.appendChild(fb);
+      }
+    }, 2500);
+  });
+
   // 4a) Console banner — easter egg for visitors who open DevTools
   (function consoleBanner(){
     if (!window.console || !console.log) return;
@@ -287,7 +305,7 @@
     var hPos = -1;
 
     // Floating tab to invite people
-    $('body').append('<button class="term-tab" type="button">` open terminal</button>');
+    $('body').append('<button class="term-tab" type="button"><span class="key">`</span>open terminal</button>');
     var $tab = $('.term-tab');
     $tab.on('click', show);
 
@@ -305,10 +323,12 @@
     }
     function show(){
       $term.addClass('open').attr('aria-hidden','false');
+      $tab.addClass('hidden');
       setTimeout(function(){ $input[0].focus(); }, 50);
     }
     function hide(){
       $term.removeClass('open').attr('aria-hidden','true');
+      $tab.removeClass('hidden');
       $input.blur();
     }
 
