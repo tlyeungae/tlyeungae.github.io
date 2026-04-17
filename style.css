@@ -1292,6 +1292,191 @@ footer#colophon .social-button:hover{
 }
 .colophon-bottom em{ color: var(--amber); font-style: normal; }
 
+/* ============================================================
+   PAGE-TRANSITION FLASH
+============================================================ */
+#page-flash{
+  position: fixed;
+  top: 4.4rem;
+  left: 50%;
+  transform: translate(-50%, -1rem);
+  z-index: 250;
+  background: var(--bg);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  padding: .35em 1.2em;
+  letter-spacing: .06em;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 0 8px rgba(255,176,0,.4);
+  white-space: nowrap;
+  transition: opacity .12s ease, transform .15s ease;
+}
+#page-flash.show{
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+#page-flash .ok{ color: var(--green); margin-left: .5em; }
+[data-theme="light"] #page-flash{ text-shadow: none; }
+
+/* ============================================================
+   MINI TERMINAL
+============================================================ */
+#mini-term{
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  width: min(680px, calc(100vw - 2.8rem));
+  height: 380px;
+  max-height: calc(100vh - 4rem);
+  background: var(--bg);
+  border: 1px solid var(--amber);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  opacity: 0;
+  transform: translateY(1rem) scale(.98);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 12px 36px rgba(0,0,0,.7), 0 0 0 1px rgba(255,176,0,.18);
+}
+#mini-term.open{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.term-bar{
+  background: var(--amber);
+  color: #000;
+  padding: .35em .8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .98rem;
+}
+.term-bar .term-meta{ display: flex; align-items: center; gap: .8rem; }
+.term-bar .term-hint{
+  color: rgba(0,0,0,.55);
+  font-weight: 400; text-transform: none;
+  letter-spacing: .04em; font-size: .92rem;
+}
+.term-bar .term-close{
+  background: none; border: 1px solid #000; color: #000;
+  font-family: var(--mono); font-size: 1.1rem; line-height: 1;
+  padding: .05em .55em; cursor: pointer;
+  border-radius: 0;
+}
+.term-bar .term-close:hover{ background: #000; color: var(--amber); }
+.term-output{
+  flex: 1;
+  overflow-y: auto;
+  padding: .8rem 1rem;
+  color: var(--fg);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.term-output::-webkit-scrollbar{ width: 8px; }
+.term-output::-webkit-scrollbar-thumb{ background: var(--rule-strong); }
+.term-output .term-line{ margin: 0; padding: 0; }
+.term-output .echo{ color: var(--amber); }
+.term-output .err{ color: var(--red); }
+.term-output .dim{ color: var(--fg-dim); }
+.term-output .kw{ color: var(--green); }
+.term-output .lt{ color: var(--fg); }
+.term-output .ok{ color: var(--green); }
+.term-output .cmd-prompt{ color: var(--green); margin-right: .35em; }
+.term-prompt-row{
+  display: flex;
+  padding: .55em 1rem .75em;
+  border-top: 1px dashed var(--rule);
+  align-items: center;
+  background: var(--bg-2);
+}
+.term-prompt-text{
+  color: var(--green);
+  margin-right: .5em;
+  flex-shrink: 0;
+  text-shadow: 0 0 6px rgba(51,255,102,.3);
+}
+.term-input{
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  caret-color: var(--green);
+  padding: 0;
+}
+[data-theme="light"] #mini-term{ box-shadow: 0 12px 36px rgba(0,0,0,.18); }
+[data-theme="light"] .term-prompt-text{ text-shadow: none; }
+
+/* Pull-tab when terminal is closed */
+.term-tab{
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 250;
+  background: var(--bg);
+  border: 1px solid var(--rule-strong);
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .4em .9em;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.term-tab:hover{ color: var(--green); border-color: var(--green); background: var(--amber-faint); }
+#mini-term.open + .term-tab{ display: none; }
+
+/* ============================================================
+   ENGINEERING MODE — konami easter egg
+============================================================ */
+body.engineering-mode::after{
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 1px,
+    rgba(255,176,0,.16) 1px, rgba(255,176,0,.16) 2px
+  );
+  animation: enginPulse .12s steps(2) infinite;
+}
+body.engineering-mode::before{
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 98;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.65) 100%);
+}
+body.engineering-mode #header pre.ascii-logo{
+  animation: enginGlitch .08s steps(2) infinite;
+  text-shadow:
+    -1px 0 rgba(255,77,58,.6),
+     1px 0 rgba(51,255,102,.6),
+     0 0 12px rgba(255,176,0,.5);
+}
+body.engineering-mode .status-bar{
+  animation: enginPulse .15s steps(2) infinite;
+}
+@keyframes enginPulse{
+  0%   { filter: brightness(1); }
+  100% { filter: brightness(1.18) saturate(1.3); }
+}
+@keyframes enginGlitch{
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
 /* ── Scroll-to-top ────────────────────────────────── */
 #scroll-top{
   position: fixed;
