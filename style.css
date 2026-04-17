@@ -578,11 +578,11 @@ ul.main-menu li a.active::after{ color: var(--green); }
   list-style: none; padding: 0; margin: 0;
   border: 1px solid var(--rule);
   background: var(--bg-2);
-  max-width: 70rem;
+  max-width: 56rem;
 }
 .news-list li{
   display: grid;
-  grid-template-columns: 9rem 1fr;
+  grid-template-columns: 12rem 1fr;
   gap: 1.4rem;
   padding: .8rem 1.2rem;
   border-bottom: 1px dashed var(--rule);
@@ -629,21 +629,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 #visitors-block .visitor-map img{ max-width: 100%; height: auto; }
 #visitors-block #clustrmaps-widget-v2{ width: auto !important; display: block; }
-#visitors-block .clustrmaps-map-container{
-  display: block !important;
-  background: transparent !important;
-}
 #visitors-block .clustrmaps-visitors,
 #visitors-block .clustrmaps-date{
-  color: var(--amber) !important;
   font-family: var(--mono) !important;
   letter-spacing: .04em;
   font-size: 1.05rem !important;
-  line-height: 1.5 !important;
-}
-[data-theme="light"] #visitors-block .clustrmaps-visitors,
-[data-theme="light"] #visitors-block .clustrmaps-date{
-  color: var(--amber) !important;
+  line-height: 1.55 !important;
 }
 
 /* Colophon (motto) */
