@@ -14,36 +14,58 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 2) Theme toggle — light is default (Working Paper aesthetic).
-  //    Set data-theme="dark" only when the reader prefers it.
+  // 2) Theme toggle — dark (terminal) is default; light = "DAY" mode.
   (function initTheme() {
     var saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   })();
   $(function() {
     var $btn = $('#theme-toggle');
     function updateLabel() {
-      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      // Compact monospace label fits the paper aesthetic
-      $btn.html(isDark ? '\u263C&nbsp;&nbsp;Day' : '\u263E&nbsp;&nbsp;Night');
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      $btn.html(isLight ? '&lt; NIGHT' : '&lt; DAY');
     }
     updateLabel();
     $btn.on('click', function() {
-      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      if (isDark) {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
         document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
       }
       updateLabel();
     });
   });
 
-  // 3) Scroll-to-top button visibility
+  // 3) Status-bar live clock (Lugano / Europe-Zurich time)
+  (function clock() {
+    var el = document.getElementById('status-clock');
+    if (!el) return;
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var now = new Date();
+      // Format in Europe/Zurich timezone
+      var fmt;
+      try {
+        fmt = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/Zurich',
+          hour12: false,
+          hour: '2-digit', minute: '2-digit', second: '2-digit'
+        }).format(now);
+      } catch (e) {
+        fmt = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+      }
+      el.textContent = 'LUGANO ' + fmt + ' CET';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // 4) Scroll-to-top button visibility
   $(function() {
     var $scrollBtn = $('#scroll-top');
     $(window).on('scroll', function() {
@@ -56,7 +78,7 @@
     });
   });
 
-  // 4) Abstract toggles + figure-label sync
+  // 5) Abstract toggles + figure-label sync
   $(function() {
     $('#research').on('click', '.toggle-abstract', function(e) {
       if (this.tagName.toLowerCase() === 'a') e.preventDefault();
