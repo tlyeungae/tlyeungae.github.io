@@ -307,11 +307,13 @@ ul.main-menu li a.active .nav-num { color: var(--signal); }
   filter: grayscale(0) contrast(1);
   box-shadow: 0 0 0 1px var(--rule), 0 2rem 5rem -2rem rgba(0,0,0,.3);
 }
-/* Hero photo (single image; tone-shifted in dark mode) */
-.image-content img.hero-photo { filter: grayscale(.15) contrast(1.02); }
-[data-theme="dark"] .image-content img.hero-photo {
-  filter: grayscale(.15) contrast(1.05) brightness(.85);
-}
+/* Hero photo swap — light is default, dark mode shows the night portrait */
+.image-content img.hero-photo { filter: grayscale(.1) contrast(1.02); }
+.image-content img.hero-light { display: block; }
+.image-content img.hero-dark  { display: none; }
+[data-theme="dark"] .image-content img.hero-light { display: none; }
+[data-theme="dark"] .image-content img.hero-dark  { display: block; }
+[data-theme="dark"] .image-content img.hero-photo { filter: grayscale(.05) contrast(1.05); }
 
 .text-content { display: block; }
 
