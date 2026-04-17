@@ -331,10 +331,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
   filter: contrast(1.05);
 }
 .image-content img.hero-photo{ filter: contrast(1.05); }
-.image-content img.hero-light{ display: block; }
-.image-content img.hero-dark{ display: none; }
-[data-theme="light"] .image-content img.hero-light{ display: none; }
-[data-theme="light"] .image-content img.hero-dark{ display: block; }
+/* Dark mode (default, terminal night) → night portrait */
+.image-content img.hero-light{ display: none; }
+.image-content img.hero-dark{ display: block; }
+/* Day mode → daylight portrait */
+[data-theme="light"] .image-content img.hero-light{ display: block; }
+[data-theme="light"] .image-content img.hero-dark{ display: none; }
 
 /* Job-market stamp (now inside profile box; keep here for bio fallback) */
 .paper-stamp{
@@ -451,11 +453,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
   list-style: none; padding: 0; margin: 0;
   border: 1px solid var(--rule);
   background: var(--bg-2);
+  max-width: 64rem;
 }
 .news-list li{
   display: grid;
-  grid-template-columns: 16rem 1fr;
-  gap: 1.2rem;
+  grid-template-columns: 26rem max-content;
+  gap: 1.6rem;
   padding: .8rem 1.2rem;
   border-bottom: 1px dashed var(--rule);
   align-items: baseline;
