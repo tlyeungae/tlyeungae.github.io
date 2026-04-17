@@ -54,6 +54,16 @@
 html, body { margin: 0; background: var(--bg); color: var(--fg); }
 html { font-size: 62.5%; background-image: none; scroll-behavior: smooth; }
 
+/* iOS PWA standalone — respect notch / dynamic island safe areas */
+@supports (padding: env(safe-area-inset-top)){
+  body{
+    padding-top:    env(safe-area-inset-top);
+    padding-left:   env(safe-area-inset-left);
+    padding-right:  env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
 body{
   font-family: var(--mono);
   font-size: 1.35rem;
