@@ -636,7 +636,7 @@ ul.main-menu li a.active::after{ color: var(--green); }
   background: var(--bg-2);
   border: 1px solid var(--rule);
   padding: 1.4rem;
-  width: 622px;          /* 590 widget + 2 * 16 padding */
+  width: 422px;          /* 390 widget + 2 * 16 padding */
   max-width: 100%;
   margin: 0;
   display: block;
