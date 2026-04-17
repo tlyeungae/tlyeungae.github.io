@@ -224,32 +224,6 @@
     });
   });
 
-  // 3c) ClustrMaps fallback — only kicks in if the widget is *truly*
-  //     blocked (e.g. Chrome ORB on localhost). Generous timeout so a
-  //     slow-loading live widget never triggers it.
-  $(window).on('load', function(){
-    var startedLoading = !!document.getElementById('clustrmaps');
-    if (!startedLoading) return;
-
-    function check(remaining){
-      var widget = document.getElementById('clustrmaps-widget-v2');
-      var container = document.getElementById('clustrmaps-container');
-      if (widget) return;                    // loaded — done
-      if (remaining <= 0) {
-        if (!container) return;
-        var fb = document.createElement('div');
-        fb.className = 'map-fallback';
-        fb.innerHTML =
-          '<span class="dim">// readership widget unavailable in this environment</span>';
-        container.appendChild(fb);
-        return;
-      }
-      setTimeout(function(){ check(remaining - 1); }, 1000);
-    }
-    // give the widget up to 8 seconds before giving up
-    setTimeout(function(){ check(8); }, 1500);
-  });
-
   // 4a) Console banner — easter egg for visitors who open DevTools
   (function consoleBanner(){
     if (!window.console || !console.log) return;

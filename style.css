@@ -644,18 +644,10 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 #visitors-block .visitor-map img{ max-width: 100%; height: auto; }
 #visitors-block #clustrmaps-widget-v2{ width: auto !important; display: block; }
-#visitors-block .map-fallback{
-  font-family: var(--mono);
-  font-size: 1.1rem;
-  color: var(--fg-dim);
-  line-height: 1.7;
-  padding: .8rem 0;
-}
-#visitors-block .map-fallback .dim{ color: var(--fg-dim); }
-#visitors-block .map-fallback a{ color: var(--amber); border-bottom: 1px dotted var(--amber); }
 #visitors-block .clustrmaps-visitors,
 #visitors-block .clustrmaps-date{
   font-family: var(--mono) !important;
+  color: var(--amber) !important;
   letter-spacing: .04em;
   font-size: 1.05rem !important;
   line-height: 1.55 !important;
