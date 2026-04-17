@@ -631,25 +631,24 @@ ul.main-menu li a.active::after{ color: var(--green); }
   .news-tminus{ flex: 0 0 auto; }
 }
 
-/* Visitor map block — give container an explicit width so ClustrMaps
-   widget (which reads parent offsetWidth on init) doesn't collapse to 0 */
+/* Visitor map block — fits the fixed-width 590-px ClustrMaps widget */
 #visitors-block .visitor-map{
   background: var(--bg-2);
   border: 1px solid var(--rule);
   padding: 1.4rem;
-  width: 360px;
+  width: 622px;          /* 590 widget + 2 * 16 padding */
   max-width: 100%;
   margin: 0;
   display: block;
+  overflow: hidden;
 }
 #visitors-block .visitor-map img{ max-width: 100%; height: auto; }
-#visitors-block #clustrmaps-widget-v2{ width: auto !important; display: block; }
+#visitors-block #clustrmaps-widget-v2{ display: block; }
 #visitors-block .clustrmaps-visitors,
 #visitors-block .clustrmaps-date{
   font-family: var(--mono) !important;
-  color: var(--amber) !important;
   letter-spacing: .04em;
-  font-size: 1.05rem !important;
+  font-size: 1.1rem !important;
   line-height: 1.55 !important;
 }
 
