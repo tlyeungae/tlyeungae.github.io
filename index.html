@@ -673,6 +673,25 @@
 
     <button id="scroll-top" type="button" aria-label="Return to top">&uarr;</button>
 
+    <!-- Page-transition flash -->
+    <div id="page-flash" aria-hidden="true"></div>
+
+    <!-- Mini terminal (press backtick to toggle) -->
+    <div id="mini-term" aria-hidden="true">
+      <div class="term-bar">
+        <span class="term-title">tly@usi:~</span>
+        <span class="term-meta">
+          <span class="term-hint">[ ` toggle &middot; esc close ]</span>
+          <button type="button" class="term-close" aria-label="Close terminal">&times;</button>
+        </span>
+      </div>
+      <div class="term-output" id="term-output"></div>
+      <div class="term-prompt-row">
+        <span class="term-prompt-text">tly@usi:~ $</span>
+        <input type="text" class="term-input" id="term-input" autocomplete="off" spellcheck="false" autocapitalize="off">
+      </div>
+    </div>
+
     <!-- Load additional JS scripts here -->
     <script type="text/javascript" src="script.js"></script>
 
