@@ -63,6 +63,101 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Boot splash ──────────────────────────────────── */
+#boot-splash{
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0a0a0a;
+  color: var(--amber);
+  font-family: var(--mono);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 14vh 2rem 0;
+  transition: opacity .45s ease;
+}
+#boot-splash::before{
+  /* faint scanlines on the splash too */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,176,0,.04) 2px, rgba(255,176,0,.04) 3px);
+}
+#boot-splash.fade{ opacity: 0; pointer-events: none; }
+.boot-text{
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  line-height: 1.7;
+  white-space: pre;
+  color: var(--amber);
+  text-align: left;
+  max-width: 64ch;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(255,176,0,.35);
+}
+.boot-text .ok{ color: var(--green); }
+.boot-text .dim{ color: var(--fg-dim); }
+.boot-cursor::after{
+  content: "▮";
+  display: inline-block;
+  margin-left: .15em;
+  color: var(--green);
+  animation: blink 1.05s steps(2, start) infinite;
+}
+
+/* ── Phosphor glow on amber/green text ───────────── */
+pre.ascii-logo,
+.profile-row .v,
+.section-rubric,
+.block-title,
+.page-title,
+.paper-title,
+.lang-name,
+.investment-date,
+.level-label,
+.fields-col-title,
+.toggle-abstract,
+details.paper-figs summary{
+  text-shadow: 0 0 6px rgba(255,176,0,.18);
+}
+.profile-row .v.cn{ text-shadow: 0 0 8px rgba(255,77,58,.28); }
+.profile-row .v .ok,
+ul.main-menu li a.active{ text-shadow: 0 0 8px rgba(51,255,102,.30); }
+ul.main-menu li a.active::before,
+ul.main-menu li a.active::after{ text-shadow: 0 0 8px rgba(51,255,102,.30); }
+.paper-jel{ text-shadow: 0 0 6px rgba(51,255,102,.18); }
+
+/* Light mode: kill the glow (paper has no phosphor) */
+[data-theme="light"] pre.ascii-logo,
+[data-theme="light"] .profile-row .v,
+[data-theme="light"] .profile-row .v.cn,
+[data-theme="light"] .profile-row .v .ok,
+[data-theme="light"] .section-rubric,
+[data-theme="light"] .block-title,
+[data-theme="light"] .page-title,
+[data-theme="light"] .paper-title,
+[data-theme="light"] .paper-jel,
+[data-theme="light"] .lang-name,
+[data-theme="light"] .investment-date,
+[data-theme="light"] .level-label,
+[data-theme="light"] .fields-col-title,
+[data-theme="light"] .toggle-abstract,
+[data-theme="light"] details.paper-figs summary,
+[data-theme="light"] ul.main-menu li a.active,
+[data-theme="light"] ul.main-menu li a.active::before,
+[data-theme="light"] ul.main-menu li a.active::after{
+  text-shadow: none;
+}
+
+/* ── Active nav cursor ────────────────────────────── */
+.nav-cursor{
+  display: inline-block;
+  margin-left: .35em;
+  color: var(--green);
+  animation: blink 1.05s steps(2, start) infinite;
+  text-shadow: 0 0 8px rgba(51,255,102,.4);
+}
+[data-theme="light"] .nav-cursor{ text-shadow: none; }
+
 /* CRT scanlines — Level 1: ambient texture only */
 body::after{
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99;
@@ -1100,6 +1195,12 @@ footer#colophon .social-button:hover{
   #container{ padding: 0 1.4rem; }
   .status-bar{ font-size: .95rem; padding: .35em 1em; gap: 1em; }
   .status-bar .right{ margin-left: 0; }
+  /* On narrow screens, drop the heaviest status fields so the bar fits */
+  .status-bar #status-cpu,
+  .status-bar #status-mem{ display: none; }
+  .status-bar #status-cpu + .sep,
+  .status-bar #status-mem + .sep{ display: none; }
+  .boot-text{ font-size: 1.15rem; }
   pre.ascii-logo{ font-size: .8rem; }
   #theme-toggle{ top: 1.4rem; right: 0; font-size: .9rem; padding: .35em .8em; }
   .profile-row{ grid-template-columns: 1fr; gap: .1rem; }
