@@ -147,6 +147,41 @@
     setInterval(tick, 1000);
   })();
 
+  // 3a) T-MINUS countdowns for News & Forthcoming
+  (function tminus() {
+    var nodes = document.querySelectorAll('.news-tminus[data-date]');
+    if (!nodes.length) return;
+    function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var now = new Date();
+      // Anchor "today" at local midnight so the count doesn't flicker by hours
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      nodes.forEach(function(el) {
+        var when = new Date(el.getAttribute('data-date') + 'T00:00:00');
+        var days = Math.round((when - today) / 86400000);
+        var label;
+        el.classList.remove('past', 'imminent');
+        if (days > 0) {
+          label = 'T\u2212' + pad2(days) + ' DAYS';
+          if (days <= 7) el.classList.add('imminent');
+        } else if (days === 0) {
+          label = 'T\u00B100 DAYS';
+          el.classList.add('imminent');
+        } else if (days >= -7) {
+          label = 'T+' + pad2(-days) + ' DAYS';
+          el.classList.add('past');
+        } else {
+          label = 'COMPLETE';
+          el.classList.add('past');
+        }
+        el.textContent = label;
+      });
+    }
+    tick();
+    // Re-tick at midnight so the day flips even if the tab is left open
+    setInterval(tick, 60 * 60 * 1000);
+  })();
+
   // 3b) Faux system stats — CPU + MEM fluctuate; gives the bar life
   (function sysStats() {
     var cpuEl = document.getElementById('status-cpu');

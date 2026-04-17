@@ -231,9 +231,29 @@ a:focus-visible{ outline: 1px solid var(--amber); outline-offset: 2px; }
   border-bottom: none;
 }
 
+/* Logo row: mission patch + ASCII */
+.logo-row{
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  margin: 0 0 .8rem;
+  flex-wrap: wrap;
+}
+.mission-patch{
+  width: 110px; height: 110px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 12px rgba(255,176,0,.18));
+  transition: transform .35s cubic-bezier(.22,1,.36,1), filter .35s;
+}
+.mission-patch:hover{
+  transform: rotate(8deg) scale(1.04);
+  filter: drop-shadow(0 0 16px rgba(255,176,0,.32));
+}
+[data-theme="light"] .mission-patch{ filter: drop-shadow(0 0 8px rgba(184,101,10,.2)); }
+
 /* ASCII logo */
 pre.ascii-logo{
-  margin: 0 0 .8rem;
+  margin: 0;
   color: var(--amber);
   font-family: var(--mono);
   font-size: 1rem;
@@ -543,28 +563,48 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .ref-affil{ color: var(--fg-dim); font-size: 1.15rem; }
 .ref-email a{ color: var(--amber); }
 
-/* News list */
+/* News list — T-MINUS countdowns */
 .news-list{
   list-style: none; padding: 0; margin: 0;
   border: 1px solid var(--rule);
   background: var(--bg-2);
-  max-width: 64rem;
+  max-width: 70rem;
 }
 .news-list li{
   display: grid;
-  grid-template-columns: 26rem max-content;
+  grid-template-columns: 12rem max-content;
   gap: 1.6rem;
   padding: .8rem 1.2rem;
   border-bottom: 1px dashed var(--rule);
   align-items: baseline;
 }
 .news-list li:last-child{ border-bottom: none; }
-.news-list li::before{
-  content: ""; /* no marker; date column is the marker */
+.news-list li::before{ content: ""; }
+.news-tminus{
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  color: var(--amber);
+  letter-spacing: .08em;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(255,176,0,.25);
 }
-.news-date{ color: var(--green); font-size: 1.15rem; }
+.news-tminus.past{
+  color: var(--fg-dim);
+  text-shadow: none;
+}
+.news-tminus.imminent{
+  color: var(--red);
+  text-shadow: 0 0 8px rgba(255,77,58,.35);
+}
 .news-text{ color: var(--fg); font-size: 1.25rem; }
 .news-text a{ color: var(--amber); }
+.news-when{
+  color: var(--fg-dim);
+  font-size: 1.1rem;
+  font-family: var(--mono);
+  margin-left: .4em;
+}
+[data-theme="light"] .news-tminus{ text-shadow: none; }
 
 /* Visitor map block */
 #visitors-block .visitor-map{
@@ -648,6 +688,55 @@ ul.main-menu li a.active::after{ color: var(--green); }
   color: var(--green);
   letter-spacing: .12em;
   margin-bottom: .6rem;
+}
+
+/* Status badges (chips next to title) */
+.paper-badges{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 .6rem;
+}
+.badge{
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .92rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .15em .55em;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.badge-jmp{
+  color: var(--red);
+  background: rgba(255,77,58,.12);
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(255,77,58,.35);
+}
+.badge-submitted{
+  color: var(--green);
+  background: rgba(51,255,102,.06);
+  text-shadow: 0 0 6px rgba(51,255,102,.25);
+}
+.badge-draft{
+  color: var(--amber);
+  background: rgba(255,176,0,.06);
+  text-shadow: 0 0 6px rgba(255,176,0,.18);
+}
+.badge-coauth{
+  color: var(--fg-dim);
+  border-color: var(--rule-strong);
+  text-shadow: none;
+  letter-spacing: .08em;
+  text-transform: lowercase;
+}
+[data-theme="light"] .badge-jmp,
+[data-theme="light"] .badge-submitted,
+[data-theme="light"] .badge-draft{
+  text-shadow: none;
 }
 
 .paper-title{
@@ -1202,6 +1291,9 @@ footer#colophon .social-button:hover{
   .status-bar #status-mem + .sep{ display: none; }
   .boot-text{ font-size: 1.15rem; }
   pre.ascii-logo{ font-size: .8rem; }
+  .logo-row{ gap: 1.4rem; }
+  .mission-patch{ width: 78px; height: 78px; }
+  .news-list li{ grid-template-columns: 1fr; gap: .25rem; }
   #theme-toggle{ top: 1.4rem; right: 0; font-size: .9rem; padding: .35em .8em; }
   .profile-row{ grid-template-columns: 1fr; gap: .1rem; }
   .reference-list > li{
