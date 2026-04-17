@@ -63,17 +63,27 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* CRT scanlines */
+/* CRT scanlines — Level 2: clearly visible, still readable */
 body::after{
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99;
   background: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(255,176,0,.022) 2px, rgba(255,176,0,.022) 3px);
+    0deg,
+    transparent          0,
+    transparent          2px,
+    rgba(0,0,0,.10)      2px,
+    rgba(0,0,0,.10)      3px,
+    rgba(255,176,0,.04)  3px,
+    rgba(255,176,0,.04)  4px);
 }
 [data-theme="light"] body::after{
   background: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(0,0,0,.012) 2px, rgba(0,0,0,.012) 3px);
+    0deg,
+    transparent          0,
+    transparent          2px,
+    rgba(0,0,0,.05)      2px,
+    rgba(0,0,0,.05)      3px,
+    rgba(184,101,10,.03) 3px,
+    rgba(184,101,10,.03) 4px);
 }
 
 /* ── Status bar ───────────────────────────────────── */
