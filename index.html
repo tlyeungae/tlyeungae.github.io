@@ -15,7 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" type="text/css" />
    
     <!-- Custom styles -->
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -32,25 +32,48 @@
   
   <body>
 
+    <div class="status-bar">
+      <span>● <span class="glow">SYS:LIVE</span></span>
+      <span class="sep">│</span>
+      <span>USR:tly@usi.ch</span>
+      <span class="sep">│</span>
+      <span>BUILD 2026.03.r17</span>
+      <span class="sep">│</span>
+      <span>ON_MARKET <span class="blink">▮</span></span>
+      <span class="right" id="status-clock">LUGANO --:--:-- CET</span>
+    </div>
+
     <header id="header">
-      <button id="theme-toggle" type="button" aria-label="Toggle light/dark mode"></button>
-      <div class="masthead">
-        <div class="masthead-eyebrow">Working Paper Series &middot; March 2026</div>
-        <h1 class="masthead-title">Tai Lo Yeung</h1>
-        <div class="masthead-cjk">楊&nbsp;&nbsp;大魯</div>
-        <div class="masthead-affiliation">
-          Department of Economics &middot; Universit&agrave; della Svizzera italiana
-        </div>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode"></button>
+
+      <pre class="ascii-logo">
+ ██╗   ██╗███████╗██╗   ██╗███╗   ██╗ ██████╗
+ ╚██╗ ██╔╝██╔════╝██║   ██║████╗  ██║██╔════╝
+  ╚████╔╝ █████╗  ██║   ██║██╔██╗ ██║██║  ███╗
+   ╚██╔╝  ██╔══╝  ██║   ██║██║╚██╗██║██║   ██║
+    ██║   ███████╗╚██████╔╝██║ ╚████║╚██████╔╝
+    ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝   <span class="ver">v.2026.3</span>
+      </pre>
+
+      <div class="profile-box">
+        <div class="profile-row"><div class="k">name</div>        <div class="v">Tai Lo Yeung <span class="cn">楊&nbsp;大魯</span></div></div>
+        <div class="profile-row"><div class="k">role</div>        <div class="v">PhD Candidate &middot; Economics</div></div>
+        <div class="profile-row"><div class="k">institution</div> <div class="v">Universit&agrave; della Svizzera italiana (USI)</div></div>
+        <div class="profile-row"><div class="k">committee</div>   <div class="v">Kueng &middot; Wachter &middot; Plazzi</div></div>
+        <div class="profile-row"><div class="k">visiting</div>    <div class="v">Wharton School (UPenn) &middot; 2025.01&ndash;2025.06</div></div>
+        <div class="profile-row"><div class="k">status</div>      <div class="v"><span class="ok">● ON THE JOB MARKET 2026&ndash;2027</span></div></div>
+        <div class="profile-row"><div class="k">contact</div>     <div class="v"><a href="mailto:tai.lo.yeung@usi.ch">tai.lo.yeung@usi.ch</a></div></div>
       </div>
+
       <nav class="main-nav">
         <ul class="main-menu">
-          <li><a href="#home"><span class="nav-num">i.</span> Home</a></li>
-          <li><a href="#research"><span class="nav-num">ii.</span> Research</a></li>
-          <li><a href="#discussion"><span class="nav-num">iii.</span> Discussion</a></li>
-          <li><a href="#code"><span class="nav-num">iv.</span> Code</a></li>
-          <li><a href="#teaching"><span class="nav-num">v.</span> Teaching</a></li>
-          <li><a href="#investment"><span class="nav-num">vi.</span> Investment</a></li>
-          <li><a href="#photo"><span class="nav-num">vii.</span> Photo</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#discussion">Discussion</a></li>
+          <li><a href="#code">Code</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#investment">Investment</a></li>
+          <li><a href="#photo">Photo</a></li>
         </ul>
       </nav>
     </header>
@@ -68,8 +91,6 @@
               </div>
 
               <div class="text-content">
-
-                <aside class="paper-stamp">On the job market &mdash; AY 2026&ndash;2027</aside>
 
                 <div class="home-bio">
                   <p class="lede">
@@ -180,7 +201,7 @@
       <h3 id="hhf-title" class="sub-title">Household Finance</h3>
 
       <!-- Paper 1 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [01] ──">
         <div class="paper-top">
           <div class="paper-marker">[01]</div>
           <div class="paper-jel">JEL &nbsp;G11 &middot; J24 &middot; D14</div>
@@ -239,7 +260,7 @@
       </article>
 
       <!-- Paper 2 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [02] ──">
         <div class="paper-top">
           <div class="paper-marker">[02]</div>
           <div class="paper-jel">JEL &nbsp;G11 &middot; G41 &middot; D81</div>
@@ -274,7 +295,7 @@
       </article>
 
       <!-- Paper 3 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [03] ──">
         <div class="paper-top">
           <div class="paper-marker">[03]</div>
           <div class="paper-jel">JEL &nbsp;R31 &middot; G12 &middot; D81</div>
@@ -316,7 +337,7 @@
       </article>
 
       <!-- Paper 4 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [04] ──">
         <div class="paper-top">
           <div class="paper-marker">[04]</div>
           <div class="paper-jel">JEL &nbsp;D12 &middot; D14 &middot; E21</div>
@@ -338,7 +359,7 @@
       </article>
 
       <!-- Paper 5 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [05] ──">
         <div class="paper-top">
           <div class="paper-marker">[05]</div>
           <div class="paper-jel">JEL &nbsp;G51 &middot; I22 &middot; J24</div>
@@ -355,7 +376,7 @@
       </article>
 
       <!-- Paper 6 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [06] ──">
         <div class="paper-top">
           <div class="paper-marker">[06]</div>
           <div class="paper-jel">JEL &nbsp;R23 &middot; J61 &middot; R31</div>
@@ -377,7 +398,7 @@
       <h3 id="ce-title" class="sub-title">Chinese Economy</h3>
 
       <!-- Paper 5 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [07] ──">
         <div class="paper-top">
           <div class="paper-marker">[07]</div>
           <div class="paper-jel">JEL &nbsp;J12 &middot; N35 &middot; O14</div>
@@ -400,7 +421,7 @@
       </article>
 
       <!-- Paper 6 -->
-      <article class="paper-card">
+      <article class="paper-card" data-tag="┌─ [08] ──">
         <div class="paper-top">
           <div class="paper-marker">[08]</div>
           <div class="paper-jel">JEL &nbsp;I13 &middot; H51 &middot; I18</div>
