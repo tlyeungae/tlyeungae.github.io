@@ -1430,11 +1430,12 @@ footer#colophon .social-button:hover{
 [data-theme="light"] #mini-term{ box-shadow: 0 12px 36px rgba(0,0,0,.18); }
 [data-theme="light"] .term-prompt-text{ text-shadow: none; }
 
-/* Pull-tab when terminal is closed */
+/* Pull-tab when terminal is closed — bottom-left, opposite the
+   scroll-to-top button so the two never collide */
 .term-tab{
   position: fixed;
   bottom: 1.6rem;
-  right: 1.6rem;
+  left: 1.6rem;
   z-index: 250;
   background: var(--bg);
   border: 1.5px solid var(--amber);
