@@ -73,47 +73,6 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Boot splash ──────────────────────────────────── */
-#boot-splash{
-  position: fixed; inset: 0; z-index: 9999;
-  background: #0a0a0a;
-  color: var(--amber);
-  font-family: var(--mono);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 14vh 2rem 0;
-  transition: opacity .45s ease;
-}
-#boot-splash::before{
-  /* faint scanlines on the splash too */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(255,176,0,.04) 2px, rgba(255,176,0,.04) 3px);
-}
-#boot-splash.fade{ opacity: 0; pointer-events: none; }
-.boot-text{
-  font-family: var(--mono);
-  font-size: 1.35rem;
-  line-height: 1.7;
-  white-space: pre;
-  color: var(--amber);
-  text-align: left;
-  max-width: 64ch;
-  margin: 0;
-  text-shadow: 0 0 8px rgba(255,176,0,.35);
-}
-.boot-text .ok{ color: var(--green); }
-.boot-text .dim{ color: var(--fg-dim); }
-.boot-cursor::after{
-  content: "▮";
-  display: inline-block;
-  margin-left: .15em;
-  color: var(--green);
-  animation: blink 1.05s steps(2, start) infinite;
-}
-
 /* ── Phosphor glow on amber/green text ───────────── */
 pre.ascii-logo,
 .profile-row .v,
@@ -1547,7 +1506,6 @@ body.engineering-mode .status-bar{
   .status-bar #status-mem{ display: none; }
   .status-bar #status-cpu + .sep,
   .status-bar #status-mem + .sep{ display: none; }
-  .boot-text{ font-size: 1.15rem; }
   pre.ascii-logo{ font-size: .8rem; }
   #theme-toggle{ top: 1.4rem; right: 0; font-size: .9rem; padding: .35em .8em; }
   .profile-row{ grid-template-columns: 1fr; gap: .1rem; }
