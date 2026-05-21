@@ -1,0 +1,5 @@
+# Claude Code — local worktrees, caches, and settings (never commit)
+.claude/
+
+# macOS folder metadata
+.DS_Store
