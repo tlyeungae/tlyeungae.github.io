@@ -105,10 +105,12 @@
         } else if (days === 0) {
           label = 'T\u00B100 DAYS';
           el.classList.add('imminent');
-        } else if (days >= -7) {
+        } else if (days >= -2) {
+          // up to 2 days past: brief "just happened" marker
           label = 'T+' + pad2(-days) + ' DAYS';
           el.classList.add('past');
         } else {
+          // more than 2 days past: treat the event as done
           label = 'COMPLETE';
           el.classList.add('past');
         }
