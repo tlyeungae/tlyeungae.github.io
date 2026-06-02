@@ -775,7 +775,24 @@
       </div>
     </section>
 
-    <!-- Slide 26 · Saving tokens -->
+    <!-- Slide 26 · Context window -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Context ──</div>
+        <h2 class="slide-h">Context is the model&rsquo;s <span class="amber">working memory</span></h2>
+        <p class="slide-lead">Everything shares one window &mdash; the system prompt, your CLAUDE.md, every file read, every tool output, and the whole chat so far.</p>
+        <ul class="deck-list tight">
+          <li><strong>It&rsquo;s finite.</strong> Fill it and older details get pushed out or summarized away.</li>
+          <li><strong>It hurts quality.</strong> A bloated context makes answers slower, pricier, and <em>less accurate</em> &mdash; the model attends less reliably to any one fact.</li>
+          <li><strong>Auto-compact</strong> kicks in near the limit &mdash; helpful, but summarizing can drop the detail you cared about.</li>
+          <li>So treat context as precious: load what&rsquo;s <em>relevant</em>, not everything.</li>
+        </ul>
+        <p class="note">Inspect with /context &middot; summarize with /compact &middot; reset with /clear.</p>
+        <p class="takeaway fragment">A lean, focused context isn&rsquo;t just cheaper &mdash; it gives <strong>better answers</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 27 · Saving tokens -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Working cheap ──</div>
@@ -792,7 +809,28 @@
       </div>
     </section>
 
-    <!-- Slide 27 · Custom econ skills -->
+    <!-- Slide 28 · Use many agents -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Agents ──</div>
+        <h2 class="slide-h">Use <span class="amber">many agents</span>, not one big chat</h2>
+        <p class="slide-lead">Each agent runs in its <strong>own fresh context</strong> &mdash; so split a big job across several instead of cramming it into one.</p>
+        <ul class="deck-list tight">
+          <li>One agent reading <strong>10 papers</strong> runs out of room by paper six. <strong>Ten agents &mdash; one per paper &mdash;</strong> each stay sharp.</li>
+          <li>Each returns just its <em>result</em>; your main context stays clean.</li>
+          <li>Run them <strong>in parallel</strong> &rarr; faster, and no single context overflows.</li>
+          <li>An <strong>orchestrator</strong> agent dispatches the others and merges their findings.</li>
+        </ul>
+        <div class="term-win">
+          <div class="term-body"><span class="prompt">you ▸</span> For each PDF in ./papers, spawn an agent to pull
+      {question, data, method, finding}. Collect every
+      agent's result into one comparison table. <span class="cmt"># /agents</span></div>
+        </div>
+        <p class="takeaway fragment">Divide the work, divide the context &mdash; <strong>one focused agent per job.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 29 · Custom econ skills -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Extend ──</div>
@@ -811,7 +849,7 @@
       </div>
     </section>
 
-    <!-- Slide 28 · Reproducibility / AFA tie-in -->
+    <!-- Slide 30 · Reproducibility / AFA tie-in -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Reproducibility ──</div>
@@ -827,7 +865,7 @@
       </div>
     </section>
 
-    <!-- Slide 29 · Pitfalls & practices -->
+    <!-- Slide 31 · Pitfalls & practices -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Guardrails ──</div>
@@ -858,7 +896,7 @@
       </div>
     </section>
 
-    <!-- Slide 30 · Ethics & disclosure -->
+    <!-- Slide 32 · Ethics & disclosure -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Ethics ──</div>
@@ -874,7 +912,7 @@
       </div>
     </section>
 
-    <!-- Slide 31 · Hands-on 2 -->
+    <!-- Slide 33 · Hands-on 2 -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Lab ──</div>
@@ -889,7 +927,45 @@
       </div>
     </section>
 
-    <!-- Slide 32 · Three rules -->
+    <!-- Slide 34 · Knowledge vault (why) -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Knowledge vault ──</div>
+        <h2 class="slide-h">Turn your notes into a <span class="amber">knowledge vault</span></h2>
+        <p class="slide-lead">Obsidian stores everything as plain Markdown (.md) in a local folder &mdash; exactly what Claude reads and writes best.</p>
+        <ul class="deck-list tight">
+          <li>Your whole vault is plain text &rarr; Claude reads, searches, and edits <strong>all of it directly</strong> &mdash; no export, no API.</li>
+          <li>Notes link to notes (<span class="muted">[[wiki-links]]</span>) &rarr; a graph of ideas that compounds as it grows.</li>
+          <li>Local and yours &mdash; private, portable, future-proof.</li>
+        </ul>
+        <div class="term-win">
+          <div class="term-body"><span class="cmt"># disposition-effect.md</span>
+Investors sell winners and hold losers.
+Related: [[Prospect Theory]] &middot; [[Fear and Greed]]
+Source: [[Odean 1998]]</div>
+        </div>
+        <p class="takeaway fragment">A folder of PDFs isn&rsquo;t a system &mdash; <strong>linked Markdown is</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 35 · Knowledge vault (how) -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Knowledge vault ──</div>
+        <h2 class="slide-h">Obsidian + Claude: the workflow</h2>
+        <ol class="steps">
+          <li>Install <strong>Obsidian</strong> &mdash; a vault is just a folder of .md files.</li>
+          <li>Point Claude Code at that folder &mdash; open it as your project.</li>
+          <li>&ldquo;Read this paper; write a note with the key claims and <span class="muted">[[link]]</span> it to related notes.&rdquo;</li>
+          <li>Ask across everything: &ldquo;What do my notes say about X?&rdquo; &mdash; Claude reads the whole vault.</li>
+          <li>Let it surface <strong>connections and gaps</strong> you missed.</li>
+        </ol>
+        <p class="note">Free for personal use &middot; obsidian.md &middot; your vault stays on your machine.</p>
+        <p class="takeaway fragment">Capture once; let Claude <strong>connect, retrieve, and grow</strong> it.</p>
+      </div>
+    </section>
+
+    <!-- Slide 36 · Three rules -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ The rules ──</div>
@@ -903,7 +979,7 @@
       </div>
     </section>
 
-    <!-- Slide 33 · Recap & resources -->
+    <!-- Slide 37 · Recap & resources -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Wrap-up ──</div>
@@ -932,7 +1008,7 @@
       </div>
     </section>
 
-    <!-- Slide 34 · Closing -->
+    <!-- Slide 38 · Closing -->
     <section class="slide slide-divider">
       <div class="slide-inner">
         <div class="divider-hour">End of session</div>
@@ -942,7 +1018,7 @@
       </div>
     </section>
 
-    <!-- Add Slide 35 here -->
+    <!-- Add Slide 39 here -->
 
   </div>
 
