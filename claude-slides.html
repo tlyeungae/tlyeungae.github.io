@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Using Claude AI · TLY-001</title>
+  <meta name="description" content="Using Claude AI — a hands-on teaching deck.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <!-- Same type system as the main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       TLY-001 · SLIDE DECK
+       Terminal palette / IBM Plex Mono — matches tlyeungae.github.io
+       ===================================================== */
+    :root{
+      --bg:#0a0a0a; --bg-2:#111111; --bg-3:#181715;
+      --fg:#c8c2b0; --fg-dim:#8a8576; --fg-faint:#5a564b;
+      --amber:#ffb000; --amber-soft:rgba(255,176,0,.18); --amber-faint:rgba(255,176,0,.06);
+      --green:#33ff66; --red:#ff4d3a;
+      --rule:#2a2820; --rule-strong:#3a362a;
+      --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ margin:0; height:100%; background:var(--bg); color:var(--fg); }
+    body{
+      font-family:var(--mono); font-size:16px; line-height:1.6;
+      overflow:hidden; text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* CRT scanlines — same texture as the main site */
+    body::after{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:200;
+      background:repeating-linear-gradient(0deg,transparent,transparent 2px,
+        rgba(255,176,0,.022) 2px,rgba(255,176,0,.022) 3px);
+    }
+
+    /* ── Top status bar ─────────────────────────────── */
+    .status-bar{
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:var(--amber); color:#000;
+      display:flex; flex-wrap:wrap; align-items:center; gap:1.2em;
+      padding:.45em 1.2em;
+      font-weight:700; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+      border-bottom:1px solid #000;
+    }
+    .status-bar .sep{ opacity:.45; }
+    .status-bar .right{ margin-left:auto; display:flex; gap:1.2em; align-items:center; }
+    .status-bar a{ color:#000; text-decoration:none; border-bottom:1px solid rgba(0,0,0,.4); }
+    .status-bar a:hover{ border-bottom-color:#000; }
+    .blink{ animation:blink 1.1s steps(2,start) infinite; }
+    @keyframes blink{ to{ opacity:0; } }
+
+    /* ── Deck / slides ──────────────────────────────── */
+    .deck{ position:fixed; inset:0; }
+    .slide{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:clamp(2.4rem,6vw,6rem); padding-top:5rem; padding-bottom:5rem;
+      opacity:0; visibility:hidden; transform:translateY(14px);
+      transition:opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
+    }
+    .slide.active{
+      opacity:1; visibility:visible; transform:translateY(0);
+      transition:opacity .5s ease, transform .5s ease;
+    }
+    .slide-inner{ width:100%; max-width:1000px; }
+
+    /* ── Title slide ────────────────────────────────── */
+    .eyebrow{
+      color:var(--green); font-size:12px; font-weight:600;
+      letter-spacing:.18em; text-transform:uppercase;
+      text-shadow:0 0 8px rgba(51,255,102,.25); margin-bottom:1.6rem;
+    }
+    pre.banner{
+      margin:0 0 .2rem; color:var(--amber); font-weight:700;
+      font-size:clamp(8px,2.1vw,24px); line-height:1.05; white-space:pre;
+      overflow-x:auto; text-shadow:0 0 12px rgba(255,176,0,.28);
+    }
+    pre.banner::-webkit-scrollbar{ height:0; }
+    .banner-sub{
+      color:var(--fg-dim); font-size:clamp(10px,1.4vw,14px);
+      letter-spacing:.42em; text-transform:uppercase; margin:0 0 2rem .2em;
+    }
+    .rule{ height:1px; background:var(--rule-strong); margin:2rem 0; }
+    h1.title{
+      margin:0; font-size:clamp(2.2rem,5vw,3.4rem); font-weight:700;
+      color:var(--fg); letter-spacing:-.01em; line-height:1.15;
+    }
+    .tagline{ margin:.8rem 0 0; color:var(--fg-dim); font-size:clamp(1rem,2vw,1.35rem); }
+
+    .meta{
+      margin-top:2.6rem; display:grid; gap:.45rem .9rem;
+      grid-template-columns:max-content 1fr; max-width:640px;
+      font-size:13px;
+    }
+    .meta .k{ color:var(--fg-faint); text-transform:uppercase; letter-spacing:.08em; }
+    .meta .v{ color:var(--fg); }
+    .meta .v.amber{ color:var(--amber); }
+
+    .hint{
+      margin-top:3rem; color:var(--amber); font-size:13px;
+      letter-spacing:.12em; text-transform:uppercase;
+    }
+    .cursor{ color:var(--amber); }
+
+    /* ── Bottom progress / nav ──────────────────────── */
+    .footer{
+      position:fixed; left:0; right:0; bottom:0; z-index:100;
+      display:flex; align-items:center; gap:1rem;
+      padding:.6rem 1.2rem; font-size:11px; letter-spacing:.06em;
+      text-transform:uppercase; color:var(--fg-dim);
+      border-top:1px solid var(--rule); background:linear-gradient(to top,var(--bg),transparent);
+    }
+    .footer .brand{ color:var(--fg-faint); }
+    .footer .progress{ flex:1; height:2px; background:var(--rule); position:relative; }
+    .footer .progress span{
+      position:absolute; left:0; top:0; bottom:0; width:0%;
+      background:var(--amber); box-shadow:0 0 8px rgba(255,176,0,.4);
+      transition:width .4s ease;
+    }
+    .nav-btns{ display:flex; gap:.4rem; }
+    .nav-btns button{
+      font-family:var(--mono); font-size:14px; font-weight:700;
+      background:transparent; color:var(--fg-dim); border:1px solid var(--rule-strong);
+      width:30px; height:26px; cursor:pointer; line-height:1;
+      transition:color .2s, border-color .2s, box-shadow .2s;
+    }
+    .nav-btns button:hover{ color:var(--amber); border-color:var(--amber); box-shadow:0 0 10px rgba(255,176,0,.2); }
+    .counter{ color:var(--fg); font-variant-numeric:tabular-nums; }
+
+    /* ── Content slides ─────────────────────────────── */
+    .slide-h{
+      margin:0 0 2rem; font-size:clamp(1.7rem,3.4vw,2.7rem); font-weight:700;
+      color:var(--fg); line-height:1.2; letter-spacing:-.01em;
+    }
+    .slide-h .amber{ color:var(--amber); text-shadow:0 0 12px rgba(255,176,0,.28); }
+
+    /* Browser-window mockup */
+    .browser{
+      width:100%; max-width:760px; margin:0 auto;
+      border:1px solid var(--rule-strong); border-radius:8px; overflow:hidden;
+      background:#100f0d; box-shadow:0 18px 50px rgba(0,0,0,.55);
+    }
+    .browser-bar{
+      display:flex; align-items:center; gap:.8rem; padding:.6rem .9rem;
+      background:var(--bg-3); border-bottom:1px solid var(--rule);
+    }
+    .dots{ display:flex; gap:.5rem; flex:0 0 auto; }
+    .dot{ width:11px; height:11px; border-radius:50%; display:inline-block; }
+    .dot.r{ background:var(--red); } .dot.y{ background:var(--amber); } .dot.g{ background:var(--green); }
+    .browser-url{
+      flex:1; min-width:0; font-size:12px; color:var(--fg-dim); background:var(--bg-2);
+      border:1px solid var(--rule); border-radius:4px; padding:.35rem .7rem;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .browser-url .lock{ color:var(--green); }
+    .browser-body{
+      background:#f4f1e8; color:#1f1d18; padding:clamp(1.3rem,3vw,2.3rem);
+      font-size:clamp(12px,1.5vw,15px); line-height:1.55;
+    }
+    .afa-org{
+      font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#5a564a;
+      border-bottom:1px solid #d6cfb6; padding-bottom:.7rem; margin-bottom:.9rem;
+    }
+    .afa-kicker{
+      color:#9a2a2a; font-weight:700; font-size:11px; letter-spacing:.14em;
+      text-transform:uppercase; margin-bottom:.45rem;
+    }
+    .afa-title{
+      margin:0 0 .85rem; font-size:clamp(1.05rem,2.1vw,1.5rem); font-weight:700;
+      line-height:1.25; color:#16140f;
+    }
+    .afa-body{ margin:0 0 .9rem; color:#2c2a22; }
+    .afa-quote{
+      margin:.9rem 0; padding:.65rem 1rem; border-left:3px solid var(--amber);
+      background:rgba(184,101,10,.10); font-style:italic; color:#3a3320;
+    }
+    .afa-meta{
+      font-size:11.5px; color:#6a6555; border-top:1px solid #d6cfb6;
+      padding-top:.75rem; margin-top:1rem;
+    }
+    .takeaway{
+      margin:2.2rem auto 0; max-width:760px; color:var(--fg-dim);
+      font-size:clamp(1rem,1.7vw,1.2rem); text-align:center; line-height:1.5;
+    }
+    .takeaway strong{ color:var(--amber); }
+
+    /* Step-reveal fragments — hidden until clicked, but keep their layout space */
+    .fragment{ opacity:0; transform:translateY(8px); transition:opacity .45s ease, transform .45s ease; }
+    .fragment.revealed{ opacity:1; transform:none; }
+
+    /* ── Content-slide components ───────────────────── */
+    .amber{ color:var(--amber); }
+    .green{ color:var(--green); }
+    .slide.doc{ align-items:flex-start; overflow-y:auto; }
+    .slide.doc .slide-inner{ max-width:1040px; }
+
+    .slide-lead{
+      font-size:clamp(1.25rem,2.5vw,1.8rem); line-height:1.4; color:var(--fg);
+      max-width:860px; margin:0 0 1.8rem;
+    }
+
+    /* Section dividers */
+    .slide-divider .slide-inner{ text-align:center; }
+    .divider-hour{
+      font-size:clamp(11px,1.6vw,14px); letter-spacing:.32em; text-transform:uppercase;
+      color:var(--green); margin-bottom:1rem; text-shadow:0 0 8px rgba(51,255,102,.25);
+    }
+    .divider-num{
+      margin:0; font-size:clamp(5rem,16vw,11rem); font-weight:700; line-height:.85;
+      color:var(--amber); text-shadow:0 0 34px rgba(255,176,0,.25);
+    }
+    .divider-title{
+      margin:1.2rem 0 0; font-size:clamp(1.5rem,3.8vw,2.5rem); font-weight:700;
+      color:var(--fg); line-height:1.2;
+    }
+    .divider-sub{ margin:1rem auto 0; max-width:700px; color:var(--fg-dim); font-size:clamp(1rem,1.8vw,1.2rem); }
+    .divider-agenda{ display:inline-block; text-align:left; margin:2.2rem auto 0; font-size:clamp(12px,1.5vw,15px); line-height:1.95; color:var(--fg-dim); }
+    .divider-agenda div{ white-space:nowrap; }
+    .divider-agenda .t{ color:var(--amber); display:inline-block; width:3.6em; }
+
+    /* Bullet lists */
+    .deck-list{ list-style:none; margin:0; padding:0; }
+    .deck-list li{
+      position:relative; padding-left:1.7rem; margin:0 0 1rem;
+      font-size:clamp(1.02rem,1.85vw,1.3rem); line-height:1.5; color:var(--fg);
+    }
+    .deck-list li::before{ content:"\25B8"; position:absolute; left:0; color:var(--amber); text-shadow:0 0 8px rgba(255,176,0,.3); }
+    .deck-list li .muted{ color:var(--fg-dim); }
+    .deck-list.tight li{ margin-bottom:.55rem; font-size:clamp(1rem,1.7vw,1.2rem); }
+
+    /* Two columns */
+    .cols{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.4rem,4vw,3rem); align-items:start; }
+    .col-h{ color:var(--green); font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 1rem; }
+    .col-h.warn{ color:var(--red); }
+    @media (max-width:760px){ .cols{ grid-template-columns:1fr; gap:1.4rem; } }
+
+    /* Cards */
+    .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; }
+    .card{ border:1px solid var(--rule-strong); border-radius:6px; padding:1.05rem 1.15rem; background:var(--bg-2); }
+    .card .tag{ color:var(--green); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; }
+    .card h4{ margin:.35rem 0 .4rem; color:var(--amber); font-size:1.12rem; }
+    .card p{ margin:0; color:var(--fg-dim); font-size:.95rem; line-height:1.45; }
+
+    /* Numbered steps */
+    .steps{ list-style:none; margin:0; padding:0; counter-reset:step; }
+    .steps li{
+      position:relative; padding-left:3rem; margin:0 0 1.05rem;
+      font-size:clamp(1.02rem,1.85vw,1.28rem); line-height:1.45; color:var(--fg);
+    }
+    .steps li::before{
+      counter-increment:step; content:counter(step,decimal-leading-zero);
+      position:absolute; left:0; top:-.1rem; width:2.1rem; height:2.1rem;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid var(--amber); color:var(--amber); border-radius:50%;
+      font-size:.9rem; font-weight:700; box-shadow:0 0 10px rgba(255,176,0,.15);
+    }
+    .steps li .muted{ color:var(--fg-dim); }
+
+    /* Terminal / code block */
+    .term-win{
+      width:100%; max-width:840px; margin:1.4rem 0 0;
+      border:1px solid var(--rule-strong); border-radius:8px; overflow:hidden;
+      background:#0c0b09; box-shadow:0 16px 44px rgba(0,0,0,.5);
+    }
+    .term-body{ padding:clamp(.9rem,2.4vw,1.5rem); font-size:clamp(11px,1.35vw,13.5px); line-height:1.65; white-space:pre-wrap; color:var(--fg); }
+    .term-body .prompt{ color:var(--green); }
+    .term-body .ai{ color:var(--amber); }
+    .term-body .cmt{ color:var(--fg-faint); }
+
+    /* Note line */
+    .note{ margin-top:1.5rem; color:var(--fg-dim); font-size:clamp(.95rem,1.5vw,1.1rem); }
+    .note::before{ content:"// "; color:var(--fg-faint); }
+
+    /* Pills */
+    .pill-row{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.6rem; }
+    .pill{ border:1px solid var(--rule-strong); border-radius:999px; padding:.28rem .85rem; font-size:12px; color:var(--fg-dim); }
+    .kbd{ font-size:.85em; border:1px solid var(--rule-strong); border-radius:4px; padding:.05em .45em; color:var(--fg); background:var(--bg-2); }
+
+    @media (prefers-reduced-motion:reduce){
+      .blink{ animation:none; }
+      .slide{ transition:opacity .2s ease; transform:none; }
+      .fragment{ transition:opacity .2s ease; transform:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top status bar — same motif as the main site -->
+  <div class="status-bar">
+    <span>● <span style="text-shadow:0 0 4px rgba(0,0,0,.35)">LECTURE:LIVE</span></span>
+    <span class="sep">│</span>
+    <span>DECK: CLAUDE-AI / 00-INTRO</span>
+    <span class="sep">│</span>
+    <span>FMT: 16:9</span>
+    <span class="right">
+      <span>SLIDE <span id="sb-counter">01/01</span> <span class="blink">▮</span></span>
+      <span class="sep">│</span>
+      <a href="index.html#teaching">↩ SITE</a>
+    </span>
+  </div>
+
+  <!-- ===== DECK =====
+       To add a slide, drop another <section class="slide"> … </section> below.
+       The framework wires up counter, progress, keys, swipe automatically. -->
+  <div class="deck" id="deck">
+
+    <!-- Slide 01 · Title -->
+    <section class="slide active">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Module 00 ─ Getting Started ──</div>
+
+        <pre class="banner" aria-label="CLAUDE">
+ ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
+██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
+██║     ██║     ███████║██║   ██║██║  ██║█████╗
+██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝
+╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
+ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝</pre>
+        <div class="banner-sub">artificial&nbsp;intelligence&nbsp;·&nbsp;for&nbsp;research</div>
+
+        <div class="rule"></div>
+
+        <h1 class="title">Using Claude AI</h1>
+        <p class="tagline">A hands-on guide to AI for research &amp; writing.</p>
+
+        <div class="meta">
+          <div class="k">instructor</div>  <div class="v">Tai Lo Yeung</div>
+          <div class="k">course</div>      <div class="v">Postgraduate Workshop · Empirical Methods</div>
+          <div class="k">institution</div> <div class="v">Università della Svizzera italiana (USI)</div>
+          <div class="k">status</div>      <div class="v amber">● SESSION READY</div>
+        </div>
+
+        <div class="hint">▶ Press &rarr; / Space / Click to begin <span class="cursor blink">▮</span></div>
+      </div>
+    </section>
+
+    <!-- Slide 02 · Motivation -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Motivation ──</div>
+        <h2 class="slide-h">Even the <span class="amber">AFA</span> is now calling for AI-written papers.</h2>
+
+        <div class="browser" role="img" aria-label="The AFA 2027 call for papers webpage">
+          <div class="browser-bar">
+            <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+            <div class="browser-url"><span class="lock">&#128274;</span>&nbsp; afajof.org/news/call-for-papers-afa-2027-special-session-of-paper-written-with-generative-ai-workflows</div>
+          </div>
+          <div class="browser-body">
+            <div class="afa-org">American Finance Association</div>
+            <div class="afa-kicker">News &middot; Call for Papers</div>
+            <h3 class="afa-title">AFA 2027 &mdash; Special Session on Papers Written with Generative AI Workflows</h3>
+            <p class="afa-body">The AFA invites papers <strong>predominantly generated by AI</strong>, where AI systems play a systematic role across the research process &mdash; not merely as modular, tool-like functions. Four papers will be selected for presentation at the 2027 Annual Meeting; submissions must document the full AI workflow.</p>
+            <blockquote class="afa-quote">&ldquo;The ideal paper is not one with no human involvement, but with maximal quality per unit of human effort.&rdquo;</blockquote>
+            <div class="afa-meta">Submissions open June 2026 &middot; Deadline 31 Aug 2026 &middot; No fee &middot; Organizers: Goldstein, Jiang, Novy-Marx &amp; Mann</div>
+          </div>
+        </div>
+
+        <p class="takeaway fragment">If finance&rsquo;s flagship association is soliciting AI-driven research, <strong>working fluently with these tools is now a core research skill</strong> &mdash; and that&rsquo;s what this session is about.</p>
+      </div>
+    </section>
+
+    <!-- Slide 03 · Agenda -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Roadmap ──</div>
+        <h2 class="slide-h">Two hours, two halves.</h2>
+        <div class="cols">
+          <div>
+            <div class="col-h">Hour 1 &middot; Foundations</div>
+            <ul class="deck-list tight">
+              <li>What &ldquo;vibe coding&rdquo; is</li>
+              <li>Why it matters for research</li>
+              <li>The toolbox</li>
+              <li>The core loop</li>
+              <li>Prompting well</li>
+              <li>Trust, but verify</li>
+              <li>First hands-on</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-h">Hour 2 &middot; In Practice</div>
+            <ul class="deck-list tight">
+              <li>Where AI fits the research pipeline</li>
+              <li>Data &rarr; analysis &rarr; figures &rarr; writing</li>
+              <li>Workflow automation</li>
+              <li>Reproducibility &amp; documentation</li>
+              <li>Pitfalls &amp; ethics</li>
+              <li>Build-your-own lab</li>
+            </ul>
+          </div>
+        </div>
+        <p class="takeaway fragment">Goal: leave able to run a real research task <strong>end-to-end</strong> with an AI partner.</p>
+      </div>
+    </section>
+
+    <!-- Slide 04 · Divider — Hour 1 -->
+    <section class="slide slide-divider">
+      <div class="slide-inner">
+        <div class="divider-hour">Hour 01</div>
+        <p class="divider-num">1</p>
+        <h2 class="divider-title">Introduction to Vibe Coding for Research</h2>
+        <p class="divider-sub">What it is, why it matters, and how the loop works.</p>
+        <div class="divider-agenda">
+          <div><span class="t">0:00</span> Chatbot &rarr; agent: tools &amp; the loop</div>
+          <div><span class="t">0:20</span> Prompting &amp; skills</div>
+          <div><span class="t">0:35</span> Trust, but verify</div>
+          <div><span class="t">0:45</span> Hands-on + recap</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 05 · What is vibe coding -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Concept ──</div>
+        <h2 class="slide-h">What is &ldquo;vibe coding&rdquo;?</h2>
+        <p class="slide-lead">You describe what you want in plain language; the AI writes and runs the code. You steer by <span class="amber">results</span>, not syntax.</p>
+        <ul class="deck-list">
+          <li>Term popularized by Andrej Karpathy (2025): lean on natural language, let the model handle the code.</li>
+          <li>You stay in charge of <strong>intent, judgment, and verification</strong>.</li>
+          <li>The model handles boilerplate, syntax, libraries, and debugging.</li>
+          <li>It&rsquo;s not &ldquo;no code&rdquo; &mdash; it&rsquo;s <strong>code by conversation</strong>.</li>
+        </ul>
+        <p class="takeaway fragment">The bottleneck shifts from <span class="muted">&ldquo;can I code this?&rdquo;</span> to <strong>&ldquo;is this the right thing, and is it correct?&rdquo;</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 06 · Why it matters -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Motivation ──</div>
+        <h2 class="slide-h">Why this matters for <span class="amber">your</span> research</h2>
+        <ul class="deck-list">
+          <li><strong>Lower barrier</strong> &mdash; build real tools without being a software engineer.</li>
+          <li><strong>Speed</strong> &mdash; data cleaning, plots, and scaffolding in minutes, not hours.</li>
+          <li><strong>Breadth</strong> &mdash; work across Python, R, Stata, LaTeX, and shell without mastering each.</li>
+          <li><strong>Focus</strong> &mdash; spend your time on the economics, not the syntax errors.</li>
+          <li><strong>Reproducibility</strong> &mdash; every step is captured as code plus conversation.</li>
+        </ul>
+        <p class="takeaway fragment">This is the skill the <span class="amber">AFA</span> session is really testing.</p>
+      </div>
+    </section>
+
+    <!-- Slide 07 · Toolbox -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Tools ──</div>
+        <h2 class="slide-h">The toolbox</h2>
+        <div class="cards">
+          <div class="card"><div class="tag">Think &amp; draft</div><h4>Claude.ai</h4><p>Chat for reasoning, writing, quick analysis, brainstorming.</p></div>
+          <div class="card"><div class="tag">Build &amp; run</div><h4>Claude Code</h4><p>Reads your files, runs code, edits whole projects, automates.</p></div>
+          <div class="card"><div class="tag">In-editor</div><h4>Cursor / VS&nbsp;Code</h4><p>AI inside your editor for line-by-line, in-context help.</p></div>
+          <div class="card"><div class="tag">Alternatives</div><h4>ChatGPT &amp; co.</h4><p>Similar capabilities &mdash; the same principles transfer.</p></div>
+        </div>
+        <p class="note">This course uses Claude, but the workflow is tool-agnostic.</p>
+      </div>
+    </section>
+
+    <!-- Slide 08 · Terminal vs client -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Setup ──</div>
+        <h2 class="slide-h">My take: use the <span class="amber">Claude app</span>, not the terminal.</h2>
+        <p class="slide-lead">It&rsquo;s the <strong>same Claude Code</strong> underneath &mdash; the desktop app just wraps it in a friendlier window.</p>
+        <ul class="deck-list tight">
+          <li><strong>One app, two modes</strong> &mdash; switch between plain chat and agentic coding without leaving the window.</li>
+          <li><strong>No command line to fear</strong> &mdash; panels and buttons instead of memorized commands.</li>
+          <li><strong>Identical capabilities</strong> &mdash; same model, same files, same slash-commands and skills as the terminal.</li>
+          <li>Anything you see in a terminal demo works <strong>exactly the same</strong> in the app.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">same model</span>
+          <span class="pill">same files</span>
+          <span class="pill">same commands</span>
+          <span class="pill">same skills</span>
+        </div>
+        <p class="takeaway fragment">Pick the window you like &mdash; the brains are <strong>identical</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 09 · The loop -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Method ──</div>
+        <h2 class="slide-h">The loop: how vibe coding actually works</h2>
+        <ol class="steps">
+          <li><strong>Describe</strong> the goal + context <span class="muted">(data, language, constraints)</span>.</li>
+          <li>The AI <strong>proposes</strong> code.</li>
+          <li><strong>Run</strong> it &mdash; locally or inside the tool.</li>
+          <li><strong>Inspect</strong> the result &mdash; numbers, plots, errors.</li>
+          <li><strong>Refine</strong> in plain language: <span class="muted">&ldquo;dates are off &mdash; parse as YYYY-MM.&rdquo;</span></li>
+          <li><strong>Repeat</strong> until correct, then lock it in.</li>
+        </ol>
+        <p class="takeaway fragment">Tight loops beat long prompts. <strong>Small steps, check often.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 10 · Prompting -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Prompting ──</div>
+        <h2 class="slide-h">Anatomy of a good prompt</h2>
+        <ul class="deck-list tight">
+          <li><strong>Context</strong> &mdash; what the data is, what tools you use.</li>
+          <li><strong>Goal</strong> &mdash; the specific outcome you want.</li>
+          <li><strong>Constraints</strong> &mdash; language, packages, conventions.</li>
+          <li><strong>Format</strong> &mdash; how you want the answer back.</li>
+        </ul>
+        <div class="term-win">
+          <div class="term-body"><span class="prompt">you ▸</span> Here's panel.csv: firm-month returns, 2010–2023.
+      Winsorize ret at 1/99% <span class="cmt">within month</span>, then regress
+      ret on lagged size + B/M with month + firm FE.
+      Use Python + linearmodels. Show the code and the
+      coefficient table.</div>
+        </div>
+        <p class="takeaway fragment">Context + goal + constraints + format. <strong>Vague in &rarr; vague out.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 11 · Why skills matter -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Skills ──</div>
+        <h2 class="slide-h">Why <span class="amber">skills</span> matter</h2>
+        <p class="slide-lead">A skill turns a repeatable task into a one-word command &mdash; write the instructions <strong>once</strong>, reuse them forever.</p>
+        <ul class="deck-list tight">
+          <li><strong>Consistency</strong> &mdash; your standards, applied the same way every time.</li>
+          <li><strong>No re-explaining</strong> &mdash; stop re-pasting the same instructions into chat.</li>
+          <li><strong>Cheap</strong> &mdash; a skill loads only when it&rsquo;s used, so it barely touches context until you need it.</li>
+          <li><strong>Auto-invoked</strong> &mdash; Claude picks the right skill from its description; you don&rsquo;t have to remember.</li>
+          <li><strong>Shareable</strong> &mdash; hand the same capability to coauthors and students.</li>
+        </ul>
+        <p class="takeaway fragment">Rule of thumb: <strong>if you&rsquo;ve typed it twice, make it a skill.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 12 · Skills in the wild -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Skills ──</div>
+        <h2 class="slide-h">Skills in the wild</h2>
+        <p class="slide-lead">Some you get for free; some you build.</p>
+        <div class="cards">
+          <div class="card"><div class="tag">built-in</div><h4>/code-review</h4><p>Structured review of your changes before you commit.</p></div>
+          <div class="card"><div class="tag">built-in</div><h4>/debug</h4><p>A systematic hunt for why something breaks.</p></div>
+          <div class="card"><div class="tag">documents</div><h4>PDF · DOCX · PPTX · XLSX</h4><p>Turn results into a report, Word doc, slide deck, or spreadsheet.</p></div>
+          <div class="card"><div class="tag">meta</div><h4>skill-creator</h4><p>A skill that helps you build your own skills.</p></div>
+          <div class="card"><div class="tag">yours</div><h4>/econ-write</h4><p>Your own writing helper &mdash; we build this in Hour 2.</p></div>
+        </div>
+        <p class="note">Type / in Claude to see every skill available to you.</p>
+        <p class="takeaway fragment">Start with the built-ins; roll your own when you spot a pattern.</p>
+      </div>
+    </section>
+
+    <!-- Slide 13 · Trust but verify -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · The #1 rule ──</div>
+        <h2 class="slide-h">Trust, but <span class="amber">verify</span></h2>
+        <p class="slide-lead">AI is confident even when it&rsquo;s wrong. For research, verification is <strong>your</strong> job &mdash; and it&rsquo;s non-negotiable.</p>
+        <ul class="deck-list">
+          <li><strong>Hallucinated citations</strong> &mdash; check every reference exists and says what's claimed.</li>
+          <li><strong>Plausible-but-wrong code</strong> &mdash; eyeball outputs; run sanity checks.</li>
+          <li><strong>Silent data errors</strong> &mdash; print N, ranges, missingness at each step.</li>
+          <li><strong>Version control everything</strong> (git) so you can see exactly what changed.</li>
+        </ul>
+        <p class="takeaway fragment">Treat the AI as a fast, brilliant, <strong>slightly unreliable RA</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 14 · Hands-on 1 -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Hands-on ──</div>
+        <h2 class="slide-h">Hands-on: your first task</h2>
+        <p class="slide-lead">Live demo &mdash; from a raw file to a result, by conversation.</p>
+        <ol class="steps">
+          <li>Drop a messy CSV into Claude.</li>
+          <li>&ldquo;Clean it, and describe exactly what you changed.&rdquo;</li>
+          <li>&ldquo;Plot the time series of the average return.&rdquo;</li>
+          <li>Spot a problem &rarr; fix it by conversation.</li>
+          <li>Export the script so it&rsquo;s reproducible.</li>
+        </ol>
+        <p class="note">Follow along &mdash; bring a dataset you know well.</p>
+      </div>
+    </section>
+
+    <!-- Slide 15 · Hour 1 recap -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 1 · Recap ──</div>
+        <h2 class="slide-h">What you can already do</h2>
+        <ul class="deck-list">
+          <li>Define a research task clearly.</li>
+          <li>Pick the right tool for it.</li>
+          <li>Run the loop: describe &rarr; run &rarr; inspect &rarr; refine.</li>
+          <li>Verify outputs instead of trusting them.</li>
+          <li>Keep the whole thing reproducible.</li>
+        </ul>
+        <p class="takeaway fragment">Next hour: plug this into the <strong>real research pipeline</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 16 · Divider — Hour 2 -->
+    <section class="slide slide-divider">
+      <div class="slide-inner">
+        <div class="divider-hour">Hour 02</div>
+        <p class="divider-num">2</p>
+        <h2 class="divider-title">Practical Applications &amp; Workflow Automation</h2>
+        <p class="divider-sub">From one-off tasks to an automated, reproducible pipeline.</p>
+        <div class="divider-agenda">
+          <div><span class="t">0:00</span> The research pipeline: literature &rarr; data &rarr; writing</div>
+          <div><span class="t">0:25</span> Working smart: git, permissions, tokens, skills</div>
+          <div><span class="t">0:40</span> Reproducibility, pitfalls &amp; ethics</div>
+          <div><span class="t">0:50</span> Hands-on lab + recap</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 17 · Pipeline map -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Map ──</div>
+        <h2 class="slide-h">Where AI plugs into your pipeline</h2>
+        <div class="cards">
+          <div class="card"><div class="tag">01</div><h4>Collect</h4><p>Scrape, pull APIs, assemble raw sources.</p></div>
+          <div class="card"><div class="tag">02</div><h4>Clean</h4><p>Merge, reshape, match, validate, document.</p></div>
+          <div class="card"><div class="tag">03</div><h4>Analyze</h4><p>Regressions, robustness, replication.</p></div>
+          <div class="card"><div class="tag">04</div><h4>Visualize</h4><p>Publication figures and LaTeX tables.</p></div>
+          <div class="card"><div class="tag">05</div><h4>Write</h4><p>Draft, edit, referee responses, LaTeX.</p></div>
+        </div>
+        <p class="takeaway fragment">AI touches every stage &mdash; but <strong>you own the design and the checks</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 18 · Literature review with agents -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Application 1 ──</div>
+        <h2 class="slide-h">Literature review at scale</h2>
+        <ul class="deck-list tight">
+          <li>Point an agent at a <strong>folder of PDFs</strong> &rarr; get a structured comparison table.</li>
+          <li><strong>OCR older scans</strong> into clean text you can search and quote.</li>
+          <li>Chase a citation to its source &mdash; the agent opens the paper and quotes the page.</li>
+          <li>Summarize, cluster, and contrast methods across a whole reading list.</li>
+        </ul>
+        <div class="term-win">
+          <div class="term-body"><span class="prompt">you ▸</span> Read every PDF in ./papers. Build a table:
+      cite key, question, data, method, headline finding.
+      Flag any claim you can't ground in the text. <span class="cmt"># then I verify</span></div>
+        </div>
+        <p class="takeaway fragment">Speed is the easy part &mdash; <strong>verifying the table is the real work.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 19 · Data wrangling -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Application 2 ──</div>
+        <h2 class="slide-h">Data wrangling</h2>
+        <ul class="deck-list tight">
+          <li>Merge messy sources; reshape long &harr; wide.</li>
+          <li>Fuzzy-match firm or person names.</li>
+          <li>Parse dates, units, and currencies consistently.</li>
+          <li>Build a clean panel &mdash; with every transformation logged.</li>
+        </ul>
+        <div class="term-win">
+          <div class="term-body"><span class="prompt">you ▸</span> Merge these 3 files on firm_id + year, flag
+      unmatched rows, and tell me how many I lost
+      and why. <span class="cmt"># then: show me the 10 worst name mismatches</span></div>
+        </div>
+        <p class="takeaway fragment">The tedious 80% &mdash; done in minutes, fully documented.</p>
+      </div>
+    </section>
+
+    <!-- Slide 20 · Analysis & replication -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Application 3 ──</div>
+        <h2 class="slide-h">Analysis &amp; replication</h2>
+        <ul class="deck-list">
+          <li>Run a result across many specifications at once.</li>
+          <li>Generate robustness and sensitivity tables.</li>
+          <li>Replicate a published result from its description.</li>
+          <li>Translate code across Stata &harr; R &harr; Python.</li>
+          <li>Explain unfamiliar code you inherited.</li>
+        </ul>
+        <p class="takeaway fragment">Ideal for <strong>replication packages</strong> and referee robustness asks.</p>
+      </div>
+    </section>
+
+    <!-- Slide 21 · Figures & tables -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Application 4 ──</div>
+        <h2 class="slide-h">Figures &amp; tables</h2>
+        <ul class="deck-list">
+          <li>Publication-quality plots from a description.</li>
+          <li>Match a journal&rsquo;s house style.</li>
+          <li>Generate LaTeX <span class="muted">booktabs</span> tables straight from results.</li>
+          <li>Iterate on aesthetics by talking, not tweaking by hand.</li>
+        </ul>
+        <p class="takeaway fragment">&ldquo;Make it look like the figures on my website.&rdquo; &mdash; and it can.</p>
+      </div>
+    </section>
+
+    <!-- Slide 22 · Writing & LaTeX -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Application 5 ──</div>
+        <h2 class="slide-h">Writing &amp; LaTeX</h2>
+        <ul class="deck-list">
+          <li>Draft and tighten prose; cut 800 words to 500.</li>
+          <li>Build LaTeX scaffolding; fix cryptic compile errors.</li>
+          <li>Draft referee-response letters point by point.</li>
+          <li>Translate and clarify &mdash; but <strong>never let it invent citations</strong>.</li>
+        </ul>
+        <p class="takeaway fragment">Your voice and your claims; its speed and its syntax.</p>
+      </div>
+    </section>
+
+    <!-- Slide 23 · Automation -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Automation ──</div>
+        <h2 class="slide-h">Workflow automation</h2>
+        <p class="slide-lead">Move from chatting to <span class="amber">agents that do multi-step work on your files</span>.</p>
+        <ul class="deck-list tight">
+          <li>Claude Code reads and edits a whole project.</li>
+          <li>Chain steps: clean &rarr; estimate &rarr; tabulate &rarr; compile.</li>
+          <li>Batch the same task over hundreds of files.</li>
+          <li>Schedule recurring jobs; save reusable scripts.</li>
+        </ul>
+        <p class="takeaway fragment">Automate the boring 80%; spend your time on the 20% that&rsquo;s economics.</p>
+      </div>
+    </section>
+
+    <!-- Slide 24 · Manual version control -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Working safely ──</div>
+        <h2 class="slide-h">No git? Use the <span class="amber">copy-folder</span> trick.</h2>
+        <p class="slide-lead">You don&rsquo;t need to learn version control to work safely. This is &ldquo;manual git&rdquo; &mdash; and it&rsquo;s enough to start.</p>
+        <ol class="steps">
+          <li>Before you start, <strong>duplicate your project folder</strong> <span class="muted">(paper/ &rarr; paper-backup/).</span></li>
+          <li>Work as normal &mdash; let the AI change files.</li>
+          <li>Happy with the result? <strong>Delete the backup.</strong> Done.</li>
+          <li>Not happy? <strong>Delete the working copy and restore the backup.</strong></li>
+        </ol>
+        <p class="note">Date your copies &mdash; paper-2026-06-02 &mdash; so you can keep a few. Five minutes, total peace of mind.</p>
+        <p class="takeaway fragment">When you&rsquo;re ready, real <strong>git</strong> just automates exactly this.</p>
+      </div>
+    </section>
+
+    <!-- Slide 25 · Permission modes -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Working fast ──</div>
+        <h2 class="slide-h">Stop clicking &ldquo;allow&rdquo;</h2>
+        <p class="slide-lead">By default, Claude Code asks before it edits a file or runs a command. Safe &mdash; but click-heavy once you trust it.</p>
+        <ul class="deck-list tight">
+          <li><span class="kbd">Shift</span>+<span class="kbd">Tab</span> cycles modes: <strong>normal &rarr; auto-accept edits &rarr; plan</strong>.</li>
+          <li><strong>/permissions</strong> pre-approves the safe commands you use a lot.</li>
+          <li>Full speed: launch with <strong>--dangerously-skip-permissions</strong> to skip every prompt.</li>
+        </ul>
+        <p style="margin-top:1.4rem; border-left:3px solid var(--red); background:rgba(255,77,58,.12); padding:.7rem 1rem; color:var(--fg); border-radius:0 4px 4px 0; font-size:clamp(.95rem,1.5vw,1.1rem);">&#9888; <strong>Only</strong> skip permissions on a throwaway <em>copy</em> or sandbox &mdash; never with sensitive data or untrusted content.</p>
+        <p class="takeaway fragment">Made a copy? Let it run free, then review the <strong>result</strong> &mdash; not every step.</p>
+      </div>
+    </section>
+
+    <!-- Slide 26 · Saving tokens -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Working cheap ──</div>
+        <h2 class="slide-h">Make your usage last</h2>
+        <p class="slide-lead">Long conversations cost more, slow down, and drift. A few habits keep you fast and lean.</p>
+        <ul class="deck-list tight">
+          <li><strong>/clear</strong> &mdash; start a fresh chat for each new task <span class="muted">(project memory is kept).</span></li>
+          <li><strong>/compact</strong> &mdash; squeeze a long chat to free space, same task.</li>
+          <li><strong>/context</strong> &mdash; see what&rsquo;s filling the window.</li>
+          <li><strong>/model</strong> &mdash; drop to a smaller model for simple jobs.</li>
+          <li>Point at <strong>specific files</strong>, not the whole repo.</li>
+        </ul>
+        <p class="takeaway fragment">One task per conversation. <strong>/clear early, /clear often.</strong></p>
+      </div>
+    </section>
+
+    <!-- Slide 27 · Custom econ skills -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Extend ──</div>
+        <h2 class="slide-h">Build your own <span class="amber">econ commands</span></h2>
+        <p class="slide-lead">A &ldquo;skill&rdquo; turns a prompt you reuse into a one-word command. Type <strong>/econ-write</strong> and it runs your saved instructions.</p>
+        <div class="cards">
+          <div class="card"><h4>/econ-write</h4><p>Rough notes &rarr; journal-style prose, in your voice.</p></div>
+          <div class="card"><h4>/lit-review</h4><p>Summarize &amp; compare a set of papers.</p></div>
+          <div class="card"><h4>/reg-table</h4><p>Results &rarr; clean LaTeX booktabs table.</p></div>
+          <div class="card"><h4>/robustness</h4><p>Propose &amp; run standard robustness checks.</p></div>
+          <div class="card"><h4>/referee-reply</h4><p>Draft a point-by-point response letter.</p></div>
+          <div class="card"><h4>/clean-panel</h4><p>Standardize a messy panel dataset.</p></div>
+        </div>
+        <p class="note">Make one: a SKILL.md in ~/.claude/skills/econ-write/ &mdash; a short description plus your instructions. You add yours; I can scaffold more.</p>
+        <p class="takeaway fragment">Your best prompts, saved once and <strong>shared with your students</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 28 · Reproducibility / AFA tie-in -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Reproducibility ──</div>
+        <h2 class="slide-h">Reproducibility &amp; documentation</h2>
+        <p class="slide-lead">This is exactly what the <span class="amber">AFA</span> session asks you to capture.</p>
+        <ul class="deck-list">
+          <li>Keep your conversation <strong>transcripts</strong> (including initial prompts).</li>
+          <li>Log <strong>time</strong> spent and document human contributions.</li>
+          <li>Track <strong>line-contribution %</strong> &mdash; what was AI, what was you.</li>
+          <li>Commit code <em>and</em> prompts to git; a README that regenerates everything.</li>
+        </ul>
+        <p class="takeaway fragment">Reproducibility isn&rsquo;t bureaucracy &mdash; it&rsquo;s the <strong>new credibility</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 29 · Pitfalls & practices -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Guardrails ──</div>
+        <h2 class="slide-h">Pitfalls &amp; best practices</h2>
+        <div class="cols">
+          <div>
+            <div class="col-h warn">Pitfalls</div>
+            <ul class="deck-list tight">
+              <li>Hallucinated citations</li>
+              <li>Subtle, silent data bugs</li>
+              <li>Over-trusting fluent output</li>
+              <li>Losing context over long chats</li>
+              <li>Pasting confidential / embargoed data</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-h">Practices</div>
+            <ul class="deck-list tight">
+              <li>Verify every output</li>
+              <li>Work in small, checkable steps</li>
+              <li>Version-control everything</li>
+              <li>Keep a human in the loop</li>
+              <li>Know what data you may share</li>
+            </ul>
+          </div>
+        </div>
+        <p class="takeaway fragment">Speed without verification is just <strong>faster mistakes</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 30 · Ethics & disclosure -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Ethics ──</div>
+        <h2 class="slide-h">Ethics &amp; disclosure</h2>
+        <ul class="deck-list">
+          <li>Know each journal&rsquo;s AI policy before you submit.</li>
+          <li>Disclose AI use honestly &mdash; the AFA session <em>requires</em> it.</li>
+          <li>You are accountable for every result and every citation.</li>
+          <li>AI is a tool, <strong>not a co-author</strong>.</li>
+          <li>Protect confidential data and referee material.</li>
+        </ul>
+        <p class="takeaway fragment">Disclosure builds trust; concealment destroys it.</p>
+      </div>
+    </section>
+
+    <!-- Slide 31 · Hands-on 2 -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Lab ──</div>
+        <h2 class="slide-h">Hands-on: build a mini pipeline</h2>
+        <ol class="steps">
+          <li>Pick a dataset you care about.</li>
+          <li>Clean it &rarr; run one regression &rarr; make one figure &rarr; output one LaTeX table.</li>
+          <li>Wrap it into a single script you can re-run.</li>
+          <li>Save the prompts alongside the code.</li>
+        </ol>
+        <p class="note">Goal: one reproducible artifact you actually keep.</p>
+      </div>
+    </section>
+
+    <!-- Slide 32 · Three rules -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ The rules ──</div>
+        <h2 class="slide-h">Three rules, whatever the tool</h2>
+        <div class="cards">
+          <div class="card"><div class="tag">don&rsquo;t trust &mdash; check</div><h4>Verify every claim</h4><p>Outputs, citations, numbers. The model is confident even when it&rsquo;s wrong.</p></div>
+          <div class="card"><div class="tag">so you can roll back</div><h4>Version every artefact</h4><p>Code, data, drafts &mdash; even the copy-folder trick counts.</p></div>
+          <div class="card"><div class="tag">be honest</div><h4>Attribute every input</h4><p>Disclose AI use. You own every result and every citation.</p></div>
+        </div>
+        <p class="takeaway fragment"><strong>Verify · Version · Attribute</strong> &mdash; the whole course in three words.</p>
+      </div>
+    </section>
+
+    <!-- Slide 33 · Recap & resources -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Wrap-up ──</div>
+        <h2 class="slide-h">Recap &amp; where to go next</h2>
+        <div class="cols">
+          <div>
+            <div class="col-h">You can now</div>
+            <ul class="deck-list tight">
+              <li>Run the vibe-coding loop</li>
+              <li>Cover the full research pipeline</li>
+              <li>Automate multi-step work</li>
+              <li>Document it to AFA standards</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-h">Resources</div>
+            <ul class="deck-list tight">
+              <li>docs.claude.com &mdash; Claude &amp; Claude Code</li>
+              <li>The AFA 2027 call for papers</li>
+              <li>This deck &mdash; on the course page</li>
+              <li>Office hours &mdash; bring your project</li>
+            </ul>
+          </div>
+        </div>
+        <p class="takeaway fragment">Start with <strong>one</strong> real task this week. That&rsquo;s the whole secret.</p>
+      </div>
+    </section>
+
+    <!-- Slide 34 · Closing -->
+    <section class="slide slide-divider">
+      <div class="slide-inner">
+        <div class="divider-hour">End of session</div>
+        <h2 class="divider-title">Questions?</h2>
+        <p class="divider-sub">Tai Lo Yeung &middot; <a href="mailto:tai.lo.yeung@usi.ch" style="color:var(--amber)">tai.lo.yeung@usi.ch</a></p>
+        <p class="note" style="text-align:center">Now go build something.</p>
+      </div>
+    </section>
+
+    <!-- Add Slide 35 here -->
+
+  </div>
+
+  <!-- Bottom progress bar + nav -->
+  <div class="footer">
+    <span class="brand">TLY-001 · TEACHING</span>
+    <span class="counter" id="counter">01 / 01</span>
+    <div class="progress"><span id="progress-fill"></span></div>
+    <div class="nav-btns">
+      <button id="prev" aria-label="Previous slide">‹</button>
+      <button id="next" aria-label="Next slide">›</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+      var i = 0, frag = 0;
+      var counter = document.getElementById('counter');
+      var sbCounter = document.getElementById('sb-counter');
+      var fill = document.getElementById('progress-fill');
+      function pad(n){ return n < 10 ? '0'+n : ''+n; }
+      function frags(idx){ return Array.prototype.slice.call(slides[idx].querySelectorAll('.fragment')); }
+      function render(){
+        slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+        frags(i).forEach(function(el,k){ el.classList.toggle('revealed', k < frag); });
+        var human = pad(i+1)+' / '+pad(slides.length);
+        counter.textContent = human;
+        sbCounter.textContent = pad(i+1)+'/'+pad(slides.length);
+        fill.style.width = (slides.length<2 ? 100 : (i/(slides.length-1))*100) + '%';
+      }
+      function showSlide(idx, revealAll){
+        i = Math.max(0, Math.min(slides.length-1, idx));
+        frag = revealAll ? frags(i).length : 0;
+        render();
+      }
+      // next() reveals the next hidden fragment first, then advances the slide
+      function next(){
+        if(frag < frags(i).length){ frag++; render(); }
+        else if(i < slides.length-1){ showSlide(i+1, false); }
+      }
+      function prev(){
+        if(frag > 0){ frag--; render(); }
+        else if(i > 0){ showSlide(i-1, true); }
+      }
+
+      // Keyboard
+      document.addEventListener('keydown', function(e){
+        switch(e.key){
+          case 'ArrowRight': case ' ': case 'PageDown': case 'l': case 'j': next(); e.preventDefault(); break;
+          case 'ArrowLeft':  case 'PageUp':  case 'h': case 'k': prev(); e.preventDefault(); break;
+          case 'Home': showSlide(0, false); break;
+          case 'End':  showSlide(slides.length-1, true); break;
+          case 'f': case 'F':
+            if(!document.fullscreenElement){ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+            else { document.exitFullscreen && document.exitFullscreen(); }
+            break;
+        }
+      });
+
+      // On-screen buttons
+      document.getElementById('next').addEventListener('click', function(e){ e.stopPropagation(); next(); });
+      document.getElementById('prev').addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+
+      // Click slide to advance (ignore links/buttons & text selections)
+      document.getElementById('deck').addEventListener('click', function(e){
+        if(e.target.closest('a,button')) return;
+        if(window.getSelection && String(window.getSelection())) return;
+        next();
+      });
+
+      // Touch swipe
+      var x0=null;
+      document.addEventListener('touchstart', function(e){ x0 = e.changedTouches[0].clientX; }, {passive:true});
+      document.addEventListener('touchend', function(e){
+        if(x0===null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if(Math.abs(dx) > 45){ dx < 0 ? next() : prev(); }
+        x0=null;
+      }, {passive:true});
+
+      showSlide(0, false);
+    })();
+  </script>
+</body>
+</html>
