@@ -216,21 +216,28 @@
           
 <div id="research" class="content-region">
 
-  <!-- =========================
-       WORKING PAPERS
-  ========================== -->
-  <section class="research-block" aria-labelledby="wp-title">
-    <div class="block-header">
-      <h2 id="wp-title" class="block-title"><span class="section-num">01</span>Working Papers</h2>
-      <div class="block-rule"></div>
+  <div class="research-filter" id="research-filter" aria-label="Filter papers by topic and status">
+    <span class="filter-label">Filter</span>
+    <div class="filter-group">
+      <button type="button" class="filter-chip" data-group="field" data-tag="household-finance" aria-pressed="false">Household Finance</button>
+      <button type="button" class="filter-chip" data-group="field" data-tag="behavioral-finance" aria-pressed="false">Behavioral Finance</button>
+      <button type="button" class="filter-chip" data-group="field" data-tag="chinese-economy" aria-pressed="false">Chinese Economy</button>
     </div>
+    <span class="filter-div">|</span>
+    <div class="filter-group">
+      <button type="button" class="filter-chip" data-group="status" data-tag="jmp" aria-pressed="false">JMP</button>
+      <button type="button" class="filter-chip" data-group="status" data-tag="submitted" aria-pressed="false">Submitted</button>
+      <button type="button" class="filter-chip" data-group="status" data-tag="working-paper" aria-pressed="false">Working Paper</button>
+      <button type="button" class="filter-chip" data-group="status" data-tag="work-in-progress" aria-pressed="false">Work in Progress</button>
+    </div>
+    <button type="button" class="filter-clear" id="filter-clear" hidden>&times; clear</button>
+    <span class="filter-count" id="filter-count"></span>
+  </div>
 
-    <!-- Household Finance -->
-    <section class="sub-block" aria-labelledby="hhf-title">
-      <h3 id="hhf-title" class="sub-title">Household Finance</h3>
+  <div class="paper-list" id="paper-list">
 
       <!-- Paper 1 -->
-      <article class="paper-card" data-tag="┌─ [01] ──">
+      <article class="paper-card" data-tag="┌─ [01] ──" data-tags="household-finance submitted">
         <div class="paper-top">
           <div class="paper-marker">[01]</div>
           <div class="paper-jel">JEL &nbsp;G11 &middot; J24 &middot; D14</div>
@@ -288,7 +295,7 @@
       </article>
 
       <!-- Paper 2 -->
-      <article class="paper-card" data-tag="┌─ [02] ──">
+      <article class="paper-card" data-tag="┌─ [02] ──" data-tags="household-finance behavioral-finance submitted">
         <div class="paper-top">
           <div class="paper-marker">[02]</div>
           <div class="paper-jel">JEL &nbsp;G11 &middot; G41 &middot; D81</div>
@@ -337,7 +344,7 @@
       </article>
 
       <!-- Paper 3 -->
-      <article class="paper-card" data-tag="┌─ [03] ──">
+      <article class="paper-card" data-tag="┌─ [03] ──" data-tags="household-finance jmp submitted">
         <div class="paper-top">
           <div class="paper-marker">[03]</div>
           <div class="paper-jel">JEL &nbsp;R31 &middot; G12 &middot; D81</div>
@@ -380,7 +387,7 @@
       </article>
 
       <!-- Paper 4 -->
-      <article class="paper-card" data-tag="┌─ [04] ──">
+      <article class="paper-card" data-tag="┌─ [04] ──" data-tags="household-finance behavioral-finance working-paper">
         <div class="paper-top">
           <div class="paper-marker">[04]</div>
           <div class="paper-jel">JEL &nbsp;D14 &middot; D15 &middot; G51</div>
@@ -413,14 +420,8 @@
         </details>
       </article>
 
-    </section>
-
-    <!-- Chinese Economy -->
-    <section class="sub-block" aria-labelledby="ce-title">
-      <h3 id="ce-title" class="sub-title">Chinese Economy</h3>
-
       <!-- Paper 5 -->
-      <article class="paper-card" data-tag="┌─ [05] ──">
+      <article class="paper-card" data-tag="┌─ [05] ──" data-tags="chinese-economy working-paper">
         <div class="paper-top">
           <div class="paper-marker">[05]</div>
           <div class="paper-jel">JEL &nbsp;J12 &middot; N35 &middot; O14</div>
@@ -444,7 +445,7 @@
       </article>
 
       <!-- Paper 6 -->
-      <article class="paper-card" data-tag="┌─ [06] ──">
+      <article class="paper-card" data-tag="┌─ [06] ──" data-tags="chinese-economy working-paper">
         <div class="paper-top">
           <div class="paper-marker">[06]</div>
           <div class="paper-jel">JEL &nbsp;I13 &middot; H51 &middot; I18</div>
@@ -466,25 +467,17 @@
           </div>
         </div>
       </article>
-    </section>
-  </section>
-
-  <!-- =========================
-       WORK IN PROGRESS
-  ========================== -->
-  <section class="research-block" aria-labelledby="wip-title">
-    <div class="block-header">
-      <h2 id="wip-title" class="block-title"><span class="section-num">02</span>Work in Progress</h2>
-      <div class="block-rule"></div>
-    </div>
-
-    <div class="wip-list">
-      <article class="wip-item">
-        <h4 class="paper-title">Whose Loss Is It?</h4>
-        <div class="paper-authors">with <a href="https://www.chaojieliu.com/my-research" target="_blank" rel="noopener">Chaojie (Jay) Liu</a></div>
+      <!-- Work in Progress -->
+      <article class="paper-card" data-tag="┌─ WIP ──" data-tags="behavioral-finance work-in-progress">
+        <div class="paper-top">
+          <div class="paper-badges"><span class="badge badge-draft">WORK IN PROGRESS</span><span class="badge badge-coauth">w/1</span></div>
+          <h4 class="paper-title">Whose Loss Is It?</h4>
+          <div class="paper-authors">with <a href="https://www.chaojieliu.com/my-research" target="_blank" rel="noopener">Chaojie (Jay) Liu</a></div>
+        </div>
       </article>
-    </div>
-  </section>
+
+    <p class="filter-empty" id="filter-empty" hidden>No papers match these filters.</p>
+  </div>
 
 </div>
           

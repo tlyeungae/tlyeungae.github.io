@@ -642,6 +642,48 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .research-block{ margin: 0 0 2.6rem; }
 .block-header{ margin-bottom: 1rem; }
 
+/* ── Research filter bar ──────────────────────────── */
+.research-filter{
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  margin: 1.2rem 0 .4rem; padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+.filter-label{
+  color: var(--fg-faint); font-family: var(--mono);
+  font-size: 1.1rem; letter-spacing: .14em; text-transform: uppercase;
+  margin-right: .3rem;
+}
+.filter-div{ color: var(--rule-strong); margin: 0 .2rem; }
+.filter-group{ display: flex; flex-wrap: wrap; gap: .5rem; }
+.filter-chip{
+  font-family: var(--mono); font-size: 1.2rem; cursor: pointer;
+  color: var(--fg-dim); background: transparent;
+  border: 1px solid var(--rule-strong); border-radius: 2rem;
+  padding: .3rem 1rem; letter-spacing: .02em; line-height: 1.3;
+  transition: color .15s, border-color .15s, background .15s, box-shadow .15s;
+}
+.filter-chip:hover{ color: var(--fg); border-color: var(--fg-dim); }
+.filter-chip.active{
+  color: #000; background: var(--amber); border-color: var(--amber);
+  font-weight: 600; box-shadow: 0 0 10px rgba(255,176,0,.3);
+}
+.filter-clear{
+  font-family: var(--mono); font-size: 1.1rem; cursor: pointer;
+  color: var(--red); background: transparent; border: none;
+  padding: .3rem .4rem; letter-spacing: .04em;
+}
+.filter-clear:hover{ text-decoration: underline; }
+.filter-count{
+  margin-left: auto; color: var(--fg-faint);
+  font-family: var(--mono); font-size: 1.1rem; font-variant-numeric: tabular-nums;
+}
+.filter-empty{ color: var(--fg-dim); font-style: italic; padding: 1.5rem 0; }
+.paper-card[hidden]{ display: none !important; }
+@media (max-width: 520px){
+  .filter-count{ margin-left: 0; width: 100%; }
+  .filter-div{ display: none; }
+}
+
 /* Paper "card" rendered as a terminal box */
 .paper-card{
   position: relative;

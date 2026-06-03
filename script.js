@@ -443,3 +443,76 @@
     });
   });
 })(jQuery);
+
+
+/* ===== Research tag filter — OR within a group, AND across groups ===== */
+;(function(){
+  function init(){
+    var bar = document.getElementById('research-filter');
+    var list = document.getElementById('paper-list');
+    if (!bar || !list) return;
+    var chips = Array.prototype.slice.call(bar.querySelectorAll('.filter-chip'));
+    var cards = Array.prototype.slice.call(list.querySelectorAll('.paper-card'));
+    var countEl = document.getElementById('filter-count');
+    var emptyEl = document.getElementById('filter-empty');
+    var clearBtn = document.getElementById('filter-clear');
+    var total = cards.length;
+    function apply(){
+      var byGroup = {};
+      chips.forEach(function(c){
+        if (c.classList.contains('active')){
+          var g = c.getAttribute('data-group');
+          (byGroup[g] = byGroup[g] || []).push(c.getAttribute('data-tag'));
+        }
+      });
+      var groups = Object.keys(byGroup);
+      var shown = 0;
+      cards.forEach(function(card){
+        var tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+        var ok = groups.every(function(g){
+          return byGroup[g].some(function(t){ return tags.indexOf(t) !== -1; });
+        });
+        card.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (countEl) countEl.textContent = groups.length ? (shown + ' / ' + total + ' shown') : (total + ' papers');
+      if (emptyEl) emptyEl.hidden = (shown !== 0);
+      if (clearBtn) clearBtn.hidden = (groups.length === 0);
+      syncURL();
+    }
+    function syncURL(){
+      var active = chips.filter(function(c){ return c.classList.contains('active'); })
+                        .map(function(c){ return c.getAttribute('data-tag'); });
+      try {
+        var qs = active.length ? ('?tags=' + active.join(',')) : '';
+        history.replaceState(null, '', location.pathname + qs + location.hash);
+      } catch (e) { /* file:// or unsupported context — filtering still works */ }
+    }
+    function restore(){
+      var m = /[?&]tags=([^#&]+)/.exec(location.search);
+      if (!m) return;
+      var want = decodeURIComponent(m[1]).split(',');
+      chips.forEach(function(c){
+        if (want.indexOf(c.getAttribute('data-tag')) !== -1){
+          c.classList.add('active');
+          c.setAttribute('aria-pressed', 'true');
+        }
+      });
+    }
+    chips.forEach(function(c){
+      c.addEventListener('click', function(){
+        var on = c.classList.toggle('active');
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        apply();
+      });
+    });
+    if (clearBtn) clearBtn.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+      apply();
+    });
+    restore();
+    apply();
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
