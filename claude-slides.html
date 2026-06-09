@@ -435,6 +435,51 @@
     }
     @media (prefers-reduced-motion: reduce){ .progress-mascot.hop{ animation: none; } }
 
+
+    /* ═══ TECH LAYER · HUD brackets · telemetry · glitch-in · ticks ═══ */
+    .deck{ cursor: crosshair; }
+    .deck a, .deck button{ cursor: pointer; }
+
+    /* HUD corner brackets framing content slides */
+    .slide.doc::before{
+      content: ""; position: absolute; inset: 4.6rem 1.5rem 4.8rem; pointer-events: none; opacity: .45;
+      background:
+        linear-gradient(var(--amber),var(--amber)) left 0 top 0 / 20px 1px,
+        linear-gradient(var(--amber),var(--amber)) left 0 top 0 / 1px 20px,
+        linear-gradient(var(--amber),var(--amber)) right 0 top 0 / 20px 1px,
+        linear-gradient(var(--amber),var(--amber)) right 0 top 0 / 1px 20px,
+        linear-gradient(var(--amber),var(--amber)) left 0 bottom 0 / 20px 1px,
+        linear-gradient(var(--amber),var(--amber)) left 0 bottom 0 / 1px 20px,
+        linear-gradient(var(--amber),var(--amber)) right 0 bottom 0 / 20px 1px,
+        linear-gradient(var(--amber),var(--amber)) right 0 bottom 0 / 1px 20px;
+      background-repeat: no-repeat;
+    }
+
+    /* live telemetry stamp under the status bar */
+    #hud-stamp{ position: fixed; top: 2.9rem; right: 1.3rem; z-index: 90; pointer-events: none;
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; color: var(--fg-faint);
+      text-transform: uppercase; }
+    #hud-stamp b{ color: var(--amber); font-weight: 400; }
+
+    /* headline glitch-in on slide change (no retrigger on fragment reveals) */
+    .slide.active .slide-h, .slide.active h1.title, .slide.active .divider-title{
+      animation: glitchIn .42s steps(2, end) 1; }
+    @keyframes glitchIn{
+      0%  { text-shadow: -3px 0 var(--red), 3px 0 var(--green); transform: translateX(2px); }
+      35% { text-shadow:  2px 0 var(--red), -2px 0 var(--green); transform: translateX(-1px); }
+      70% { text-shadow: -1px 0 var(--red), 1px 0 var(--green); transform: translateX(0); }
+      100%{ text-shadow: none; transform: none; }
+    }
+
+    /* blinking terminal cursor on every eyebrow */
+    .eyebrow::after{ content: "▮"; margin-left: .45ch; color: var(--green); animation: blink 1.1s steps(2,start) infinite; }
+
+    @media (max-width: 760px){ #hud-stamp, .slide.doc::before{ display: none; } }
+    @media (prefers-reduced-motion: reduce){
+      .slide.active .slide-h, .slide.active h1.title, .slide.active .divider-title{ animation: none; }
+      .eyebrow::after{ animation: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -467,6 +512,8 @@
 
   <!-- Matrix rain easter egg -->
   <canvas id="matrix" hidden></canvas>
+
+  <div id="hud-stamp" aria-hidden="true"></div>
 
   <!-- Top status bar — same motif as the main site -->
   <div class="status-bar">
@@ -1349,6 +1396,20 @@ Source: [[Odean 1998]]</div>
       toastEl.textContent=msg; toastEl.style.opacity='1';
       clearTimeout(toastEl._t); toastEl._t=setTimeout(function(){ toastEl.style.opacity='0'; },1200); }
 
+    (function(){ var st=document.getElementById('hud-stamp'); if(!st) return;
+      var sl=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+      function p2(n){ return n<10?'0'+n:''+n; }
+      function upd(){ var i=0; sl.forEach(function(x,k){ if(x.classList.contains('active')) i=k; });
+        var addr=('0000'+(i*64).toString(16).toUpperCase()).slice(-4);
+        var crc=(((i+1)*2654435761)%65521).toString(16).toUpperCase();
+        st.innerHTML='SEC.'+p2(i+1)+' &middot; ADDR <b>0x'+addr+'</b> &middot; CRC:'+crc; }
+      var mo=new MutationObserver(upd);
+      sl.forEach(function(x){ mo.observe(x,{attributes:true,attributeFilter:['class']}); });
+      upd();
+      var track=document.querySelector('.footer .progress');
+      if(track && sl.length>1){ var step=(100/(sl.length-1)).toFixed(4)+'%';
+        track.style.backgroundImage='repeating-linear-gradient(90deg, rgba(255,176,0,.22) 0 1px, transparent 1px '+step+')'; }
+    })();
     var themes=['','green','ice'], ti=0;
     function setTheme(name){ ti = themes.indexOf(name)<0?0:themes.indexOf(name);
       if(themes[ti]) document.body.setAttribute('data-phosphor',themes[ti]); else document.body.removeAttribute('data-phosphor');
