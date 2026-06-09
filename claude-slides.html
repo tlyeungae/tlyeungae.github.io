@@ -604,7 +604,7 @@
               <li>Why it matters for research</li>
               <li>The toolbox</li>
               <li>The core loop</li>
-              <li>Prompting well</li>
+              <li>Prompting &amp; reusable skills</li>
               <li>Trust, but verify</li>
               <li>First hands-on</li>
             </ul>
@@ -613,11 +613,11 @@
             <div class="col-h">Hour 2 &middot; In Practice</div>
             <ul class="deck-list tight">
               <li>Where AI fits the research pipeline</li>
-              <li>Data &rarr; analysis &rarr; figures &rarr; writing</li>
-              <li>Workflow automation</li>
-              <li>Reproducibility &amp; documentation</li>
-              <li>Pitfalls &amp; ethics</li>
+              <li>Literature &rarr; data &rarr; figures &rarr; writing</li>
+              <li>Automation &amp; working smart</li>
+              <li>Reproducibility, pitfalls &amp; ethics</li>
               <li>Build-your-own lab</li>
+              <li>Knowledge vault: Obsidian + Claude</li>
             </ul>
           </div>
         </div>
@@ -777,7 +777,7 @@
           <div class="card"><div class="tag">built-in</div><h4>/debug</h4><p>A systematic hunt for why something breaks.</p></div>
           <div class="card"><div class="tag">documents</div><h4>PDF · DOCX · PPTX · XLSX</h4><p>Turn results into a report, Word doc, slide deck, or spreadsheet.</p></div>
           <div class="card"><div class="tag">meta</div><h4>skill-creator</h4><p>A skill that helps you build your own skills.</p></div>
-          <div class="card"><div class="tag">yours</div><h4>/econ-write</h4><p>Your own writing helper &mdash; we build this in Hour 2.</p></div>
+          <div class="card"><div class="tag">yours</div><h4>/econ-write</h4><p>My real writing skill &mdash; full tour in Hour 2.</p></div>
         </div>
         <p class="note">Type / in Claude to see every skill available to you.</p>
         <p class="takeaway fragment">Start with the built-ins; roll your own when you spot a pattern.</p>
@@ -844,7 +844,8 @@
           <div><span class="t">0:00</span> The research pipeline: literature &rarr; data &rarr; writing</div>
           <div><span class="t">0:25</span> Working smart: git, permissions, tokens, skills</div>
           <div><span class="t">0:40</span> Reproducibility, pitfalls &amp; ethics</div>
-          <div><span class="t">0:50</span> Hands-on lab + recap</div>
+          <div><span class="t">0:48</span> Hands-on lab</div>
+          <div><span class="t">0:55</span> Knowledge vault + wrap-up</div>
         </div>
       </div>
     </section>
@@ -1063,15 +1064,15 @@
         <h2 class="slide-h">Build your own <span class="amber">econ commands</span></h2>
         <p class="slide-lead">A &ldquo;skill&rdquo; turns a prompt you reuse into a one-word command. Type <strong>/econ-write</strong> and it runs your saved instructions.</p>
         <div class="cards">
-          <div class="card"><h4>/econ-write</h4><p>Rough notes &rarr; journal-style prose, in your voice.</p></div>
-          <div class="card"><h4>/lit-review</h4><p>Summarize &amp; compare a set of papers.</p></div>
-          <div class="card"><h4>/reg-table</h4><p>Results &rarr; clean LaTeX booktabs table.</p></div>
-          <div class="card"><h4>/robustness</h4><p>Propose &amp; run standard robustness checks.</p></div>
-          <div class="card"><h4>/referee-reply</h4><p>Draft a point-by-point response letter.</p></div>
-          <div class="card"><h4>/clean-panel</h4><p>Standardize a messy panel dataset.</p></div>
+          <div class="card"><div class="tag">live</div><h4>/econ-write</h4><p>Rough notes &rarr; journal prose, schooled on 50+ econ writing guides.</p></div>
+          <div class="card"><div class="tag">live</div><h4>/lit-review</h4><p>Reads my whole library, then rules on whether a project contributes.</p></div>
+          <div class="card"><div class="tag">live</div><h4>/obsidian-lit</h4><p>Files a paper PDF into the vault &amp; wires the [[links]].</p></div>
+          <div class="card"><div class="tag">live</div><h4>/lit-lint</h4><p>Health-checks the vault: broken links, stubs, contradictions.</p></div>
+          <div class="card"><div class="tag">next</div><h4>/reg-table</h4><p>Results &rarr; clean LaTeX booktabs table.</p></div>
+          <div class="card"><div class="tag">next</div><h4>/referee-reply</h4><p>Point-by-point response letters.</p></div>
         </div>
-        <p class="note">Make one: a SKILL.md in ~/.claude/skills/econ-write/ &mdash; a short description plus your instructions. You add yours; I can scaffold more.</p>
-        <p class="takeaway fragment">Your best prompts, saved once and <strong>shared with your students</strong>.</p>
+        <p class="note">The four marked "live" are real &mdash; each is a SKILL.md in ~/.claude/skills/&lt;name&gt;/. The vault ones reappear on the knowledge-vault slides.</p>
+        <p class="takeaway fragment">Not hypothetical &mdash; these are my <strong>daily drivers</strong>. Yours will mirror your workflow.</p>
       </div>
     </section>
 
@@ -1246,7 +1247,7 @@ Source: [[Odean 1998]]</div>
           <div>
             <div class="col-h">Resources</div>
             <ul class="deck-list tight">
-              <li>docs.claude.com &mdash; Claude &amp; Claude Code</li>
+              <li>code.claude.com/docs &mdash; the Claude Code manual</li>
               <li>The AFA 2027 call for papers</li>
               <li>This deck &mdash; on the course page</li>
               <li>Office hours &mdash; bring your project</li>
@@ -1444,7 +1445,7 @@ Source: [[Odean 1998]]</div>
       if(/obsidian|wiki|note/.test(q)) return 'Plain .md notes plus an LLM that maintains them equals a wiki that compounds. See slides 34-36.';
       if(/42|meaning of life/.test(q)) return '42. But verify it; I am confident even when I am wrong.';
       if(/yeung|tai|host|who are you/.test(q)) return 'The host is Tai Lo Yeung: PhD candidate in Economics at USI Lugano, on the 2026-27 market.';
-      return 'Good question. In a real session I would open your files and do it; here I am only a deck. Try slide 9 on prompting.'; }
+      return 'Good question. In a real session I would open your files and do it; here I am only a deck. Try slide 10 on prompting.'; }
     function typeInto(el,text){ if(reduced){ el.textContent=text; return; } var k=0; (function go(){ el.textContent=text.slice(0,k); out.scrollTop=out.scrollHeight; if(k++<text.length) setTimeout(go,14); })(); }
     var CMD={
       help:function(){ print('commands','ai');
