@@ -600,27 +600,6 @@ ul.main-menu li a.active::after{ color: var(--green); }
   .news-tminus{ flex: 0 0 auto; }
 }
 
-/* Visitor map block — fits the fixed-width 590-px ClustrMaps widget */
-#visitors-block .visitor-map{
-  background: var(--bg-2);
-  border: 1px solid var(--rule);
-  padding: 1.4rem;
-  width: 422px;          /* 390 widget + 2 * 16 padding */
-  max-width: 100%;
-  margin: 0;
-  display: block;
-  overflow: hidden;
-}
-#visitors-block .visitor-map img{ max-width: 100%; height: auto; }
-#visitors-block #clustrmaps-widget-v2{ display: block; }
-#visitors-block .clustrmaps-visitors,
-#visitors-block .clustrmaps-date{
-  font-family: var(--mono) !important;
-  letter-spacing: .04em;
-  font-size: 1.1rem !important;
-  line-height: 1.55 !important;
-}
-
 /* Colophon (motto) */
 .colophon{
   text-align: center;
