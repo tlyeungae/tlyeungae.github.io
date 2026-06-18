@@ -777,7 +777,7 @@
           <div class="card"><div class="tag">built-in</div><h4>/debug</h4><p>A systematic hunt for why something breaks.</p></div>
           <div class="card"><div class="tag">documents</div><h4>PDF · DOCX · PPTX · XLSX</h4><p>Turn results into a report, Word doc, slide deck, or spreadsheet.</p></div>
           <div class="card"><div class="tag">meta</div><h4>skill-creator</h4><p>A skill that helps you build your own skills.</p></div>
-          <div class="card"><div class="tag">yours</div><h4>/econ-write</h4><p>My real writing skill &mdash; full tour in Hour 2.</p></div>
+          <div class="card"><div class="tag">shared</div><h4>/econ-write</h4><p>A writing skill I grabbed from GitHub &mdash; skills travel.</p></div>
         </div>
         <p class="note">Type / in Claude to see every skill available to you.</p>
         <p class="takeaway fragment">Start with the built-ins; roll your own when you spot a pattern.</p>
@@ -1062,21 +1062,49 @@
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Extend ──</div>
         <h2 class="slide-h">Build your own <span class="amber">econ commands</span></h2>
-        <p class="slide-lead">A &ldquo;skill&rdquo; turns a prompt you reuse into a one-word command. Type <strong>/econ-write</strong> and it runs your saved instructions.</p>
+        <p class="slide-lead">A &ldquo;skill&rdquo; turns a procedure you repeat into a one-word command. Some you download; the best you build &mdash; like <strong>/obsidian-lit</strong>, next slide.</p>
         <div class="cards">
-          <div class="card"><div class="tag">live</div><h4>/econ-write</h4><p>Rough notes &rarr; journal prose, schooled on 50+ econ writing guides.</p></div>
-          <div class="card"><div class="tag">live</div><h4>/lit-review</h4><p>Reads my whole library, then rules on whether a project contributes.</p></div>
-          <div class="card"><div class="tag">live</div><h4>/obsidian-lit</h4><p>Files a paper PDF into the vault &amp; wires the [[links]].</p></div>
-          <div class="card"><div class="tag">live</div><h4>/lit-lint</h4><p>Health-checks the vault: broken links, stubs, contradictions.</p></div>
+          <div class="card"><div class="tag">github</div><h4>/econ-write</h4><p>Downloaded from GitHub &mdash; trained on 50+ econ writing guides.</p></div>
+          <div class="card"><div class="tag">built</div><h4>/lit-review</h4><p>Reads my whole library, then rules on whether a project contributes.</p></div>
+          <div class="card"><div class="tag">built</div><h4>/obsidian-lit</h4><p>Files a paper PDF into the vault &amp; wires the [[links]].</p></div>
+          <div class="card"><div class="tag">built</div><h4>/lit-lint</h4><p>Health-checks the vault: broken links, stubs, contradictions.</p></div>
           <div class="card"><div class="tag">next</div><h4>/reg-table</h4><p>Results &rarr; clean LaTeX booktabs table.</p></div>
           <div class="card"><div class="tag">next</div><h4>/referee-reply</h4><p>Point-by-point response letters.</p></div>
         </div>
-        <p class="note">The four marked "live" are real &mdash; each is a SKILL.md in ~/.claude/skills/&lt;name&gt;/. The vault ones reappear on the knowledge-vault slides.</p>
-        <p class="takeaway fragment">Not hypothetical &mdash; these are my <strong>daily drivers</strong>. Yours will mirror your workflow.</p>
+        <p class="note">All four are real skills in ~/.claude/skills/&lt;name&gt;/ &mdash; /econ-write I downloaded, the rest I built. Next: what is inside one.</p>
+        <p class="takeaway fragment">Not hypothetical &mdash; these are my <strong>daily drivers</strong>. Download one to start; build the ones only your workflow needs.</p>
       </div>
     </section>
 
-    <!-- Slide 30 · Reproducibility / AFA tie-in -->
+    <!-- Slide 30 · Inside a skill (obsidian-lit) -->
+    <section class="slide doc">
+      <div class="slide-inner">
+        <div class="eyebrow">┌─ Hour 2 · Build your own ──</div>
+        <h2 class="slide-h">Inside a skill: <span class="amber">/obsidian-lit</span></h2>
+        <p class="slide-lead">A skill is just one folder and a Markdown file &mdash; we&rsquo;ll build and refine this one live.</p>
+        <div class="term-win">
+          <div class="term-body"><span class="cmt"># ~/.claude/skills/obsidian-lit/SKILL.md</span>
+---
+description: File a paper PDF into my LIT vault. Use when
+  I share a PDF and say "add this to my library".
+---
+
+## Steps
+1. Read the PDF: title, authors, year, key claims.
+2. Make LIT/&lt;cite-key&gt;/ with a structured note.md.
+3. Wire [[wikilinks]] to related papers already filed.
+4. Save figures into figures/.</div>
+        </div>
+        <ul class="deck-list tight">
+          <li>Tune the <strong>description</strong> so Claude triggers it at the right moment.</li>
+          <li>Tighten the steps until every note comes out the same shape.</li>
+          <li>Paste one ideal note as a model so it matches your voice.</li>
+        </ul>
+        <p class="takeaway fragment">Copy one that works (like /econ-write from GitHub), then <strong>refine it into yours</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Slide 31 · Reproducibility / AFA tie-in -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Reproducibility ──</div>
@@ -1092,7 +1120,7 @@
       </div>
     </section>
 
-    <!-- Slide 31 · Pitfalls & practices -->
+    <!-- Slide 32 · Pitfalls & practices -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Guardrails ──</div>
@@ -1123,7 +1151,7 @@
       </div>
     </section>
 
-    <!-- Slide 32 · Ethics & disclosure -->
+    <!-- Slide 33 · Ethics & disclosure -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Ethics ──</div>
@@ -1139,7 +1167,7 @@
       </div>
     </section>
 
-    <!-- Slide 33 · Hands-on 2 -->
+    <!-- Slide 34 · Hands-on 2 -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Lab ──</div>
@@ -1154,7 +1182,7 @@
       </div>
     </section>
 
-    <!-- Slide 34 · Knowledge vault (why) -->
+    <!-- Slide 35 · Knowledge vault (why) -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Knowledge vault ──</div>
@@ -1175,7 +1203,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Slide 35 · Knowledge vault (how) -->
+    <!-- Slide 36 · Knowledge vault (how) -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Hour 2 · Knowledge vault ──</div>
@@ -1192,7 +1220,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Slide 36 · LLM Wiki (Karpathy) -->
+    <!-- Slide 37 · LLM Wiki (Karpathy) -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Knowledge vault · Further reading ──</div>
@@ -1215,7 +1243,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Slide 37 · Three rules -->
+    <!-- Slide 38 · Three rules -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ The rules ──</div>
@@ -1229,7 +1257,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Slide 38 · Recap & resources -->
+    <!-- Slide 39 · Recap & resources -->
     <section class="slide doc">
       <div class="slide-inner">
         <div class="eyebrow">┌─ Wrap-up ──</div>
@@ -1258,7 +1286,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Slide 39 · Closing -->
+    <!-- Slide 40 · Closing -->
     <section class="slide slide-divider">
       <div class="slide-inner">
         <div class="divider-hour">End of session</div>
@@ -1268,7 +1296,7 @@ Source: [[Odean 1998]]</div>
       </div>
     </section>
 
-    <!-- Add Slide 40 here -->
+    <!-- Add Slide 41 here -->
 
   </div>
 
