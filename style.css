@@ -559,6 +559,13 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .news-list li:last-child{ border-bottom: none; }
 .news-list li::before{ content: none; }
 
+/* Flagged item (e.g. the defence) — the one entry that should not be skimmed past */
+.news-list li.news-flag{
+  background: var(--amber-faint);
+  border-left: 2px solid var(--amber);
+}
+.news-list li.news-flag .news-text{ color: var(--fg); }
+
 .news-tminus{
   flex: 0 0 10rem;       /* fixed left column, never shrinks */
   font-family: var(--mono);
