@@ -161,7 +161,7 @@
     console.log(
       '%c\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n' +
       '\u2588   %cTLY-001 \u00b7 BOOT OK%c          \u2588\n' +
-      '\u2588   7 papers indexed         \u2588\n' +
+      '\u2588   8 papers indexed         \u2588\n' +
       '\u2588   14 conferences           \u2588\n' +
       '\u2588   5 languages              \u2588\n' +
       '\u2588   \u221e espressos              \u2588\n' +
@@ -246,6 +246,7 @@
       help: function(){
         out('available commands:');
         out('  <span class="kw">help</span>          show this list');
+        out('  <span class="kw">jmp</span>            open the job market paper (PDF)');
         out('  <span class="kw">ls</span> [target]    list research / teaching / discussion');
         out('  <span class="kw">cat</span> [file]     cv | bio | email | committee');
         out('  <span class="kw">whoami</span>         operator info');
@@ -298,6 +299,12 @@
         } else {
           out('cat: ' + escapeHtml(arg) + ': no such file', 'err');
         }
+      },
+      jmp: function(){
+        out('<span class="kw">When Price Stops Clearing: Valuation Disagreement and Housing Illiquidity</span>');
+        out('  the home buyers disagree about most is the one that never sells.');
+        out('opening <span class="kw">JMP.pdf</span>...');
+        window.open('JMP.pdf', '_blank');
       },
       whoami: function(){
         out('tly@usi.ch');
