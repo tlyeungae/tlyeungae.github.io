@@ -1038,6 +1038,15 @@ details.paper-figs summary::-webkit-details-marker{ display: none; }
   border-radius: 0;
   filter: contrast(1.05);
 }
+/* Caption — says what the exhibit shows, so a skimmer need not open the paper */
+.figure-card figcaption{
+  margin-top: .8rem;
+  font-family: var(--mono);
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+.figure-card figcaption::before{ content: "\25B8 "; color: var(--green); }
 
 /* WIP list */
 .wip-list{ counter-reset: wip; margin-top: 1rem; }
