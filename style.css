@@ -13,7 +13,8 @@
   --fg:           #c8c2b0;
   --fg-dim:       #8a8576;
   --fg-faint:     #5a564b;
-  --amber:        #ffb000;
+  --amber:        #ffb000;   /* amber as INK (text, borders) */
+  --amber-bg:     #ffb000;   /* amber as a SURFACE, always paired with #000 text */
   --amber-soft:   rgba(255,176,0,.18);
   --amber-faint:  rgba(255,176,0,.06);
   --green:        #33ff66;
@@ -38,7 +39,11 @@
   --fg:           #1f1d18;
   --fg-dim:       #5a564a;
   --fg-faint:     #8a8576;
-  --amber:        #b8650a;
+  /* On the paper background, #b8650a reads at only 3.9:1 as text. Ink is
+     darkened to clear 4.5:1; the surface tone stays light enough that the
+     #000 text sitting on it clears 4.5:1 too. */
+  --amber:        #8a4a06;   /* ink    — 6.2:1 on --bg */
+  --amber-bg:     #b8650a;   /* surface — 4.9:1 against #000 text */
   --amber-soft:   rgba(184,101,10,.14);
   --amber-faint:  rgba(184,101,10,.05);
   --green:        #1f7a3a;
@@ -143,7 +148,7 @@ body::after{
 /* ── Status bar ───────────────────────────────────── */
 .status-bar{
   position: sticky; top: 0; z-index: 50;
-  background: var(--amber); color: #000;
+  background: var(--amber-bg); color: #000;
   display: flex; flex-wrap: wrap; gap: 1.4em;
   padding: .45em 1.4em;
   font-family: var(--mono);
@@ -182,13 +187,13 @@ a:hover{ color: var(--green); border-bottom-color: var(--green); background: var
 a:focus-visible{ outline: 1px solid var(--amber); outline-offset: 2px; }
 
 /* ── Selection ────────────────────────────────────── */
-::selection{ background: var(--amber); color: #000; }
+::selection{ background: var(--amber-bg); color: #000; }
 
 /* ── Scrollbar (subtle) ───────────────────────────── */
 ::-webkit-scrollbar{ width: 10px; height: 10px; }
 ::-webkit-scrollbar-track{ background: var(--bg); }
 ::-webkit-scrollbar-thumb{ background: var(--rule); border: 2px solid var(--bg); }
-::-webkit-scrollbar-thumb:hover{ background: var(--amber); }
+::-webkit-scrollbar-thumb:hover{ background: var(--amber-bg); }
 
 /* ============================================================
    HEADER  ·  ASCII logo + profile box + nav
@@ -650,7 +655,7 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 .filter-chip:hover{ color: var(--fg); border-color: var(--fg-dim); }
 .filter-chip.active{
-  color: #000; background: var(--amber); border-color: var(--amber);
+  color: #000; background: var(--amber-bg); border-color: var(--amber-bg);
   font-weight: 600; box-shadow: 0 0 10px rgba(255,176,0,.3);
 }
 .filter-clear{
@@ -809,6 +814,8 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 /* no "$ " prompt on the pull-quote — it is a claim, not a command */
 .home-bio p.research-thesis::before{ content: none; }
+/* --amber is tuned for use as a *background* in light mode, so as text on the
+   paper background it lands at 3.9:1. Ink it darker here to clear 4.5:1. */
 [data-theme="light"] .home-bio p.research-thesis{ text-shadow: none; }
 @media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.42rem; } }
 
@@ -840,13 +847,13 @@ ul.main-menu li a.active::after{ color: var(--green); }
   font-weight: 700;
   letter-spacing: .22em;
   color: #000;
-  background: var(--amber);
+  background: var(--amber-bg);
   padding: .35rem 1rem;
 }
 .paper-card-jmp .paper-title{ font-size: 2.05rem !important; }
 .paper-card-jmp .paper-finding{ border-left-color: var(--amber); color: var(--fg); }
 .paper-links a.link-primary{
-  background: var(--amber);
+  background: var(--amber-bg);
   color: #000;
   font-weight: 700;
   padding: .18rem .7rem;
@@ -1431,7 +1438,7 @@ footer#colophon .social-button:hover{
   pointer-events: auto;
 }
 .term-bar{
-  background: var(--amber);
+  background: var(--amber-bg);
   color: #000;
   padding: .35em .8em;
   display: flex;
@@ -1523,7 +1530,7 @@ footer#colophon .social-button:hover{
 }
 .term-tab .key{
   display: inline-block;
-  background: var(--amber);
+  background: var(--amber-bg);
   color: #000;
   padding: 0 .35em;
   margin-right: .55em;
@@ -1533,7 +1540,7 @@ footer#colophon .social-button:hover{
 }
 .term-tab:hover{
   color: #000;
-  background: var(--amber);
+  background: var(--amber-bg);
   border-color: var(--amber);
   transform: translateY(-2px);
   box-shadow: 0 0 0 4px rgba(255,176,0,.18), 0 6px 18px rgba(0,0,0,.6);
@@ -1603,7 +1610,7 @@ body.engineering-mode .status-bar{
   z-index: 200;
 }
 #scroll-top.visible{ opacity: 1; transform: translateY(0); pointer-events: auto; }
-#scroll-top:hover{ background: var(--amber); color: #000; }
+#scroll-top:hover{ background: var(--amber-bg); color: #000; }
 
 /* ============================================================
    RESPONSIVE

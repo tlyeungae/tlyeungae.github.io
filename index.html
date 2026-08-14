@@ -27,8 +27,19 @@
 
     <!-- PWA — installable as a home-screen app -->
     <link rel="manifest" href="manifest.webmanifest">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta name="theme-color" content="#fbf9f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#f7f4ec">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+
+    <!-- Theme resolution — runs before first paint so the page never flashes.
+         Light is the default for every visitor; dark applies only when the
+         reader has chosen it with the toggle, and that choice persists. -->
+    <script>
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
+        if (saved !== 'dark') document.documentElement.setAttribute('data-theme', 'light');
+      })();
+    </script>
 
     <!-- iOS Safari "Add to Home Screen" -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,7 +107,6 @@
         <div class="profile-row"><div class="k">role</div>        <div class="v">PhD Candidate &middot; Economics</div></div>
         <div class="profile-row"><div class="k">institution</div> <div class="v">Universit&agrave; della Svizzera italiana (USI)</div></div>
         <div class="profile-row"><div class="k">committee</div>   <div class="v">Lorenz Kueng &middot; Jessica Wachter &middot; Alberto Plazzi</div></div>
-        <div class="profile-row"><div class="k">defence</div>     <div class="v">25 August 2026 &middot; <em>Essays on Beliefs and Household Financial Decisions</em></div></div>
         <div class="profile-row"><div class="k">visiting</div>    <div class="v">Wharton School (UPenn) &middot; 2025.01&ndash;2025.06</div></div>
         <div class="profile-row"><div class="k">status</div>      <div class="v"><span class="ok">● ON THE JOB MARKET 2026&ndash;2027</span></div></div>
         <div class="profile-row"><div class="k">contact</div>     <div class="v"><a href="mailto:tai.lo.yeung@usi.ch">tai.lo.yeung@usi.ch</a></div></div>
@@ -140,7 +150,7 @@
                     My main line of work is <strong>experience and household financial decision-making</strong>. Standard models explain household risk-taking with preferences and budget sets; I show that three features they leave out do much of the work &mdash; the <em>asymmetry</em> of the income risk a household believes it faces, the <em>memory</em> of gains and losses it has personally lived through, and the <em>instability</em> of preferences as we actually measure them. Across administrative and survey panels from the U.S., China, and Japan, these shape who enters the stock market, who sells a winner, and who arrives at retirement with wealth.
                   </p>
                   <p>
-                    A second line asks <strong>why housing and other illiquid markets adjust through quantities rather than prices</strong>. My job market paper shows that when buyers cannot agree on what a home is worth, the seller does not cut the price until it clears &mdash; the home simply stops trading. Alongside both, I study how institutions shape household outcomes, using quasi-experiments from China&rsquo;s planned economy and Japan&rsquo;s social-insurance system.
+                    A second line turns from the household to the environment it acts in: <strong>how markets and institutions allocate when prices cannot do the work</strong>. My job market paper shows that when buyers cannot agree on what a home is worth, the seller does not keep cutting until it clears &mdash; the home simply stops trading. Related papers use quasi-experiments from China&rsquo;s planned economy, Japan&rsquo;s labor market, and the U.S. retirement system to trace how administrative rules and frictions, rather than prices, govern who marries, who saves, and what wealth a household can actually reach.
                   </p>
                   <p class="cv-line">
                     <a href="CV.pdf" class="cv-link">Curriculum Vit&aelig;</a> <span class="cv-meta">[updated August 2026]</span>
@@ -193,13 +203,6 @@
                 <section class="paper-section" id="news">
                   <h2 class="section-rubric">News &amp; Forthcoming</h2>
                   <ul class="news-list">
-                    <li class="news-flag">
-                      <span class="news-tminus" data-date="2026-08-25">T&minus;-- DAYS</span>
-                      <span class="news-body">
-                        <span class="news-text"><strong>PhD thesis defence</strong> &mdash; <em>Essays on Beliefs and Household Financial Decisions</em>, USI Lugano</span>
-                        <span class="news-when">Aug 25, 2026</span>
-                      </span>
-                    </li>
                     <li>
                       <span class="news-tminus" data-date="2026-05-11">T&minus;-- DAYS</span>
                       <span class="news-body">

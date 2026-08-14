@@ -35,13 +35,9 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 2) Theme toggle — dark (terminal) is default; light = "DAY" mode.
-  (function initTheme() {
-    var saved = localStorage.getItem('theme');
-    if (saved === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  })();
+  // 2) Theme toggle — light ("DAY") is the default; dark = terminal mode.
+  //    The initial resolution happens in an inline <head> script so the page
+  //    never flashes the wrong theme; this only keeps the toggle in sync.
   $(function() {
     var $btn = $('#theme-toggle');
     function updateLabel() {
