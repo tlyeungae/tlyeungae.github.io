@@ -819,30 +819,55 @@ ul.main-menu li a.active::after{ color: var(--green); }
 [data-theme="light"] .home-bio p.research-thesis{ text-shadow: none; }
 @media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.42rem; } }
 
-/* Research questions — numbered puzzles, one sentence each */
-.rq-list{
-  list-style: none;
-  margin: 1.4rem 0 1.2rem;
-  padding: 0;
-}
-.rq-list li{
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-  margin: 0 0 1rem;
-  font-size: 1.35rem;
-  line-height: 1.65;
-}
-.rq-list li::before{ content: none; }
-.rq-num{
-  flex: 0 0 auto;
+/* "Three questions at the center of my work" — numbered cards */
+.rq-subtitle{
   font-family: var(--mono);
+  font-size: 1.45rem;
+  color: var(--fg);
+  margin: -.4rem 0 1.4rem;
+}
+.rq-cards{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin: 0 0 1.2rem;
+}
+.rq-card{
+  position: relative;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-2);
+  padding: 1.3rem 1.6rem 1.2rem;
+}
+.rq-card-num{
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  color: var(--green);
+  margin: 0 0 .4rem;
+}
+.rq-card-num::after{ content: " //"; color: var(--fg-faint); letter-spacing: 0; }
+h3.rq-card-title{
+  font-family: var(--mono);
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--amber);
-  letter-spacing: .04em;
+  margin: 0 0 .55rem;
 }
-.rq-text{ flex: 1 1 auto; max-width: 66ch; }
-.rq-text em{ color: var(--amber); font-style: italic; }
+.rq-card-q{
+  font-size: 1.32rem;
+  line-height: 1.65;
+  color: var(--fg);
+  max-width: 64ch;
+  margin: 0;
+}
+.rq-card-q em{ color: var(--amber); font-style: italic; }
+.rq-card-tag{
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  color: var(--green);
+  margin: .7rem 0 0;
+}
 
 .rq-coda{
   display: flex;
