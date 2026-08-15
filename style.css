@@ -819,6 +819,42 @@ ul.main-menu li a.active::after{ color: var(--green); }
 [data-theme="light"] .home-bio p.research-thesis{ text-shadow: none; }
 @media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.42rem; } }
 
+/* Research questions — numbered puzzles, one sentence each */
+.rq-list{
+  list-style: none;
+  margin: 1.4rem 0 1.2rem;
+  padding: 0;
+}
+.rq-list li{
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  line-height: 1.65;
+}
+.rq-list li::before{ content: none; }
+.rq-num{
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: .04em;
+}
+.rq-text{ flex: 1 1 auto; max-width: 66ch; }
+.rq-text em{ color: var(--amber); font-style: italic; }
+
+.rq-coda{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-family: var(--mono);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--fg-dim);
+  margin: 0 0 .4rem;
+}
+
 /* Headline finding — the one line a reader keeps after skimming */
 .paper-finding{
   font-family: var(--mono);
