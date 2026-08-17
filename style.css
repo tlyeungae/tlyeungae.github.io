@@ -823,9 +823,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .rq-subtitle{
   font-family: var(--mono);
   font-size: 1.45rem;
+  line-height: 1.65;
   color: var(--fg);
+  max-width: 70ch;
   margin: -.4rem 0 1.4rem;
 }
+.rq-subtitle strong{ color: var(--amber); }
 .rq-cards{
   display: grid;
   grid-template-columns: 1fr;
