@@ -10,8 +10,8 @@
   --bg:           #0a0a0a;
   --bg-2:         #111111;
   --bg-3:         #181715;
-  --fg:           #c8c2b0;
-  --fg-dim:       #8a8576;
+  --fg:           #ded8c8;
+  --fg-dim:       #a19a88;
   --fg-faint:     #5a564b;
   --amber:        #ffb000;   /* amber as INK (text, borders) */
   --amber-bg:     #ffb000;   /* amber as a SURFACE, always paired with #000 text */
@@ -27,9 +27,10 @@
   /* Type stacks */
   --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --display: "IBM Plex Mono", ui-monospace, monospace;
+  --sans:    "IBM Plex Sans", Inter, "Segoe UI", system-ui, sans-serif;
 
   /* Reading measure */
-  --measure: 78ch;
+  --measure: 72ch;
 }
 
 [data-theme="light"]{
@@ -70,9 +71,9 @@ html { font-size: 62.5%; background-image: none; scroll-behavior: smooth; }
 }
 
 body{
-  font-family: var(--mono);
-  font-size: 1.35rem;
-  line-height: 1.6;
+  font-family: var(--sans);
+  font-size: 1.6rem;
+  line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -137,12 +138,12 @@ body::after{
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99;
   background: repeating-linear-gradient(
     0deg, transparent, transparent 2px,
-    rgba(255,176,0,.022) 2px, rgba(255,176,0,.022) 3px);
+    rgba(255,176,0,.012) 2px, rgba(255,176,0,.012) 3px);
 }
 [data-theme="light"] body::after{
   background: repeating-linear-gradient(
     0deg, transparent, transparent 2px,
-    rgba(0,0,0,.012) 2px, rgba(0,0,0,.012) 3px);
+    rgba(0,0,0,.006) 2px, rgba(0,0,0,.006) 3px);
 }
 
 /* ── Status bar ───────────────────────────────────── */
@@ -164,9 +165,9 @@ body::after{
 
 /* ── Layout ───────────────────────────────────────── */
 #container{
-  max-width: 1180px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 2.4rem;
+  padding: 0 3.2rem;
   background: transparent;
 }
 .inner{ background: transparent; }
@@ -418,10 +419,10 @@ ul.main-menu li a.active::after{ color: var(--green); }
 #home .content-wrapper{ display: block; }
 
 /* Hero photo as terminal preview */
-.image-content{ margin: 1rem 0 1.6rem; }
+.image-content{ margin: 1rem 0 2.4rem; }
 .image-content img{
   display: block;
-  max-width: 460px;
+  max-width: 100%;
   width: 100%;
   height: auto;
   border: 1px solid var(--rule-strong);
@@ -456,20 +457,17 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .home-bio{
   background: linear-gradient(180deg, transparent, var(--amber-faint));
   border: 1px dashed var(--rule-strong);
-  padding: 1.2rem 1.4rem;
-  margin: 0 0 2rem;
+  padding: 2rem 2.2rem;
+  margin: 0 0 2.8rem;
 }
 .home-bio p{
-  margin: 0 0 .9em;
-  font-size: 1.35rem;
-  line-height: 1.65;
+  margin: 0 0 1em;
+  font-family: var(--sans);
+  font-size: 1.58rem;
+  line-height: 1.75;
 }
 .home-bio p:last-child{ margin-bottom: 0; }
-.home-bio p::before{
-  content: "$ ";
-  color: var(--green);
-  margin-right: .2em;
-}
+.home-bio p::before{ content: none; }
 .home-bio a{ color: var(--amber); }
 
 /* Drop cap and lede small caps don't fit terminal — neutralize */
@@ -513,8 +511,8 @@ ul.main-menu li a.active::after{ color: var(--green); }
   list-style: none; padding: 0; margin: 0;
 }
 .paper-list li{
-  padding: .25rem 0;
-  font-size: 1.25rem;
+  padding: .35rem 0;
+  font-size: 1.4rem;
   color: var(--fg);
   border-bottom: 1px dotted var(--rule);
 }
@@ -633,10 +631,42 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .research-block{ margin: 0 0 2.6rem; }
 .block-header{ margin-bottom: 1rem; }
 
+.research-hero{
+  max-width: 82rem;
+  margin: 1rem 0 2.8rem;
+  padding: 0 0 2.2rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.research-kicker{
+  margin: 0 0 .6rem;
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.research-page-title{
+  margin: 0 0 .8rem;
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+.research-deck{
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 1.75rem;
+  line-height: 1.7;
+}
+
 /* ── Research filter bar ──────────────────────────── */
 .research-filter{
   display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
-  margin: 1.2rem 0 .4rem; padding-bottom: 1.6rem;
+  margin: 0 0 1rem; padding: 0 0 1.8rem;
   border-bottom: 1px solid var(--rule);
 }
 .filter-label{
@@ -647,7 +677,7 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .filter-div{ color: var(--rule-strong); margin: 0 .2rem; }
 .filter-group{ display: flex; flex-wrap: wrap; gap: .5rem; }
 .filter-chip{
-  font-family: var(--mono); font-size: 1.2rem; cursor: pointer;
+  font-family: var(--mono); font-size: 1.12rem; cursor: pointer;
   color: var(--fg-dim); background: transparent;
   border: 1px solid var(--rule-strong); border-radius: 2rem;
   padding: .3rem 1rem; letter-spacing: .02em; line-height: 1.3;
@@ -679,9 +709,9 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .paper-card{
   position: relative;
   border: 1px solid var(--rule-strong);
-  background: var(--bg);
-  padding: 1.4rem 1.4rem 1.2rem;
-  margin: 1.2rem 0 1.4rem;
+  background: var(--bg-2);
+  padding: 2.2rem 2.4rem 2rem;
+  margin: 1.8rem 0 2.2rem;
   border-radius: 0;
   box-shadow: none;
   transform: none !important;
@@ -709,8 +739,8 @@ ul.main-menu li a.active::after{ color: var(--green); }
 }
 .paper-card:hover{
   border-color: var(--amber);
-  background: var(--bg);
-  box-shadow: 0 0 0 1px var(--amber-faint);
+  background: var(--bg-2);
+  box-shadow: 0 0 0 1px var(--amber-faint), 0 14px 36px rgba(0,0,0,.08);
 }
 .paper-card:hover::before,
 .paper-card:hover::after{ color: var(--green); }
@@ -780,36 +810,37 @@ ul.main-menu li a.active::after{ color: var(--green); }
 
 .paper-title{
   font-family: var(--mono) !important;
-  font-size: 1.4rem !important;
+  font-size: clamp(1.8rem, 2.2vw, 2.2rem) !important;
   font-weight: 600 !important;
   font-variation-settings: normal !important;
-  line-height: 1.35;
+  line-height: 1.28;
   color: var(--fg) !important;
-  margin: 0 0 .6rem !important;
+  margin: 0 0 .75rem !important;
   letter-spacing: .005em;
 }
 
 .paper-authors{
   font-family: var(--mono);
   font-style: normal;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   color: var(--fg-dim);
   margin: 0 0 .6rem;
 }
 .paper-authors::before{ content: "// "; color: var(--green); }
 .paper-authors a{ color: var(--amber); }
-#research .paper-authors{ color: var(--fg-dim); font-size: 1.15rem; }
+#research .paper-authors{ color: var(--fg-dim); font-size: 1.25rem; }
 
 /* Research thesis — the one sentence a reader should leave with */
 .home-bio p.research-thesis{
-  font-family: var(--mono);
-  font-size: 2rem;
-  line-height: 1.55;
+  font-family: var(--sans);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.48;
   color: var(--amber);
   border-left: 2px solid var(--amber);
   padding: .5rem 0 .5rem 1.1rem;
   margin: 1.5rem 0 1.4rem;
-  max-width: 62ch;
+  max-width: 58ch;
   text-shadow: 0 0 6px rgba(255,176,0,.18);
 }
 /* no "$ " prompt on the pull-quote — it is a claim, not a command */
@@ -817,13 +848,13 @@ ul.main-menu li a.active::after{ color: var(--green); }
 /* --amber is tuned for use as a *background* in light mode, so as text on the
    paper background it lands at 3.9:1. Ink it darker here to clear 4.5:1. */
 [data-theme="light"] .home-bio p.research-thesis{ text-shadow: none; }
-@media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.42rem; } }
+@media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.85rem; } }
 
 /* "Three questions at the center of my work" — numbered cards */
 .rq-subtitle{
-  font-family: var(--mono);
-  font-size: 1.45rem;
-  line-height: 1.65;
+  font-family: var(--sans);
+  font-size: 1.68rem;
+  line-height: 1.72;
   color: var(--fg);
   max-width: 70ch;
   margin: -.4rem 0 1.4rem;
@@ -831,15 +862,15 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .rq-subtitle strong{ color: var(--amber); }
 .rq-cards{
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-  margin: 0 0 1.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+  margin: 0 0 1.6rem;
 }
 .rq-card{
   position: relative;
   border: 1px solid var(--rule-strong);
   background: var(--bg-2);
-  padding: 1.3rem 1.6rem 1.2rem;
+  padding: 1.7rem 1.8rem 1.6rem;
 }
 .rq-card-num{
   font-family: var(--mono);
@@ -852,14 +883,15 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .rq-card-num::after{ content: " //"; color: var(--fg-faint); letter-spacing: 0; }
 h3.rq-card-title{
   font-family: var(--mono);
-  font-size: 1.55rem;
+  font-size: 1.62rem;
   font-weight: 700;
   color: var(--amber);
   margin: 0 0 .55rem;
 }
 .rq-card-q{
-  font-size: 1.32rem;
-  line-height: 1.65;
+  font-family: var(--sans);
+  font-size: 1.48rem;
+  line-height: 1.68;
   color: var(--fg);
   max-width: 64ch;
   margin: 0;
@@ -885,21 +917,21 @@ h3.rq-card-title{
 
 /* Headline finding — the one line a reader keeps after skimming */
 .paper-finding{
-  font-family: var(--mono);
-  font-size: 1.28rem;
-  line-height: 1.62;
+  font-family: var(--sans);
+  font-size: 1.58rem;
+  line-height: 1.68;
   color: var(--fg);
   border-left: 2px solid var(--green);
-  padding: .1rem 0 .1rem .9rem;
-  margin: .1rem 0 .9rem;
-  max-width: 68ch;
+  padding: .15rem 0 .15rem 1.1rem;
+  margin: .35rem 0 1.2rem;
+  max-width: 72ch;
 }
 
 /* Job market paper — promoted above the numbered list */
 .paper-card-jmp{
   border: 1px solid var(--amber);
   background: var(--amber-faint);
-  padding-top: 2.6rem;
+  padding-top: 3.7rem;
   position: relative;
 }
 .paper-card-jmp::before{ content: none; }
@@ -914,7 +946,7 @@ h3.rq-card-title{
   background: var(--amber-bg);
   padding: .35rem 1rem;
 }
-.paper-card-jmp .paper-title{ font-size: 2.05rem !important; }
+.paper-card-jmp .paper-title{ font-size: clamp(2.2rem, 3.2vw, 3.1rem) !important; max-width: 30ch; }
 .paper-card-jmp .paper-finding{ border-left-color: var(--amber); color: var(--fg); }
 .paper-links a.link-primary{
   background: var(--amber-bg);
@@ -926,14 +958,14 @@ h3.rq-card-title{
 .paper-links a.link-primary:hover{ background: var(--green); color: #000; }
 
 @media (max-width: 640px){
-  .paper-card-jmp .paper-title{ font-size: 1.75rem !important; }
+  .paper-card-jmp .paper-title{ font-size: 2.2rem !important; }
   .jmp-rail{ letter-spacing: .12em; }
 }
 
 /* "previously circulated as" — keeps old titles findable after a rename */
 .paper-formerly{
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   color: var(--fg-faint);
   margin: -.2rem 0 .6rem;
   line-height: 1.5;
@@ -942,8 +974,8 @@ h3.rq-card-title{
 
 .paper-links{
   font-family: var(--mono);
-  font-size: 1.15rem;
-  margin: .4rem 0 .6rem;
+  font-size: 1.18rem;
+  margin: .8rem 0 .9rem;
   letter-spacing: .04em;
 }
 .paper-links a{
@@ -954,7 +986,7 @@ h3.rq-card-title{
 .paper-links a::before{ content: "▶ "; color: var(--green); }
 .paper-links a:hover{ color: var(--green); background: none; }
 .paper-links .sep{ display: none; }
-#research .paper-links{ font-size: 1.15rem; }
+#research .paper-links{ font-size: 1.18rem; }
 #research .paper-links a{ color: var(--amber); font-weight: 400; }
 
 /* Primary call-to-action (JMP download) — must beat the ID rule above,
@@ -996,22 +1028,23 @@ h3.rq-card-title{
 }
 
 .abstract-text{
-  margin: .8rem 0 .4rem;
-  padding: 1rem 1.2rem;
+  max-width: 82rem;
+  margin: 1rem 0 .6rem;
+  padding: 1.5rem 1.7rem;
   background: var(--bg-2);
   border: none;
   border-left: 2px solid var(--amber);
   border-radius: 0;
   color: var(--fg) !important;
-  font-family: var(--mono) !important;
-  font-size: 1.2rem !important;
-  line-height: 1.65;
+  font-family: var(--sans) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.75;
   text-align: left;
   hyphens: none;
 }
 .abstract-text p{ margin: 0; }
 .abstract-text strong{ color: var(--amber); font-weight: 700; }
-#research .abstract-text{ color: var(--fg); font-size: 1.2rem; }
+#research .abstract-text{ color: var(--fg); font-size: 1.5rem; }
 
 /* Paper meta / Presented at */
 .paper-meta{
@@ -1022,14 +1055,14 @@ h3.rq-card-title{
   border-top: 1px dashed var(--rule);
   border-radius: 0;
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: 1.14rem;
   font-style: normal;
   color: var(--fg-dim);
-  line-height: 1.55;
+  line-height: 1.65;
 }
 #research .paper-meta{
   background: none; padding: .6rem 0 0;
-  color: var(--fg-dim); font-size: 1.05rem;
+  color: var(--fg-dim); font-size: 1.14rem;
 }
 .meta-label{
   font-family: var(--mono);
@@ -1044,7 +1077,7 @@ h3.rq-card-title{
 .meta-label::before{ content: "▸ "; color: var(--amber); }
 #research .meta-label{ color: var(--green); font-size: 1rem; }
 .meta-text{ font-style: normal; color: var(--fg-dim); }
-#research .meta-text{ color: var(--fg-dim); font-size: 1.05rem; }
+#research .meta-text{ color: var(--fg-dim); font-size: 1.14rem; }
 
 /* Figures */
 details.paper-figs{ margin-top: 1rem; }
@@ -1084,30 +1117,32 @@ details.paper-figs summary::-webkit-details-marker{ display: none; }
 .paper-figs-grid{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.2rem;
-  margin-top: 1rem;
+  gap: 1.6rem;
+  margin-top: 1.4rem;
 }
 @media (min-width: 720px){
   .paper-figs-grid{ grid-template-columns: 1fr 1fr; }
 }
 .figure-card{
-  background: var(--bg-2);
+  background: var(--bg);
   border: 1px solid var(--rule);
   border-radius: 0;
-  padding: 1rem;
+  padding: 1.2rem;
   margin: 0;
 }
 .figure-card img{
   display: block; width: 100%; height: auto;
   border-radius: 0;
   filter: contrast(1.05);
+  background: #fff;
 }
+.paper-figs-grid .figure-card:only-child{ grid-column: 1 / -1; max-width: 92rem; }
 /* Caption — says what the exhibit shows, so a skimmer need not open the paper */
 .figure-card figcaption{
   margin-top: .8rem;
   font-family: var(--mono);
-  font-size: 1.08rem;
-  line-height: 1.5;
+  font-size: 1.22rem;
+  line-height: 1.58;
   color: var(--fg-dim);
 }
 .figure-card figcaption::before{ content: "\25B8 "; color: var(--green); }
@@ -1688,8 +1723,26 @@ body.engineering-mode .status-bar{
 /* ============================================================
    RESPONSIVE
 ============================================================ */
+@media (min-width: 1100px){
+  #home .content-wrapper{
+    display: grid;
+    grid-template-columns: minmax(27rem, 34rem) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+  }
+  #home .image-content{
+    position: sticky;
+    top: 4.8rem;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 900px){
+  .rq-cards{ grid-template-columns: 1fr; }
+}
+
 @media (max-width: 760px){
-  body{ font-size: 1.3rem; }
+  body{ font-size: 1.52rem; }
   #container{ padding: 0 1.4rem; }
   .status-bar{ font-size: .95rem; padding: .35em 1em; gap: 1em; }
   .status-bar .right{ margin-left: 0; }
@@ -1709,6 +1762,19 @@ body.engineering-mode .status-bar{
   .colophon-grid{ grid-template-columns: 1fr; gap: 1.4rem; text-align: left !important; }
   .colophon-col-center, .colophon-col-right{ text-align: left; }
   ul.main-menu li a{ padding: .55rem 1rem; font-size: 1.05rem; }
+  .paper-card{ padding: 2rem 1.5rem 1.6rem; }
+  .paper-card-jmp{ padding-top: 3.7rem; }
+  .research-deck{ font-size: 1.6rem; }
+  .abstract-text{ padding: 1.3rem 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 
 /* Print */

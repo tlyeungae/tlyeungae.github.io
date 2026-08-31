@@ -11,15 +11,15 @@ hosted by GitHub Pages at
 
 ## Research
 
-Household finance, with an emphasis on how risk and uncertainty shape
-household decision-making — consumption, saving, labor supply, and
-portfolio choice. Secondary interests in the Chinese economy, asset
-pricing, and applied macroeconomics.
+Household finance, with an emphasis on how lived experience becomes
+memory and shapes current financial decisions. The research studies
+portfolio entry and trading, saving, retirement leakage, and housing,
+alongside the measurement of beliefs and preferences.
 
 A full list of working papers, abstracts, and conference history is
-available on the site. The job market paper, *Asymmetric Labor Income
-Risk: Implications for Risk-Taking in Financial Markets*, is downloadable
-directly from the home page along with the CV.
+available on the site. The job market paper, *Grandfathering at Sale:
+School Assignment Rights and Housing Exchange*, is downloadable directly
+from the research page along with the current drafts of the other papers.
 
 ## Contact
 

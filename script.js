@@ -297,8 +297,8 @@
         }
       },
       jmp: function(){
-        out('<span class="kw">When Price Stops Clearing: Valuation Disagreement and Housing Illiquidity</span>');
-        out('  the home buyers disagree about most is the one that never sells.');
+        out('<span class="kw">Grandfathering at Sale: School Assignment Rights and Housing Exchange</span>');
+        out('  a sale can reset eligibility even when the physical dwelling does not change.');
         out('opening <span class="kw">JMP.pdf</span>...');
         window.open('JMP.pdf', '_blank');
       },
