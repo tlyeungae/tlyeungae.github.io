@@ -654,15 +654,6 @@ ul.main-menu li a.active::after{ color: var(--green); }
   line-height: 1.05;
   letter-spacing: -.03em;
 }
-.research-deck{
-  max-width: var(--measure);
-  margin: 0;
-  color: var(--fg);
-  font-family: var(--sans);
-  font-size: 1.75rem;
-  line-height: 1.7;
-}
-
 /* ── Research filter bar ──────────────────────────── */
 .research-filter{
   display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
@@ -779,12 +770,6 @@ ul.main-menu li a.active::after{ color: var(--green); }
   font-weight: 500;
   line-height: 1.4;
 }
-.badge-jmp{
-  color: var(--red);
-  background: rgba(255,77,58,.12);
-  font-weight: 700;
-  text-shadow: 0 0 6px rgba(255,77,58,.35);
-}
 .badge-submitted{
   color: var(--green);
   background: rgba(51,255,102,.06);
@@ -802,7 +787,6 @@ ul.main-menu li a.active::after{ color: var(--green); }
   letter-spacing: .08em;
   text-transform: lowercase;
 }
-[data-theme="light"] .badge-jmp,
 [data-theme="light"] .badge-submitted,
 [data-theme="light"] .badge-draft{
   text-shadow: none;
@@ -927,27 +911,6 @@ h3.rq-card-title{
   max-width: 72ch;
 }
 
-/* Job market paper — promoted above the numbered list */
-.paper-card-jmp{
-  border: 1px solid var(--amber);
-  background: var(--amber-faint);
-  padding-top: 3.7rem;
-  position: relative;
-}
-.paper-card-jmp::before{ content: none; }
-.jmp-rail{
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  font-family: var(--mono);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: .22em;
-  color: #000;
-  background: var(--amber-bg);
-  padding: .35rem 1rem;
-}
-.paper-card-jmp .paper-title{ font-size: clamp(2.2rem, 3.2vw, 3.1rem) !important; max-width: 30ch; }
-.paper-card-jmp .paper-finding{ border-left-color: var(--amber); color: var(--fg); }
 .paper-links a.link-primary{
   background: var(--amber-bg);
   color: #000;
@@ -956,21 +919,6 @@ h3.rq-card-title{
   border-radius: 2px;
 }
 .paper-links a.link-primary:hover{ background: var(--green); color: #000; }
-
-@media (max-width: 640px){
-  .paper-card-jmp .paper-title{ font-size: 2.2rem !important; }
-  .jmp-rail{ letter-spacing: .12em; }
-}
-
-/* "previously circulated as" — keeps old titles findable after a rename */
-.paper-formerly{
-  font-family: var(--mono);
-  font-size: 1.12rem;
-  color: var(--fg-faint);
-  margin: -.2rem 0 .6rem;
-  line-height: 1.5;
-}
-.paper-formerly::before{ content: "\21B3 "; color: var(--fg-faint); }
 
 .paper-links{
   font-family: var(--mono);
@@ -989,7 +937,7 @@ h3.rq-card-title{
 #research .paper-links{ font-size: 1.18rem; }
 #research .paper-links a{ color: var(--amber); font-weight: 400; }
 
-/* Primary call-to-action (JMP download) — must beat the ID rule above,
+/* Primary download call-to-action — must beat the ID rule above,
    otherwise it renders amber-on-amber and disappears. */
 #research .paper-links a.link-primary{
   color: #000;
@@ -1763,8 +1711,6 @@ body.engineering-mode .status-bar{
   .colophon-col-center, .colophon-col-right{ text-align: left; }
   ul.main-menu li a{ padding: .55rem 1rem; font-size: 1.05rem; }
   .paper-card{ padding: 2rem 1.5rem 1.6rem; }
-  .paper-card-jmp{ padding-top: 3.7rem; }
-  .research-deck{ font-size: 1.6rem; }
   .abstract-text{ padding: 1.3rem 1.25rem; }
 }
 

@@ -16,10 +16,9 @@ memory and shapes current financial decisions. The research studies
 portfolio entry and trading, saving, retirement leakage, and housing,
 alongside the measurement of beliefs and preferences.
 
-A full list of working papers, abstracts, and conference history is
-available on the site. The job market paper, *Grandfathering at Sale:
-School Assignment Rights and Housing Exchange*, is downloadable directly
-from the research page along with the current drafts of the other papers.
+A full list of working papers, abstracts, figures, and conference history
+is available on the research page, together with downloadable current
+drafts.
 
 ## Contact
 

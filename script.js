@@ -242,7 +242,6 @@
       help: function(){
         out('available commands:');
         out('  <span class="kw">help</span>          show this list');
-        out('  <span class="kw">jmp</span>            open the job market paper (PDF)');
         out('  <span class="kw">ls</span> [target]    list research / teaching / discussion');
         out('  <span class="kw">cat</span> [file]     cv | bio | email | committee');
         out('  <span class="kw">whoami</span>         operator info');
@@ -295,12 +294,6 @@
         } else {
           out('cat: ' + escapeHtml(arg) + ': no such file', 'err');
         }
-      },
-      jmp: function(){
-        out('<span class="kw">Grandfathering at Sale: School Assignment Rights and Housing Exchange</span>');
-        out('  a sale can reset eligibility even when the physical dwelling does not change.');
-        out('opening <span class="kw">JMP.pdf</span>...');
-        window.open('JMP.pdf', '_blank');
       },
       whoami: function(){
         out('tly@usi.ch');
