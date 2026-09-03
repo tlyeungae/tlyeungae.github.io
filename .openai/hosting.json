@@ -3,7 +3,7 @@
   "d1": null,
   "r2": null,
   "static": {
-    "directory": "dist",
+    "directory": "out",
     "not_found_handling": "none"
   }
 }

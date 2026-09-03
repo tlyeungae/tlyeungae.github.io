@@ -6,5 +6,6 @@
 
 # Local Sites deployment output
 dist/
+out/
 outputs/
 work/
