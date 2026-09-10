@@ -507,6 +507,12 @@ ul.main-menu li a.active::after{ color: var(--green); }
   font-weight: 500;
 }
 .fields-col-title::before{ content: "» "; color: var(--amber); }
+.research-group-title{
+  color: var(--amber);
+  font-size: 1rem;
+  margin: 2rem 0 1rem;
+  letter-spacing: .04em;
+}
 .paper-list{
   list-style: none; padding: 0; margin: 0;
 }

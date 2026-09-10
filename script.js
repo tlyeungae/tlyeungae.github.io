@@ -471,6 +471,15 @@
         card.hidden = !ok;
         if (ok) shown++;
       });
+      list.querySelectorAll('.research-group-title').forEach(function(heading){
+        var sibling = heading.nextElementSibling;
+        var visible = false;
+        while (sibling && !sibling.classList.contains('research-group-title')) {
+          if (sibling.classList.contains('paper-card') && !sibling.hidden) visible = true;
+          sibling = sibling.nextElementSibling;
+        }
+        heading.hidden = !visible;
+      });
       if (countEl) countEl.textContent = groups.length ? (shown + ' / ' + total + ' shown') : (total + ' papers');
       if (emptyEl) emptyEl.hidden = (shown !== 0);
       if (clearBtn) clearBtn.hidden = (groups.length === 0);
