@@ -332,7 +332,7 @@
           </button>
 
           <div class="abstract-text" hidden>
-            <p><strong>Abstract:</strong> I document that upside earnings opportunities predict stock market entry, and that separating favorable from adverse earnings variation reveals economically important differences that total variance conceals. I measure earnings distributions in historical Current Population Survey records and link them to subsequent portfolio transitions in the Survey of Income and Program Participation. At a given mean earnings growth and variance, a one-standard-deviation increase in upside composition predicts 1.6 percentage points more entry into stocks and mutual funds, nearly one fifth of the sample entry rate. The association extends to entry followed by ownership at two subsequent annual observations. A participation-cost model shows how favorable realizations can finance entry even at unchanged mean and variance. In an estimated life-cycle model, earnings dynamics estimated by industry, education and age reproduce the opposing signs of the entry relationships that pooled dynamics miss, without targeting either relationship. The model suggests that earnings opportunities shape participation mainly through the resources households have available to invest.</p>
+            <p><strong>Abstract:</strong> I document that upside earnings opportunities predict stock market entry, and that separating favorable from adverse earnings variation reveals economically important differences that total variance conceals. I measure earnings distributions in historical Current Population Survey records and link them to subsequent portfolio transitions in the Survey of Income and Program Participation. At a given mean earnings growth and variance, a one-standard-deviation increase in upside composition predicts 1.6 percentage points more entry into stocks and mutual funds, nearly one fifth of the sample entry rate. The association extends to entry followed by ownership at two subsequent annual observations. A standard participation-cost model shows how favorable realizations can finance entry even at unchanged mean and variance. In an estimated life-cycle model, measured earnings dynamics strengthen the untargeted composition-entry relationship relative to pooled dynamics, mainly through differences in resources available to invest. A controlled illustration shows how anticipated earnings also change saving and subsequent entry.</p>
           </div>
 
           <div class="paper-meta">
@@ -366,12 +366,12 @@
               <figcaption>Group-specific earnings dynamics recover opposing entry relationships missed by pooling, but model magnitudes remain smaller than in the data.</figcaption>
             </figure>
             <figure class="figure-card">
-              <img src="plot/jmp_composition_paths.png" alt="Controlled earnings-composition changes for 395 initial nonholders, holding conditional dollar earnings means and variances fixed. More upside initially raises entry slightly, then lowers cumulative entry and wealth as saving adjusts. Separate paths change earnings or decision rules alone." width="2200" height="1675" loading="lazy">
-              <figcaption>In a controlled composition experiment, more upside can reduce saving and eventually entry. Effects are small and illustrative, not an empirical fit.</figcaption>
+              <img src="plot/jmp_duration_entry.png" alt="Controlled upside and downside earnings-composition changes lasting one year, five years, or the working life, holding conditional mean and variance fixed. The five-year upside change eventually lowers cumulative first entry; the working-life change is near zero after ten years. These are model illustrations, not fitted empirical magnitudes." width="2200" height="737" loading="lazy">
+              <figcaption>Duration matters for entry: the five-year upside effect reverses, while the working-life effect is near zero after ten years. Model illustration.</figcaption>
             </figure>
             <figure class="figure-card">
-              <img src="plot/jmp_composition_saving.png" alt="Saving choices evaluated at identical current cash and earnings states. The upside composition shift lowers saving and the downside shift raises it, both under the complete investment rule and when current stock investment is excluded. Differences disappear when future earnings laws coincide." width="2200" height="927" loading="lazy">
-              <figcaption>At identical current resources, more upside lowers saving under both the full investment rule and the no-stock alternative.</figcaption>
+              <img src="plot/jmp_duration_wealth.png" alt="Financial wealth paths after controlled earnings-composition changes of different durations. Working-life upside lowers buffer saving for longer and produces a larger wealth shortfall than a five-year change; downside produces the opposite pattern. Effects are illustrative, not an empirical fit." width="2200" height="737" loading="lazy">
+              <figcaption>Persistent upside lowers buffer saving for longer and produces a larger wealth shortfall. Controlled model illustrations, not fitted empirical magnitudes.</figcaption>
             </figure>
           </div>
         </details>
@@ -386,7 +386,7 @@
             Navigating Through Fear and Greed: The Experience-Driven Disposition Effect
           </h3>
 
-          <div class="paper-finding">Past realized losses are associated with a stronger disposition effect and gains with a weaker one; a memory-based recall model reproduces the asymmetry without changing preferences.</div>
+          <div class="paper-finding">Past realized losses are associated with a stronger disposition effect and gains with a weaker one; a memory-based model offers an explanation through cue-dependent recall.</div>
 
           <div class="paper-links">
             <a href="Fear_and_Greed.pdf" target="_blank" rel="noopener" class="link-primary">Download PDF</a>
@@ -408,7 +408,7 @@
           </button>
 
           <div class="abstract-text" hidden>
-            <p><strong>Abstract:</strong> Using transaction-level data on 189,530 Chinese retail investors over the 2013–2016 boom and bust, we measure experience as counts of large realized gains and losses and examine how these counts relate to the disposition effect, the tendency to sell winners and hold losers. A two-standard-deviation increase in accumulated large losses raises the propensity to sell winners rather than losers by about 23% of the baseline effect, while an equivalent increase in gains lowers it by about 21%. Under composition-matched simulations, experience-independent selling rules do not reproduce this asymmetry. To explain both the baseline effect and this asymmetry, we build a memory-based recall model in which similarity-weighted retrieval of past outcomes guides selling. A single retrieval channel reproduces all three patterns without shifting preferences.</p>
+            <p><strong>Abstract:</strong> Using transaction-level data on 189,530 Chinese retail investors over the 2013–2016 boom and bust, we measure experience as counts of large realized gains and losses and examine how these counts relate to the disposition effect, the tendency to sell winners and hold losers. A two-standard-deviation increase in losing experience is associated with an increase in the winner–loser sale gap equal to about 23% of the gap at zero measured experience. The corresponding increase in winning experience is associated with a decline of about 21%. In calibrated simulations with selling rules that do not respond directly to experience, the mean loss-side interaction is negative or close to zero. We develop a memory model in which similarity-weighted recall guides selling. Realizing gains and losses changes the episodes reached by the ownership cue, providing a possible link between past outcomes and subsequent selling without changes in preferences.</p>
           </div>
 
           <div class="paper-meta">
@@ -424,7 +424,7 @@
               <img src="plot/fear_greed_thresholds.png"
                    alt="Gain-by-loss and gain-by-win interaction coefficients across 5% to 30% return thresholds, opposite in sign throughout"
                    loading="lazy" width="2924" height="1733">
-              <figcaption>Accumulated losses and gains move the disposition effect in opposite directions.</figcaption>
+              <figcaption>Accumulated losses and gains are associated with opposite changes in the disposition effect.</figcaption>
             </figure>
           </div>
         </details>
@@ -437,16 +437,18 @@
           <div class="paper-badges"><span class="badge badge-draft">WORKING PAPER</span></div>
           <h3 class="paper-title" id="paper-wpsc-title">When Price Stops Clearing: Valuation Disagreement and Housing Illiquidity</h3>
 
-          <div class="paper-finding">Harder-to-value homes sell more slowly and at lower prices, with fewer linked sales during follow-up; a quantitative model attributes most fitted delay to incomplete seller adjustment to lower valuations.</div>
+          <div class="paper-finding">Larger asking-price deviations are associated with slower sales, more online saves, and fewer viewings; a search model links valuation difficulty to housing illiquidity.</div>
 
-          <!-- PDF and SSRN links withheld until this paper is sent out for review. -->
+          <div class="paper-links">
+            <a href="When_Price_Stops_Clearing.pdf" target="_blank" rel="noopener" class="link-primary">Download PDF</a>
+          </div>
 
           <button class="toggle-abstract" type="button" aria-expanded="false">
             Show Abstract
           </button>
 
           <div class="abstract-text" hidden>
-            <p><strong>Abstract:</strong> Why do some homes remain difficult to sell even at lower prices? I study valuation difficulty and housing liquidity using 354,502 completed Beijing resales and a separate cohort of 16,108 active listings. Configuration rarity and prior comparable-sale scarcity provide measures that do not use the home&#x27;s own price. A full-unit increase in the within-community–month rarity rank corresponds to approximately 16–27 percent longer selling time and 1.5–3.4 percent lower prices, depending on attribute controls. In the active cohort, the corresponding gap in the probability of a linked same-spell sale during follow-up is 3.5–8.0 percentage points. Negotiated price gaps have larger absolute deviations from local means. Among listings without recorded revisions, the asking-price–duration slope falls from 2.44 to 0.48 across submarket-dispersion quintiles. A search model interprets these patterns through average willingness to pay, buyer disagreement, and seller reservation values. Its quantitative decomposition retains a positive price contribution from optimistic buyer selection, offset by a larger valuation discount. Most of the fitted delay arises when sellers adjust incompletely to that discount. The results connect valuation difficulty to the price, speed, and completion of housing transactions.</p>
+            <p><strong>Abstract:</strong> How does difficulty valuing a home affect its sale price and time on market? Using Beijing resale records, I measure valuation difficulty by asking-price deviations from a benchmark for nearby homes with similar observed characteristics. Among recorded sales, moving from the smallest to the largest deviation within a community and month is associated with about five percent longer selling time. More users save these listings online, yet the homes receive fewer in-person viewings. A search model provides an interpretation: less reliable information reduces risk-averse buyers&#x27; willingness to pay, while greater disagreement encourages sellers to wait for a high offer. The model also shows when disagreement weakens the effect of a small price cut on agreement. The paper connects valuation risk to the selling process: disagreement can lengthen the search for a buyer rather than simply raise the sale price, and more online attention need not lead to an easier sale.</p>
           </div>
           <div class="paper-meta">
             <span class="meta-label">Presented at:</span>
@@ -458,8 +460,8 @@
           <summary><span class="label">Show Figures</span></summary>
           <div class="paper-figs-grid">
             <figure class="figure-card">
-              <img src="plot/wpsc_valuation_signature.png" alt="Valuation difficulty and housing liquidity: within-community–month associations with configuration rarity, prior comparable-sale scarcity, and the own-ask residual. Points and 95% confidence intervals describe observational gradients, not identified causal effects." loading="lazy">
-              <figcaption>Valuation difficulty and housing liquidity: within-community–month associations with configuration rarity, prior comparable-sale scarcity, and the own-ask residual. Points and 95% confidence intervals describe observational gradients, not identified causal effects.</figcaption>
+              <img src="plot/wpsc_price_slopes.png" alt="Relative asking-price slopes for an indicator of a sufficiently precise recorded transaction date within thirteen weeks of posting, among completed transactions. Slopes are flatter in higher-dispersion markets. Panels use log-price and local standard-deviation units; whiskers show plus or minus one standard error. These are associations, not causal price-cut effects or sale probabilities." width="2200" height="1115" loading="lazy">
+              <figcaption>Asking-price slopes are flatter in higher-dispersion markets. The outcome is a recorded-date indicator, not sale probability; whiskers show one standard error.</figcaption>
             </figure>
           </div>
         </details>
@@ -545,11 +547,11 @@
 
       <article class="paper-card" data-tag="┌─ WIP ──" data-tags="household-adjustment household-finance urban-economics work-in-progress" aria-labelledby="paper-housing-title">
         <div class="paper-top">
-          <div class="paper-jel">JEL &nbsp;R21 &middot; R31 &middot; I28 &middot; D83</div>
+          <div class="paper-jel">JEL &nbsp;R31 &middot; I28 &middot; D23 &middot; H42</div>
           <div class="paper-badges"><span class="badge badge-draft">WORK IN PROGRESS</span></div>
           <h3 class="paper-title" id="paper-housing-title">Grandfathering at Sale: Nonportable School Rights and Housing Exchange</h3>
 
-          <div class="paper-finding">After a sale resets school rights, relative sales growth is 32–45% lower and transaction prices 4–5% lower in formerly key-school neighborhoods; lower prices need not restore trade.</div>
+          <div class="paper-finding">Preserving owners&rsquo; school rights while resetting buyers&rsquo; rights is associated with 30–45% lower seasonal sales growth; timing evidence does not establish permanently lost sales.</div>
 
           <!-- PDF and SSRN links withheld until this paper is sent out for review. -->
 
@@ -558,7 +560,7 @@
           </button>
 
           <div class="abstract-text" hidden>
-            <p><strong>Abstract:</strong> Can lower prices sustain housing trade when buyers cannot acquire the school rights enjoyed by existing owners? I study a Beijing reform that preserved the previous admission rules for eligible homeowners, while new buyers faced assignment across several schools. Linking enrollment notices to housing transactions, I compare winter-to-spring changes around January 2019 with the same seasons in earlier years. Sales remain roughly flat in formerly key-school neighborhoods but rise in ordinary-school neighborhoods. After adjusting for earlier seasonal patterns, the gap in relative sales growth is 32–45 percent; transaction prices are also 4–5 percent lower relative to ordinary-school neighborhoods. A matching model explains why price reductions need not restore trade when a sale changes the rights attached to a home. The model also shows that portable school rights can facilitate exchange while reducing other families&#x27; access when school places are fixed.</p>
+            <p><strong>Abstract:</strong> Can protecting homeowners&#x27; school rights make their homes harder to trade? I study a Beijing reform that preserved the previous admission rules for eligible owners who kept their homes, while new buyers faced assignment across several schools. Linking enrollment notices to transactions, I compare winter-to-spring changes around January 2019 with earlier seasons. Counts that do not require reported prices imply 30–45 percent lower sales growth in formerly key-school communities relative to ordinary-school communities. Local comparisons remain negative but imprecise. Monthly counts diverge during the grace period; the cumulative gap narrows over 2019 without establishing permanently lost sales. Exact-price sales suggest relative price declines, while reported price ranges leave the full-sample response uncertain. A matching model explains why flexible prices need not preserve exchange when a sale changes the rights conveyed, and why portable protection can facilitate trade at other applicants&#x27; expense.</p>
           </div>
 
 
@@ -570,12 +572,12 @@
           <summary><span class="label">Show Figures</span></summary>
           <div class="paper-figs-grid">
             <figure class="figure-card">
-              <img src="plot/jmp_rights_timing.png" alt="A transfer resets school rights while eligible owners retain previous admission rules." loading="lazy">
+              <img src="plot/grandfathering_rights.png" alt="A transfer resets school rights while eligible owners retain previous admission rules." width="2200" height="610" loading="lazy">
               <figcaption>A transfer resets school rights while eligible owners retain previous admission rules.</figcaption>
             </figure>
             <figure class="figure-card">
-              <img src="plot/jmp_incidence.png" alt="Completed exchange in the historical assignment sample." loading="lazy">
-              <figcaption>Completed exchange in the historical assignment sample.</figcaption>
+              <img src="plot/grandfathering_sales_counts.png" alt="Price-independent completed-sale counts for 111 formerly key-school and 102 ordinary-school communities, comparing winter-to-spring changes in 2017, 2018, and 2019. Three- and four-month windows show weaker relative sales growth in formerly key-school communities around January 2019; the chart does not establish permanently lost sales." width="2200" height="1426" loading="lazy">
+              <figcaption>Price-independent sales counts show weaker seasonal growth in formerly key-school communities. Levels are recorded completions, not permanently lost sales.</figcaption>
             </figure>
           </div>
         </details>
