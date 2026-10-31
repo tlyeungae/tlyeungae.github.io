@@ -23,8 +23,11 @@
     $('.content-region').hide().css('animation', 'none');
     $('.main-menu a').removeClass('active');
 
-    var region = location.hash || $('.main-menu a:first').attr('href');
-    var $region = $(region);
+    var page = document.getElementById((location.hash || '#home').slice(1));
+    if (!page || !page.classList.contains('content-region')) page = document.getElementById('home');
+    var region = '#' + page.id;
+    var $region = $(page);
+    document.documentElement.setAttribute('data-page', page.id);
     $region.show();
     $region[0].offsetHeight;            // force reflow
     $region.css('animation', '');
@@ -62,23 +65,20 @@
   (function clock() {
     var el = document.getElementById('status-clock');
     if (!el) return;
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
     function tick() {
-      var now = new Date();
-      var fmt;
       try {
-        fmt = new Intl.DateTimeFormat('en-GB', {
+        var fmt = new Intl.DateTimeFormat('en-GB', {
           timeZone: 'Europe/Zurich',
           hour12: false,
-          hour: '2-digit', minute: '2-digit', second: '2-digit'
-        }).format(now);
+          hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
+        }).format(new Date());
+        el.textContent = 'LUGANO ' + fmt;
       } catch (e) {
-        fmt = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+        el.textContent = 'LUGANO · SWITZERLAND';
       }
-      el.textContent = 'LUGANO ' + fmt + ' CET';
     }
     tick();
-    setInterval(tick, 1000);
+    setInterval(tick, 30000);
   })();
 
   // 3a) T-MINUS countdowns for News & Forthcoming
@@ -116,23 +116,6 @@
     tick();
     // Re-tick at midnight so the day flips even if the tab is left open
     setInterval(tick, 60 * 60 * 1000);
-  })();
-
-  // 3b) Faux system stats — CPU + MEM fluctuate; gives the bar life
-  (function sysStats() {
-    var cpuEl = document.getElementById('status-cpu');
-    var memEl = document.getElementById('status-mem');
-    if (!cpuEl && !memEl) return;
-    var cpu = 38, mem = 1.2;
-    function step() {
-      // random walk so values feel like a live process
-      cpu = Math.max(18, Math.min(82, cpu + (Math.random() - 0.5) * 12));
-      mem = Math.max(0.6, Math.min(1.9, mem + (Math.random() - 0.5) * 0.18));
-      if (cpuEl) cpuEl.textContent = 'CPU\u00A0' + Math.round(cpu) + '%';
-      if (memEl) memEl.textContent = 'MEM\u00A0' + mem.toFixed(1) + 'GB';
-    }
-    step();
-    setInterval(step, 2400);
   })();
 
   // 4) Scroll-to-top button visibility
@@ -370,6 +353,7 @@
 
     // Global key handler — open with ` outside inputs
     document.addEventListener('keydown', function(e){
+      if (document.querySelector('dialog[open]')) return;
       var tag = (e.target.tagName || '').toLowerCase();
       if (tag === 'input' || tag === 'textarea') return;
       if (e.key === '`' || e.key === '~') {
@@ -439,6 +423,144 @@
     });
   });
 })(jQuery);
+
+// Research figures: native modal focus management, grouped by paper.
+(function figureViewer() {
+  var dialog = document.getElementById('figure-viewer');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  var image = document.getElementById('figure-viewer-image');
+  var stage = document.getElementById('figure-viewer-stage');
+  var title = document.getElementById('figure-viewer-title');
+  var caption = document.getElementById('figure-viewer-caption');
+  var position = document.getElementById('figure-viewer-position');
+  var original = document.getElementById('figure-viewer-original');
+  var previous = document.getElementById('figure-viewer-prev');
+  var next = document.getElementById('figure-viewer-next');
+  var zoomIn = document.getElementById('figure-viewer-in');
+  var zoomOut = document.getElementById('figure-viewer-out');
+  var fit = document.getElementById('figure-viewer-fit');
+  var zoomLabel = document.getElementById('figure-viewer-zoom');
+  var close = document.getElementById('figure-viewer-close');
+  var figures = [], index = 0, zoom = 1, opener = null;
+
+  function sizeImage(preserveCenter) {
+    if (!dialog.open || !image.naturalWidth) return;
+    var centerX = (stage.scrollLeft + stage.clientWidth / 2) / stage.scrollWidth;
+    var centerY = (stage.scrollTop + stage.clientHeight / 2) / stage.scrollHeight;
+    var box = stage.getBoundingClientRect();
+    var width = Math.min(stage.clientWidth, Math.floor(box.width)) - 32;
+    var height = Math.min(stage.clientHeight, Math.floor(box.height)) - 32;
+    var scale = Math.min(width / image.naturalWidth, height / image.naturalHeight, 1) * zoom;
+    image.style.width = Math.max(1, Math.floor(image.naturalWidth * scale)) + 'px';
+    image.style.height = Math.max(1, Math.floor(image.naturalHeight * scale)) + 'px';
+    zoomLabel.textContent = Math.round(scale * 100) + '%';
+    zoomOut.disabled = zoom <= 1;
+    zoomIn.disabled = zoom >= 4;
+    fit.setAttribute('aria-pressed', String(zoom === 1));
+    stage.scrollLeft = preserveCenter ? centerX * stage.scrollWidth - stage.clientWidth / 2 : 0;
+    stage.scrollTop = preserveCenter ? centerY * stage.scrollHeight - stage.clientHeight / 2 : 0;
+  }
+  function setZoom(value) {
+    zoom = Math.max(1, Math.min(4, value));
+    sizeImage(zoom !== 1);
+  }
+  function showFigure(number) {
+    if (number < 0 || number >= figures.length) return;
+    index = number;
+    zoom = 1;
+    var source = figures[index].querySelector('img');
+    image.alt = source.alt;
+    image.src = source.currentSrc || source.src;
+    caption.textContent = figures[index].querySelector('figcaption').textContent.trim();
+    position.textContent = 'Figure ' + (index + 1) + ' / ' + figures.length;
+    original.href = image.src;
+    previous.disabled = index === 0;
+    next.disabled = index === figures.length - 1;
+    if (image.complete) requestAnimationFrame(function() { sizeImage(false); });
+  }
+  document.querySelectorAll('#research .paper-card').forEach(function(card) {
+    var gallery = Array.from(card.querySelectorAll('.figure-card'));
+    var paperTitle = card.querySelector('.paper-title').textContent.trim();
+    gallery.forEach(function(figure, number) {
+      var thumbnail = figure.querySelector('img');
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'figure-open';
+      button.setAttribute('aria-label', 'Enlarge figure ' + (number + 1) + ': ' + paperTitle);
+      button.setAttribute('aria-haspopup', 'dialog');
+      button.setAttribute('aria-controls', dialog.id);
+      thumbnail.before(button);
+      button.appendChild(thumbnail);
+      var label = document.createElement('span');
+      label.className = 'figure-open-label';
+      label.textContent = '↗ Enlarge figure';
+      label.setAttribute('aria-hidden', 'true');
+      button.appendChild(label);
+      button.addEventListener('click', function() {
+        opener = button;
+        figures = gallery;
+        title.textContent = paperTitle;
+        showFigure(number);
+        dialog.showModal();
+        document.documentElement.classList.add('figure-viewer-open');
+        close.focus();
+        requestAnimationFrame(function() { sizeImage(false); });
+      });
+    });
+  });
+  image.addEventListener('load', function() { sizeImage(false); });
+  previous.addEventListener('click', function() { showFigure(index - 1); });
+  next.addEventListener('click', function() { showFigure(index + 1); });
+  zoomIn.addEventListener('click', function() { setZoom(zoom + 0.5); });
+  zoomOut.addEventListener('click', function() { setZoom(zoom - 0.5); });
+  fit.addEventListener('click', function() { setZoom(1); });
+  close.addEventListener('click', function() { dialog.close(); });
+  dialog.addEventListener('close', function() {
+    document.documentElement.classList.remove('figure-viewer-open');
+    if (opener && opener.getClientRects().length) opener.focus({ preventScroll: true });
+  });
+  function outsideDialog(event) {
+    var box = dialog.getBoundingClientRect();
+    return event.target === dialog && (event.clientX < box.left || event.clientX > box.right ||
+      event.clientY < box.top || event.clientY > box.bottom);
+  }
+  var backdropDown = false;
+  dialog.addEventListener('pointerdown', function(event) { backdropDown = outsideDialog(event); });
+  dialog.addEventListener('click', function(event) {
+    if (backdropDown && outsideDialog(event)) dialog.close();
+    backdropDown = false;
+  });
+  dialog.addEventListener('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.key === 'Tab') {
+      var controls = Array.from(dialog.querySelectorAll('button:not(:disabled), a[href], [tabindex="0"]'))
+        .filter(function(control) { return control.getClientRects().length; });
+      var first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+      return;
+    }
+    if (event.key === 'ArrowLeft') showFigure(index - 1);
+    else if (event.key === 'ArrowRight') showFigure(index + 1);
+    else if (event.key === '+' || event.key === '=') setZoom(zoom + 0.5);
+    else if (event.key === '-') setZoom(zoom - 0.5);
+    else if (event.key === '0') setZoom(1);
+    else return;
+    event.preventDefault();
+    event.stopPropagation();
+  });
+  window.addEventListener('hashchange', function() { if (dialog.open) dialog.close(); });
+  if (typeof ResizeObserver === 'function') {
+    new ResizeObserver(function() { sizeImage(false); }).observe(stage);
+  } else {
+    window.addEventListener('resize', function() { sizeImage(false); });
+  }
+})();
 
 
 /* ===== Research tag filter — OR within a group, AND across groups ===== */

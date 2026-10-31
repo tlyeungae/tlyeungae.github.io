@@ -6,7 +6,7 @@
     <title>Tai Lo Yeung &middot; PhD Candidate in Economics, USI</title>
     <meta name="description" content="Tai Lo Yeung — financial economist and PhD candidate at USI. Research in household finance on experience, memory, and current decisions, alongside work on China’s financial development and policy.">
     <meta name="author" content="Tai Lo Yeung">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="canonical" href="https://tlyeungae.github.io/">
 
@@ -38,6 +38,7 @@
         var saved = null;
         try { saved = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
         if (saved !== 'dark') document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-page', location.hash === '#research' ? 'research' : 'home');
       })();
     </script>
 
@@ -61,7 +62,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" type="text/css" />
    
     <!-- Custom styles -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20261031" rel="stylesheet" type="text/css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
@@ -75,23 +76,26 @@
   
   <body>
 
-    <div class="status-bar">
-      <span>● <span class="glow">SYS:LIVE</span></span>
-      <span class="sep">│</span>
-      <span>USR:yeungtailo@gmail.com</span>
-      <span class="sep">│</span>
-      <span>BUILD 2026.08.r19</span>
-      <span class="sep">│</span>
-      <span id="status-cpu">CPU&nbsp;--%</span>
-      <span class="sep">│</span>
-      <span id="status-mem">MEM&nbsp;-.-GB</span>
-      <span class="sep">│</span>
-      <span>ON_MARKET <span class="blink">▮</span></span>
-      <span class="right" id="status-clock">LUGANO --:--:-- CET</span>
+    <div class="status-bar" aria-label="Academic status and research updates">
+      <span class="status-market"><span aria-hidden="true">●</span> Job market 2026&ndash;27</span>
+      <!-- Update this date when research content or a paper download changes, not for design-only releases. -->
+      <a class="status-research" href="#research">Research updated <time datetime="2026-10-29">29 Oct 2026</time></a>
+      <span class="right" id="status-clock" title="Local time in Lugano, Europe/Zurich">Lugano &middot; Switzerland</span>
     </div>
 
     <header id="header">
       <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode"></button>
+
+      <div class="compact-profile">
+        <div class="compact-identity">
+          <a class="compact-name" href="#home">Tai Lo Yeung <span lang="zh-Hant">楊大魯</span></a>
+          <p>PhD Candidate in Economics <span aria-hidden="true">/</span> USI Lugano</p>
+        </div>
+        <div class="compact-links">
+          <a href="CV.pdf">CV</a>
+          <a href="mailto:tai.lo.yeung@usi.ch">Email</a>
+        </div>
+      </div>
 
       <pre class="ascii-logo">
  ██╗   ██╗███████╗██╗   ██╗███╗   ██╗ ██████╗
@@ -838,8 +842,38 @@
       </div>
     </div>
 
+    <dialog id="figure-viewer" class="figure-viewer" aria-labelledby="figure-viewer-title" aria-describedby="figure-viewer-caption">
+      <header class="figure-viewer-header">
+        <div>
+          <p class="figure-viewer-position" id="figure-viewer-position" role="status" aria-live="polite"></p>
+          <h2 id="figure-viewer-title"></h2>
+        </div>
+        <button type="button" id="figure-viewer-close" aria-label="Close figure viewer" autofocus>Close <span aria-hidden="true">&times;</span></button>
+      </header>
+      <div class="figure-viewer-toolbar" role="group" aria-label="Figure controls">
+        <div class="figure-viewer-controls">
+          <button type="button" id="figure-viewer-prev" aria-label="Previous figure">&larr; Prev</button>
+          <button type="button" id="figure-viewer-next" aria-label="Next figure">Next &rarr;</button>
+        </div>
+        <div class="figure-viewer-controls">
+          <button type="button" id="figure-viewer-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" id="figure-viewer-fit" aria-label="Fit figure to window">Fit</button>
+          <button type="button" id="figure-viewer-in" aria-label="Zoom in">+</button>
+          <span id="figure-viewer-zoom" aria-live="polite"></span>
+        </div>
+        <a id="figure-viewer-original" target="_blank" rel="noopener">Open image <span aria-hidden="true">&nearr;</span></a>
+      </div>
+      <div class="figure-viewer-stage" id="figure-viewer-stage" tabindex="0" aria-label="Figure image; scroll to pan when zoomed">
+        <div class="figure-viewer-canvas"><img id="figure-viewer-image" alt=""></div>
+      </div>
+      <footer class="figure-viewer-footer">
+        <p id="figure-viewer-caption"></p>
+        <p class="figure-viewer-hint">&larr; &rarr; figures <span aria-hidden="true">&middot;</span> + &minus; zoom <span aria-hidden="true">&middot;</span> 0 fit <span aria-hidden="true">&middot;</span> Esc close</p>
+      </footer>
+    </dialog>
+
     <!-- Load additional JS scripts here -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js?v=20261031"></script>
 
   </body>
 </html>
