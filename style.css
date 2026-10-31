@@ -646,6 +646,67 @@ ul.main-menu li a.active::after{ color: var(--green); }
   .news-tminus{ flex: 0 0 auto; }
 }
 
+/* Visitor map — a quiet, paper-toned exhibit in either theme. */
+.visitors-section{ max-width: 56rem; }
+.visitors-panel{
+  border: 1px solid var(--rule);
+  background: var(--bg-2);
+  padding: 1.5rem;
+}
+.visitors-intro{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .4rem 1.6rem;
+  margin-bottom: 1.4rem;
+}
+.visitors-label{
+  font: 500 1rem/1.5 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.visitors-description{ font-size: 1.2rem; color: var(--fg-dim); }
+.visitor-map{
+  min-width: 0;
+  min-height: 17rem;
+  background: #f0ece0;
+  border: 1px solid #d6cfb6;
+  padding: 1rem;
+  color: #5a564a;
+  color-scheme: light;
+}
+.visitor-map-placeholder{
+  margin: 0;
+  padding: 5rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.visitor-map-placeholder a{ color: #8a4a06; }
+.visitor-map:has(#mapmyvisitors-widget) .visitor-map-placeholder{ display: none; }
+.visitor-map #mapmyvisitors-widget{ width: 100% !important; max-width: 100%; }
+.visitor-map .mapmyvisitors-map{
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 2.04;
+  background-size: 100% 100%;
+}
+.visitor-map #mapmyvisitors-widget .mapmyvisitors-visitors,
+.visitor-map #mapmyvisitors-widget .mapmyvisitors-date{
+  font-family: var(--mono);
+  font-size: 1rem !important;
+  text-shadow: none;
+}
+.visitors-credit{
+  margin: 1rem 0 0;
+  font: 400 1rem/1.6 var(--mono);
+  color: var(--fg-dim);
+}
+.visitors-credit span{ margin: 0 .5em; color: var(--fg-faint); }
+.visitors-credit a{ color: var(--fg-dim); }
+.visitors-credit a:hover{ color: var(--amber); }
+
 /* Colophon (motto) */
 .colophon{
   text-align: center;
@@ -1842,7 +1903,7 @@ body.engineering-mode .status-bar{
 @media print{
   body, html{ background: #fff; color: #000; }
   body::after{ display: none; }
-  .status-bar, #theme-toggle, .main-nav, #scroll-top, footer#colophon, .figure-viewer, .figure-open-label{ display: none !important; }
+  .status-bar, #theme-toggle, .main-nav, #scroll-top, footer#colophon, .figure-viewer, .figure-open-label, .visitors-section{ display: none !important; }
   html.figure-viewer-open{ overflow: visible; }
   .content-region{ display: block !important; page-break-after: always; }
   pre.ascii-logo{ color: #000; text-shadow: none; }

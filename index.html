@@ -62,7 +62,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" type="text/css" />
    
     <!-- Custom styles -->
-    <link href="style.css?v=20261031" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20261031-map" rel="stylesheet" type="text/css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
@@ -272,6 +272,20 @@
                       </span>
                     </li>
                   </ul>
+                </section>
+
+                <section class="paper-section visitors-section" aria-labelledby="visitors-heading">
+                  <h2 class="section-rubric" id="visitors-heading">Visitors</h2>
+                  <div class="visitors-panel">
+                    <div class="visitors-intro">
+                      <span class="visitors-label">Around the world</span>
+                      <span class="visitors-description">Thank you for visiting.</span>
+                    </div>
+                    <div class="visitor-map" id="visitor-map" data-src="https://mapmyvisitors.com/map.js?d=K42Cy4WKGkYQyYRQkN2rkndNDgEAxOQF0LU2IKl4iFw&amp;cl=b8b09a&amp;co=f0ece0&amp;ct=5a564a&amp;w=a">
+                      <p class="visitor-map-placeholder">Visitor map provided by <a href="https://mapmyvisitors.com/" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
+                    </div>
+                    <p class="visitors-credit">Visitor locations <span aria-hidden="true">/</span> <a href="https://mapmyvisitors.com/" target="_blank" rel="noopener">MapMyVisitors</a></p>
+                  </div>
                 </section>
 
                 <div class="colophon"><span class="colophon-rule">&sect;</span> <em>Video et Taceo</em> <span class="colophon-rule">&sect;</span></div>
@@ -873,7 +887,7 @@
     </dialog>
 
     <!-- Load additional JS scripts here -->
-    <script type="text/javascript" src="script.js?v=20261031"></script>
+    <script type="text/javascript" src="script.js?v=20261031-map"></script>
 
   </body>
 </html>

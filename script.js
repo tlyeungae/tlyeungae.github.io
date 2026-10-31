@@ -1,5 +1,20 @@
 (function($) {
 
+  // Initialize only once, after Home is visible, so the provider measures its real width.
+  function initVisitorMap() {
+    var host = document.getElementById('visitor-map');
+    if (!host || document.getElementById('mapmyvisitors')) return;
+    var script = document.createElement('script');
+    script.id = 'mapmyvisitors';
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = host.getAttribute('data-src');
+    script.onerror = function() {
+      host.querySelector('.visitor-map-placeholder').textContent = 'The visitor map is currently unavailable.';
+    };
+    host.appendChild(script);
+  }
+
   // 1) Hash-based navigation + fade-in + active-tab cursor
   function setActiveCursor() {
     document.querySelectorAll('.main-menu .nav-cursor').forEach(function(n){ n.remove(); });
@@ -29,6 +44,7 @@
     var $region = $(page);
     document.documentElement.setAttribute('data-page', page.id);
     $region.show();
+    if (page.id === 'home') initVisitorMap();
     $region[0].offsetHeight;            // force reflow
     $region.css('animation', '');
     $('.main-menu a[href="'+ region +'"]').addClass('active');
