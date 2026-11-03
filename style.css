@@ -217,6 +217,7 @@ pre.ascii-logo{
   line-height: 1.05;
   white-space: pre;
   overflow-x: auto;
+  overflow-y: hidden; /* Tight logo line boxes must not create a vertical scrollbar. */
   text-shadow: 0 0 8px rgba(255,176,0,.12);
 }
 pre.ascii-logo .ver{ color: var(--fg-dim); font-size: .92em; }
