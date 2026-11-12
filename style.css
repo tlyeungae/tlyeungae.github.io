@@ -1183,6 +1183,7 @@ details.paper-figs summary::-webkit-details-marker{ display: none; }
   background: #fff;
 }
 .paper-figs-grid .figure-card:only-child{ grid-column: 1 / -1; max-width: 92rem; }
+.paper-figs-grid .figure-card-wide{ grid-column: 1 / -1; }
 /* Caption — says what the exhibit shows, so a skimmer need not open the paper */
 .figure-card figcaption{
   margin-top: .8rem;

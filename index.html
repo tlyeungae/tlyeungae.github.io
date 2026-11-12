@@ -62,7 +62,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" type="text/css" />
    
     <!-- Custom styles -->
-    <link href="style.css?v=20261103" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20261112" rel="stylesheet" type="text/css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
@@ -79,7 +79,7 @@
     <div class="status-bar" aria-label="Academic status and research updates">
       <span class="status-market"><span aria-hidden="true">●</span> Job market 2026&ndash;27</span>
       <!-- Update this date when research content or a paper download changes, not for design-only releases. -->
-      <a class="status-research" href="#research">Research updated <time datetime="2026-11-11">11 Nov 2026</time></a>
+      <a class="status-research" href="#research">Research updated <time datetime="2026-11-12">12 Nov 2026</time></a>
       <span class="right" id="status-clock" title="Local time in Lugano, Europe/Zurich">Lugano &middot; Switzerland</span>
     </div>
 
@@ -578,7 +578,7 @@
           <div class="paper-badges"><span class="badge badge-draft">WORK IN PROGRESS</span></div>
           <h3 class="paper-title" id="paper-housing-title">Grandfathering at Sale: School Access and Housing Exchange</h3>
 
-          <div class="paper-finding">A school-access reform is associated with a 30–45% shortfall in relative seasonal sales growth in formerly key-school communities; the gap narrows over 2019.</div>
+          <div class="paper-finding">After a Beijing reform preserving owners&rsquo; school rights, the key-to-ordinary sales-growth ratio is 30–45% below its historical benchmark, with a corresponding shortfall in floor area exchanged.</div>
 
           <!-- PDF and SSRN links withheld until this paper is sent out for review. -->
 
@@ -587,7 +587,7 @@
           </button>
 
           <div class="abstract-text" hidden>
-            <p><strong>Abstract:</strong> School-access reforms can change what a home conveys to its buyer while protecting the rights of its current owner. I study such a reform in Beijing, linking historical school assignments to housing transactions. Comparing winter-to-spring sales across assignments and historical seasons, I find that the key-to-ordinary recorded-sales growth ratio falls 30–45 percent below its historical benchmark. In three-month windows, formerly key-school sales remain approximately flat while ordinary-school sales expand. The gap emerges during the announced transition and narrows over 2019. Sales with a single reported price suggest relative declines, while interval-reported prices leave the broader response uncertain. A matching framework distinguishes reducing buyers&#x27; access from protecting incumbents who stay: both can restrict exchange, but imply opposite price changes for otherwise identical trades. The findings show how adjustment is distributed across neighborhoods and time, and why capitalization alone cannot measure the exchange cost of incumbent protection.</p>
+            <p><strong>Abstract:</strong> What happens to housing trade when existing owners keep school admission rights that do not pass to new buyers? I study a Beijing reform that preserved eligible owners&#x27; admission rules but changed those for buyers obtaining property titles from January 2019. Using recorded sales linked to prior primary-school assignments, I compare winter-to-spring changes with earlier years. The key-to-ordinary sales-growth ratio is 30–45 percent below its historical benchmark: formerly key-school sales remain roughly flat over three-month windows while ordinary-school sales expand. The relative shortfall also appears in total floor area exchanged. The difference is largest early in the transition and smaller when the rest of the year is included. Transaction prices also suggest relative declines. A model distinguishes changes in buyers&#x27; access from protection of owners who stay, showing why prices alone do not measure the exchange cost of protection.</p>
           </div>
 
 
@@ -604,7 +604,11 @@
             </figure>
             <figure class="figure-card">
               <img src="plot/grandfathering_timing.png?v=20261107" alt="Monthly sales diverge during the announced transition. Against pooled historical seasons, the cumulative relative sales-growth ratio rises from 0.62 through March to 0.90 through December 2019. Bars show pointwise 95% school-delete-one log-jackknife intervals; the December interval includes one. The narrowing gap does not identify which transactions were delayed or permanently forgone." width="2200" height="1736" loading="lazy">
-              <figcaption>The sales gap emerges during the transition and narrows over 2019. Cumulative comparisons do not establish permanently lost transactions.</figcaption>
+              <figcaption>The cumulative sales gap is smaller over the full year. This does not establish compensating later sales or identify permanently lost transactions.</figcaption>
+            </figure>
+            <figure class="figure-card figure-card-wide">
+              <img src="plot/grandfathering_dynamic.png?v=20261112" alt="Pooled one- and two-year historical comparisons of monthly sales in 111 formerly key-school and 102 ordinary-school communities, relative to January–March 2018. Key–ordinary contrasts turn negative in December 2018 and early 2019. Coefficients are in asinh units, not percentages; bars are pointwise 95% school-cluster intervals. The pooled January–March 2019 average survives adjustment across nine phase averages; no individual month survives adjustment across the monthly family. Hatching marks historical observations after announcement, limiting interpretation of the later path." width="2200" height="913" loading="lazy">
+              <figcaption>Relative sales weaken in early 2019 against a pre-announcement reference. The pooled first-quarter average survives adjustment for multiple testing; individual months do not. Intervals are pointwise.</figcaption>
             </figure>
           </div>
         </details>
