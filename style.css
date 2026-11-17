@@ -457,6 +457,7 @@ ul.main-menu li a.active::after{ color: var(--green); }
 
 /* Hero photo as terminal preview */
 .image-content{ margin: 1rem 0 2.4rem; }
+.profile-portrait{ display: none; }
 .image-content img{
   display: block;
   max-width: 100%;
@@ -511,7 +512,7 @@ ul.main-menu li a.active::after{ color: var(--green); }
 .dropcap{ float: none; font: inherit; color: inherit; margin: 0 .25em 0 0; }
 .lede-opener{ font: inherit; letter-spacing: 0; }
 
-.cv-line{ margin-top: 1rem !important; }
+.home-bio .cv-line{ margin-top: 1rem; }
 .cv-line::before{ content: "$ "; color: var(--green); }
 .cv-link{ color: var(--amber); border-bottom: 1px dotted var(--amber); }
 .cv-meta{ color: var(--fg-dim); margin-left: .6em; font-size: 1rem; }
@@ -1836,17 +1837,39 @@ body.engineering-mode .status-bar{
    RESPONSIVE
 ============================================================ */
 @media (min-width: 1100px){
-  #home .content-wrapper{
+  [data-page="home"] #header{
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 3.2rem;
+  }
+  [data-page="home"] #theme-toggle{ right: 3.2rem; }
+  [data-page="home"] .profile-box{ padding-right: 35%; }
+  [data-page="home"] .profile-portrait{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    inset: 1.1rem 1.6rem 1.1rem auto;
+    width: 30%;
+    margin: 0;
+  }
+  .profile-portrait img{
+    width: auto;
+    max-height: 100%;
+    padding: 3px;
+    object-fit: contain;
+  }
+  #home .image-content{ display: none; }
+  .home-bio{
     display: grid;
-    grid-template-columns: minmax(27rem, 34rem) minmax(0, 1fr);
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "bio statement" "bio cv";
+    gap: .9rem 3.4rem;
   }
-  #home .image-content{
-    position: sticky;
-    top: 4.8rem;
-    margin-top: 0;
-  }
+  .home-bio .lede{ grid-area: bio; margin: 0; }
+  .home-bio p.research-thesis{ grid-area: statement; align-self: start; margin: 0; }
+  .home-bio .cv-line{ grid-area: cv; margin: 0; }
 }
 
 @media (max-width: 900px){
