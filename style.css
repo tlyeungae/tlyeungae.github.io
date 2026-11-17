@@ -906,37 +906,24 @@ ul.main-menu li a.active::after{ color: var(--green); }
 [data-theme="light"] .home-bio p.research-thesis{ text-shadow: none; }
 @media (max-width: 640px){ .home-bio p.research-thesis{ font-size: 1.85rem; } }
 
-/* "Three questions at the center of my work" — numbered cards */
+/* Home research overview */
 .rq-subtitle{
   font-family: var(--sans);
-  font-size: 1.68rem;
-  line-height: 1.72;
+  font-size: 1.58rem;
+  line-height: 1.55;
   color: var(--fg);
-  max-width: 70ch;
-  margin: -.4rem 0 1.4rem;
+  margin: 0 0 1.4rem;
 }
-.rq-subtitle strong{ color: var(--amber); }
 .rq-cards{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-  margin: 0 0 1.6rem;
+  gap: 1.6rem;
+  margin-bottom: 1.2rem;
 }
 .rq-card{
-  position: relative;
-  border: 1px solid var(--rule-strong);
-  background: var(--bg-2);
-  padding: 1.7rem 1.8rem 1.6rem;
+  border-left: 1px solid var(--rule-strong);
+  padding-left: 1.2rem;
 }
-.rq-card-num{
-  font-family: var(--mono);
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: .25em;
-  color: var(--green);
-  margin: 0 0 .4rem;
-}
-.rq-card-num::after{ content: " //"; color: var(--fg-faint); letter-spacing: 0; }
 h3.rq-card-title{
   font-family: var(--mono);
   font-size: 1.62rem;
@@ -952,23 +939,9 @@ h3.rq-card-title{
   max-width: 64ch;
   margin: 0;
 }
-.rq-card-q em{ color: var(--amber); font-style: italic; }
-.rq-card-tag{
+.rq-papers{
   font-family: var(--mono);
-  font-size: 1.05rem;
-  color: var(--green);
-  margin: .7rem 0 0;
-}
-
-.rq-coda{
-  display: flex;
-  flex-direction: column;
-  gap: .3rem;
-  font-family: var(--mono);
-  font-size: 1.08rem;
-  line-height: 1.6;
-  color: var(--fg-dim);
-  margin: 0 0 .4rem;
+  font-size: 1.25rem;
 }
 
 /* Headline finding — the one line a reader keeps after skimming */
